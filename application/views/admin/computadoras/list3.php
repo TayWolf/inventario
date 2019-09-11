@@ -70,7 +70,7 @@
                                 <tr>
                                     
                                     <th>Codigo</th>
-                                    <th>Finca</th>
+                                    <th>Elemento</th>
                                     <th>Area</th>
                                     <th>Procesador</th>
                                     <th>Disco Duro</th>

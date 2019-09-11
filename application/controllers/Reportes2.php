@@ -293,7 +293,7 @@ class Reportes extends CI_Controller {
 	        $this->excel->getActiveSheet()->setCellValue("D{$contador}", 'Proveedor');
 	        $this->excel->getActiveSheet()->setCellValue("E{$contador}", 'Contacto');
 	        $this->excel->getActiveSheet()->setCellValue("F{$contador}", 'Fabricante');
-	        $this->excel->getActiveSheet()->setCellValue("G{$contador}", 'Finca');
+	        $this->excel->getActiveSheet()->setCellValue("G{$contador}", 'Elemento');
 	        $this->excel->getActiveSheet()->setCellValue("H{$contador}", 'Area');
 	        $this->excel->getActiveSheet()->setCellValue("I{$contador}", 'Procesador');
 	        $this->excel->getActiveSheet()->setCellValue("J{$contador}", 'Disco Duro');
@@ -329,7 +329,7 @@ class Reportes extends CI_Controller {
 		        $this->excel->getActiveSheet()->setCellValue("D{$contador}", $c->proveedor);
 		        $this->excel->getActiveSheet()->setCellValue("E{$contador}", $c->contacto);
 		        $this->excel->getActiveSheet()->setCellValue("F{$contador}", $c->fabricante);
-		        $this->excel->getActiveSheet()->setCellValue("G{$contador}", $c->finca);
+		        $this->excel->getActiveSheet()->setCellValue("G{$contador}", $c->elemento);
 		        $this->excel->getActiveSheet()->setCellValue("H{$contador}", $c->area);
 		        $this->excel->getActiveSheet()->setCellValue("I{$contador}", $c->velocidad);
 		        $this->excel->getActiveSheet()->setCellValue("J{$contador}", $c->disco);
@@ -419,7 +419,7 @@ class Reportes extends CI_Controller {
 	        $html .= '<tr>';
 	        $html .= "<th>#</th>";
             $html .= '<th>Codigo</th>';
-            $html .= '<th>Finca</th>';
+            $html .= '<th>elemento</th>';
             $html .= '<th>Area</th>';
             $html .= '<th>Procesador</th>';
             $html .= '<th>Disco Duro</th>';
@@ -442,7 +442,7 @@ class Reportes extends CI_Controller {
 	         	$html.='<tr>';
                 $html.='<td>'.$computadora->id.'</td>';
                 $html.='<td>'.$computadora->codigo.'</td>';
-                $html.='<td>'.$computadora->finca.'</td>';
+                $html.='<td>'.$computadora->elemento.'</td>';
                 $html.='<td>'.$computadora->area.'</td>';
                 $html.='<td>'.$computadora->velocidad.'</td>';
                 $html.='<td>'.$computadora->disco.'</td>';

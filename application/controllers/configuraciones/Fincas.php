@@ -15,7 +15,7 @@ class Fincas extends CI_Controller {
 	{
 
 		$contenido_interno = array(
-			"fincas" => $this->Fincas_model->getFincas(),
+			"elemento" => $this->Fincas_model->getFincas(),
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/fincas/list",$contenido_interno,TRUE)

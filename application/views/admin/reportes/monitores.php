@@ -51,7 +51,7 @@
                                     
                                     <th>Codigo</th>
                                     <th>Tamaño</th>
-                                    <th>Finca</th>
+                                    <th>Elemento</th>
                                     <th>Proveedor</th>
                                     <th>Usuario</th>
                                     <th>Area</th>

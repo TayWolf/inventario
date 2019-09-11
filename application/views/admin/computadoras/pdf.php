@@ -16,7 +16,7 @@
         <tr>
             <th style="border: 1px solid;">#</th>
             <th style="border: 1px solid;">Codigo</th>
-            <th style="border: 1px solid;">Finca</th>
+            <th style="border: 1px solid;">Elemento</th>
             <th style="border: 1px solid;">Area</th>
             <th style="border: 1px solid;">Procesador</th>
             <th style="border: 1px solid;">Disco Duro</th>

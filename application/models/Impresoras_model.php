@@ -9,7 +9,7 @@ class Impresoras_model extends CI_Model {
 		$this->db->join("fabricantes f","i.fabricante_id = f.id");
 		$this->db->join("proveedores p","i.proveedor_id = p.id");
 		$this->db->join("areas a","i.area_id = a.id");
-		$this->db->join("fincas fi","i.finca_id = fi.id");
+		$this->db->join("elemento fi","i.finca_id = fi.id");
 		$this->db->join("usuarios u","i.usuario_id = u.id");
 
 		if ($fechainicio !== false && $fechafinal !== false) {
@@ -30,7 +30,7 @@ class Impresoras_model extends CI_Model {
 		$this->db->from("impresoras i");
 	
 		$this->db->join("proveedores pro","i.proveedor_id = pro.id");
-		$this->db->join("fincas f","i.finca_id = f.id");
+		$this->db->join("elemento f","i.finca_id = f.id");
 		$this->db->join("fabricantes fa","i.fabricante_id = fa.id");
 
 		$this->db->join("areas a","i.area_id = a.id");

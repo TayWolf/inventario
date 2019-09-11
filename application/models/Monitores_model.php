@@ -9,7 +9,7 @@ class Monitores_model extends CI_Model {
 		$this->db->join("fabricantes f","m.fabricante_id = f.id");
 		$this->db->join("proveedores p","m.proveedor_id = p.id");
 		$this->db->join("areas a","m.area_id = a.id");
-		$this->db->join("fincas fi","m.finca_id = fi.id");
+		$this->db->join("elemento fi","m.finca_id = fi.id");
 		$this->db->join("usuarios u","m.usuario_id = u.id");
 		if ($fechainicio !== false && $fechafinal !== false) {
 			$this->db->where("m.fecregistro >=", $fechainicio." "."00:00:00");
@@ -29,7 +29,7 @@ class Monitores_model extends CI_Model {
 		$this->db->from("monitores m");
 	
 		$this->db->join("proveedores pro","m.proveedor_id = pro.id");
-		$this->db->join("fincas f","m.finca_id = f.id");
+		$this->db->join("elemento f","m.finca_id = f.id");
 		$this->db->join("fabricantes fa","m.fabricante_id = fa.id");
 
 		$this->db->join("areas a","m.area_id = a.id");

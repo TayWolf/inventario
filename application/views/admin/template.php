@@ -77,7 +77,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>DS</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Despachos</b></span>
+                <span class="logo-lg"><b>Inventario FONCA</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -144,16 +144,21 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
+                            <li><a href="<?php echo base_url();?>configuraciones/areas"><i class="fa fa-circle-o"></i> Areas</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/cargo"><i class="fa fa-circle-o"></i> Cargo</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/fincas"><i class="fa fa-circle-o"></i> Elemento</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/propietario"><i class="fa fa-circle-o"></i> Propietario</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/fabricantes"><i class="fa fa-circle-o"></i> Fabricante</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/categoria"><i class="fa fa-circle-o"></i> Categoria</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/presentaciones"><i class="fa fa-circle-o"></i> Modelo</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
+                            
                             <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/memorias"><i class="fa fa-circle-o"></i> Memorias RAM</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/discos"><i class="fa fa-circle-o"></i> Discos Duros</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/antivirus"><i class="fa fa-circle-o"></i> Antivirus</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/sistemas"><i class="fa fa-circle-o"></i> Sistemas Opertivos</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/areas"><i class="fa fa-circle-o"></i> Areas</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/fabricantes"><i class="fa fa-circle-o"></i> Fabricantes</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/fincas"><i class="fa fa-circle-o"></i> Fincas</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/office"><i class="fa fa-circle-o"></i> Office</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/presentaciones"><i class="fa fa-circle-o"></i> Presentaciones</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/proveedores"><i class="fa fa-circle-o"></i> Proveedores</a></li>
                         </ul>
                     </li>

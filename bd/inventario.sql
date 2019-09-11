@@ -43,6 +43,25 @@ INSERT INTO `antivirus` (`id`, `descripcion`, `estado`) VALUES
 (2, 'Avast 8', 0),
 (3, 'Karpesky 7', 0);
 
+--
+-- Estructura de tabla para la tabla `cargos`
+--
+
+CREATE TABLE `cargos` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cargos`
+--
+
+INSERT INTO `cargos` (`id`, `descripcion`, `estado`) VALUES
+(1, 'Jefe de Área', 1),
+(2, 'Empleado', 0),
+(3, 'Dirección', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -738,6 +757,12 @@ ALTER TABLE `antivirus`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `cargos`
+--
+ALTER TABLE `cargos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `areas`
 --
 ALTER TABLE `areas`
@@ -895,6 +920,12 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `antivirus`
 --
 ALTER TABLE `antivirus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `cargos`
+--
+ALTER TABLE `cargos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --

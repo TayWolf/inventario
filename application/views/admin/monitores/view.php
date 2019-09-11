@@ -10,7 +10,7 @@
 					<td><?php echo $monitor->proveedor; ?></td>
 				</tr>
 				<tr>
-					<th style="background-color: #f4f4f4;">Finca</th>
+					<th style="background-color: #f4f4f4;">Elemento</th>
 					<td><?php echo $monitor->finca; ?></td>
 					<th style="background-color: #f4f4f4;">Area</th>
 					<td><?php echo $monitor->area; ?></td>

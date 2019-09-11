@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Elemento <small> Listado</small>
+        Cargos <small> Listado</small>
     </h1>
 
 </section>
@@ -20,46 +20,39 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="fincas">
+            <input type="hidden" id="modulo" value="cargo">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>configuraciones/fincas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Elemento</a>
+                    <a href="<?php echo base_url();?>configuraciones/cargo/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Cargo</a>
+                    <!-- <a href="<?php echo base_url();?>configuraciones/antivirus/excel" class="btn btn-success btn-flat pull-right" target="_blank"> Generar excel </a> -->
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>NIT</th>
-                                    <th>Nombre</th>
-                                    <th>Direccion</th>
-                                    <th>Telefono</th>
                                     <th>Descripcion</th>
                                     <th>Estado</th>
-                                    <th>Opciones</th>
+                                    <th class="not-export-col">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($elemento as $finca): ?>
+                                <?php foreach ($cargos as $cargo): ?>
                                     <tr>
-                                        <td><?php echo $finca->id?></td>
-                                        <td><?php echo $finca->nit?></td>
-                                        <td><?php echo $finca->nombre?></td>
-                                        <td><?php echo $finca->direccion?></td>
-                                        <td><?php echo $finca->telefono?></td>
-                                        <td><?php echo $finca->descripcion?></td>
-                                        <td><?php echo $finca->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $cargo->id?></td>
+                                        <td><?php echo $cargo->descripcion?></td>
+                                        <td><?php echo $cargo->estado == 0 ?"Inactivo":"Activo";?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $finca->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $cargo->id;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/fincas/edit/<?php echo $finca->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1):  ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/fincas/delete/<?php echo $finca->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
-                                                    <span class="fa fa-times"></span>
-                                                </a>
-                                                <?php endif ?>
+                                                <a href="<?php echo base_url();?>configuraciones/cargo/edit/<?php echo $cargo->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>configuraciones/cargo/delete/<?php echo $cargo->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                        <span class="fa fa-times"></span>
+                                                    </a>
+                                                <?php endif?>
                                                 
                                             </div>
                                         </td>
@@ -86,7 +79,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion del Elemtento</h4>
+        <h4 class="modal-title">Informacion del cargo</h4>
       </div>
       <div class="modal-body">
         

@@ -10,7 +10,7 @@
 					<td><?php echo $computadora->proveedor; ?></td>
 				</tr>
 				<tr>
-					<th style="background-color: #f4f4f4;">Finca</th>
+					<th style="background-color: #f4f4f4;">Elemento</th>
 					<td><?php echo $computadora->finca; ?></td>
 					<th style="background-color: #f4f4f4;">Area</th>
 					<td><?php echo $computadora->area; ?></td>

@@ -47,7 +47,7 @@
                                 <tr>
                                     
                                     <th>Codigo</th>
-                                    <th>Finca</th>
+                                    <th>Elemento</th>
                                     <th>Proveedor</th>
                                     
                                     <th>Usuario</th>

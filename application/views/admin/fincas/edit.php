@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Fincas <small>Editar</small>
+        Elemento <small>Editar</small>
     </h1>
 
 </section>

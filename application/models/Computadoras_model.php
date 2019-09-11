@@ -11,7 +11,7 @@ class Computadoras_model extends CI_Model {
 		$this->db->join("monitores mo","c.monitor_id = mo.id");
 		$this->db->join("presentaciones p","c.presentacion_id = p.id");
 		$this->db->join("proveedores pro","c.proveedor_id = pro.id");
-		$this->db->join("fincas f","c.finca_id = f.id");
+		$this->db->join("elemento f","c.finca_id = f.id");
 		$this->db->join("fabricantes fa","c.fabricante_id = fa.id");
 		$this->db->join("procesadores pr","c.procesador_id = pr.id");
 		$this->db->join("memorias m","c.ram_id = m.id");
@@ -41,7 +41,7 @@ class Computadoras_model extends CI_Model {
 		$this->db->join("monitores mo","c.monitor_id = mo.id");
 		$this->db->join("presentaciones p","c.presentacion_id = p.id");
 		$this->db->join("proveedores pro","c.proveedor_id = pro.id");
-		$this->db->join("fincas f","c.finca_id = f.id");
+		$this->db->join("elemento f","c.finca_id = f.id");
 		$this->db->join("fabricantes fa","c.fabricante_id = fa.id");
 		$this->db->join("procesadores pr","c.procesador_id = pr.id");
 		$this->db->join("memorias m","c.ram_id = m.id");

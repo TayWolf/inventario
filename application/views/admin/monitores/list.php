@@ -32,7 +32,7 @@
                                     <th>#</th>
                                     <th>Codigo</th>
                                     <th>Tamaño</th>
-                                    <th>Finca</th>
+                                    <th>Elemento</th>
                                     <th>Area</th>
                                     <th>Bitacora</th>
                                     <th>Usuario</th>
