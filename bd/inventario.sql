@@ -65,6 +65,30 @@ INSERT INTO `cargos` (`id`, `descripcion`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `propietarios`
+--
+
+CREATE TABLE `propietarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(250) NOT NULL,
+  `apMat` varchar(250) NOT NULL,
+  `apPat` varchar(250) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `propietarios`
+--
+
+INSERT INTO `propietarios` (`id`, `nombre`, `apMat`, `apPat`, `estado`) VALUES
+(1, 'Adolfo', 'C', 'Fonseca', 1),
+(2, 'Raúl', 'Silva', 'Inventado', 1),
+(3, 'Ivan', 'Ortiz', 'Rosales' 1);
+
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `areas`
 --
 
@@ -214,10 +238,10 @@ INSERT INTO `fabricantes` (`id`, `nombre`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fincas`
+-- Estructura de tabla para la tabla `elemento`
 --
 
-CREATE TABLE `fincas` (
+CREATE TABLE `elemento` (
   `id` int(11) NOT NULL,
   `nit` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
@@ -231,8 +255,8 @@ CREATE TABLE `fincas` (
 -- Volcado de datos para la tabla `fincas`
 --
 
-INSERT INTO `fincas` (`id`, `nit`, `nombre`, `direccion`, `telefono`, `descripcion`, `estado`) VALUES
-(1, 10012, 'Finca 1', 'Direccion de la Finca 01', '053464642', 'Esta es la finca 01', 1);
+INSERT INTO `elemento` (`id`, `nit`, `nombre`, `direccion`, `telefono`, `descripcion`, `estado`) VALUES
+(1, 10012, 'Propio', 'Direccion', '053464642', 'Prueba', 1);
 
 -- --------------------------------------------------------
 
@@ -757,6 +781,12 @@ ALTER TABLE `antivirus`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `propietarios`
+--
+ALTER TABLE `propietarios`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `cargos`
 --
 ALTER TABLE `cargos`
@@ -920,6 +950,12 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `antivirus`
 --
 ALTER TABLE `antivirus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `propietarios`
+--
+ALTER TABLE `propietarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
