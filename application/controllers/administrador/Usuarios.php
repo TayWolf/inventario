@@ -52,6 +52,7 @@ class Usuarios extends CI_Controller {
 
 	public function infousuario(){
 		$id = $this->input->post("idUsuario");
+		$cedula = $this->input->post("cedula");
 		$nombres = $this->input->post("nombres");
 		$email = $this->input->post("email");
 		$sexo = $this->input->post("sexo");
@@ -60,6 +61,7 @@ class Usuarios extends CI_Controller {
 			"nombres" => $nombres,
 			"email" => $email,
 			"sexo" => $sexo,
+			"cedula" => $cedula
 		);
 
 		if ($this->Usuarios_model->update($id, $data)) {
@@ -73,7 +75,7 @@ class Usuarios extends CI_Controller {
 		$id = $this->input->post("idUsuario");
 		$password = $this->input->post("newpass");
 		$data = array(
-			"password" => sha1($password),
+			"password" => sha1($password)
 		);
 
 		if ($this->Usuarios_model->update($id, $data)) {

@@ -40,7 +40,7 @@
             font-weight: bold;
         }
         #tbvehiculos tr th{
-            background: #3c8dbc;
+            background: #510B23;
             border-color: #3c8dbc;
             color:#FFF; 
         }
@@ -51,7 +51,7 @@
             padding: 2px !important;
         }
         .tb-alistamiento tbody tr th{
-            background-color: #C4F4F1;
+            background-color: #510B23;
             color: #404141;
             text-align: center;
         }
@@ -59,7 +59,7 @@
             padding: 2px !important;
         }
         .tb-vehiculo tbody tr th{
-            background-color: #C4F4F1;
+            background-color: #510B23;
             color: #404141;
             text-align: center;
         }
@@ -73,7 +73,7 @@
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="<?php echo base_url(); ?>assets/index2.html" class="logo">
+            <a href="<?php echo base_url();?>dashboard" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>DS</b></span>
                 <!-- logo for regular state and mobile devices -->
@@ -151,6 +151,7 @@
                             <li><a href="<?php echo base_url();?>configuraciones/fabricantes"><i class="fa fa-circle-o"></i> Fabricante</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/categoria"><i class="fa fa-circle-o"></i> Categoria</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/presentaciones"><i class="fa fa-circle-o"></i> Modelo</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/ip"><i class="fa fa-circle-o"></i> IP's</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
                             
                             <!-- <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>

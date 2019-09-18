@@ -43,6 +43,27 @@ INSERT INTO `antivirus` (`id`, `descripcion`, `estado`) VALUES
 (2, 'Avast 8', 0),
 (3, 'Karpesky 7', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ip`
+--
+
+CREATE TABLE `ip` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ip`
+--
+
+INSERT INTO `ip` (`id`, `descripcion`, `estado`) VALUES
+(1, '172.17.124.174', 1),
+(2, '172.17.124.172', 1),
+(3, '172.17.124.154', 1);
+
 --
 -- Estructura de tabla para la tabla `cargos`
 --
@@ -781,6 +802,12 @@ ALTER TABLE `antivirus`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `ip`
+--
+ALTER TABLE `ip`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `propietarios`
 --
 ALTER TABLE `propietarios`
@@ -950,6 +977,12 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `antivirus`
 --
 ALTER TABLE `antivirus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `ip`
+--
+ALTER TABLE `ip`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --

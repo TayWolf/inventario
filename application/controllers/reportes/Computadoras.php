@@ -116,7 +116,7 @@ class Computadoras extends CI_Controller {
 			$objDrawing->setWorksheet($this->excel->getActiveSheet());
 
 	        //Definimos los títulos de la cabecera.
-	        $this->excel->getActiveSheet()->setCellValue("C1", 'Empresa de Transporte');	
+	        $this->excel->getActiveSheet()->setCellValue("C1", 'Reporte de Computadoras FONCA');	
 	        $this->excel->getActiveSheet()->setCellValue("D1",date("d-m-Y"));	
 	        $this->excel->getActiveSheet()->setCellValue("A{$contador}", 'Nro.');	        
 	        $this->excel->getActiveSheet()->setCellValue("B{$contador}", 'Codigo');
@@ -231,9 +231,9 @@ class Computadoras extends CI_Controller {
 	        $html .= '<tr>';
 
 	        $html .= '<td width="15%" rowspan="2">
-					<img src="'.base_url("assets/images/logo.png").'" width="30" height="30">
+					<img src="'.base_url("assets/images/logo.png").'" width="100" height="30">
 	        </td>';
-	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:30px !important;"><h1>Empresa de Transporte</h1></td>';
+	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:30px !important;"><h1>FONCA</h1></td>';
 	        $html .= '<td width="15%" style="font-weight:bold;text-align:center;">Fecha</td>';
 	        $html .= '</tr>';
 	        $html .= '<tr>';
