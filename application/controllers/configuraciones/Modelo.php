@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Presentaciones extends CI_Controller {
-	private $modulo = "Presentaciones";
+class Modelo extends CI_Controller {
+	private $modulo = "Modelo";
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata("login")) {
@@ -18,14 +18,14 @@ class Presentaciones extends CI_Controller {
 			"presentaciones" => $this->Presentaciones_model->getPresentaciones(),
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/presentaciones/list",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/modelo/list",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
 	public function add(){
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/presentaciones/add","",TRUE)
+			"contenido" => $this->load->view("admin/modelo/add","",TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
@@ -40,17 +40,17 @@ class Presentaciones extends CI_Controller {
 			);
 
 			if ($this->Presentaciones_model->save($data)) {
-				$this->backend_lib->savelog($this->modulo,"Inserción de una nueva con Presentacion con el nombre".$nombre);
+				$this->backend_lib->savelog($this->modulo,"Inserción de un nuevo modelo con el nombre ".$nombre);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-				redirect(base_url()."configuraciones/presentaciones");
+				redirect(base_url()."configuraciones/modelo");
 			} else {
 				$this->session->set_flashdata("error", "Los datos no fueron guardados");
-				redirect(base_url()."configuraciones/presentaciones/add");
+				redirect(base_url()."configuraciones/modelo/add");
 
 			}
 			
 		} else {
-			redirect(base_url()."configuraciones/presentaciones/add");
+			redirect(base_url()."configuraciones/modelo/add");
 		}
 		
 	}
@@ -62,7 +62,7 @@ class Presentaciones extends CI_Controller {
 			"presentacion" => $this->Presentaciones_model->getPresentacion($id)
 		);
 
-		$this->load->view("admin/presentaciones/view", $data);
+		$this->load->view("admin/modelo/view", $data);
 	}
 	public function delete($id){
 		$presentacion = $this->Presentaciones_model->getPresentacion($id);
@@ -71,8 +71,8 @@ class Presentaciones extends CI_Controller {
 		);
 
 		$this->Presentaciones_model->update($id, $data);
-		$this->backend_lib->savelog($this->modulo,"Eliminación de la Presentacion ".$presentacion->nombre);
-		echo "configuraciones/presentaciones";
+		$this->backend_lib->savelog($this->modulo,"Eliminación del modelo ".$presentacion->nombre);
+		echo "configuraciones/modelo";
 	}
 
 	public function edit($id){
@@ -81,7 +81,7 @@ class Presentaciones extends CI_Controller {
 		);
 
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/presentaciones/edit",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/modelo/edit",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
@@ -101,12 +101,12 @@ class Presentaciones extends CI_Controller {
 			"estado" => $estado
 		);
 		if ($this->Presentaciones_model->update($id, $data)) {
-			$this->backend_lib->savelog($this->modulo,"Actualización de la Presentacion ".$nombre);
+			$this->backend_lib->savelog($this->modulo,"Actualización de modelo ".$nombre);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-			redirect(base_url()."configuraciones/presentaciones");
+			redirect(base_url()."configuraciones/modelo");
 		} else {
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
-			redirect(base_url()."configuraciones/presentaciones/edit/".$id);
+			redirect(base_url()."configuraciones/modelo/edit/".$id);
 
 		}
 		

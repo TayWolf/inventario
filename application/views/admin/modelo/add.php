@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Presentaciones <small>Registro</small>
+        Modelo <small>Registro</small>
     </h1>
 
 </section>
@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-xs-12">
-                    <form action="<?php echo base_url();?>configuraciones/presentaciones/store" method="POST">
+                    <form action="<?php echo base_url();?>configuraciones/modelo/store" method="POST">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");

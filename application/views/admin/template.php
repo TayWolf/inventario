@@ -150,7 +150,7 @@
                             <li><a href="<?php echo base_url();?>configuraciones/propietario"><i class="fa fa-circle-o"></i> Propietario</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/fabricantes"><i class="fa fa-circle-o"></i> Fabricante</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/categoria"><i class="fa fa-circle-o"></i> Categoria</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/presentaciones"><i class="fa fa-circle-o"></i> Modelo</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/modelo"><i class="fa fa-circle-o"></i> Modelo</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/ip"><i class="fa fa-circle-o"></i> IP's</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
                             

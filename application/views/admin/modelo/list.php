@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Presentaciones <small> Listado</small>
+        Modelo <small> Listado</small>
     </h1>
 
 </section>
@@ -20,10 +20,10 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="presentaciones">
+            <input type="hidden" id="modulo" value="modelo">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>configuraciones/presentaciones/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Presentacion</a>
+                    <a href="<?php echo base_url();?>configuraciones/modelo/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Modelo</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
@@ -46,9 +46,9 @@
                                                 <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $presentacion->id;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/presentaciones/edit/<?php echo $presentacion->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <a href="<?php echo base_url();?>configuraciones/modelo/edit/<?php echo $presentacion->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
                                                 <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/presentaciones/delete/<?php echo $presentacion->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                    <a href="<?php echo base_url();?>configuraciones/modelo/delete/<?php echo $presentacion->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>
@@ -78,7 +78,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion de la Presentacion</h4>
+        <h4 class="modal-title">Informacion del Modelo</h4>
       </div>
       <div class="modal-body">
         

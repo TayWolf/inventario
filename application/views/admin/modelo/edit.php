@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Presentaciones <small>Editar</small>
+        Modelo <small>Editar</small>
     </h1>
 
 </section>
@@ -13,7 +13,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-xs-12">
-                    <form action="<?php echo base_url();?>configuraciones/presentaciones/update" method="POST">
+                    <form action="<?php echo base_url();?>configuraciones/modelo/update" method="POST">
 
                         <input type="hidden" name="idPresentacion" value="<?php echo $presentacion->id;?>">
                         <?php if ($this->session->flashdata("success")): ?>
