@@ -719,6 +719,45 @@ INSERT INTO `sistemas` (`id`, `descripcion`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id`, `descripcion`, `estado`) VALUES
+(1, 'Laptop', 1),
+(2, 'Computadora de escritorio', 1);
+
+--
+-- Estructura de tabla para la tabla `RecursoRed`
+--
+
+CREATE TABLE `recursored` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `RecursoRed`
+--
+
+INSERT INTO `recursored` (`id`, `descripcion`, `estado`) VALUES
+(1, 'Correo electrónico', 1),
+(2, 'Equipo', 1),
+(3, 'Terabyte', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tablets`
 --
 
@@ -806,6 +845,18 @@ ALTER TABLE `antivirus`
 --
 ALTER TABLE `ip`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `RecursoRed`
+--
+ALTER TABLE `ip`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`categoria`);
 
 --
 -- Indices de la tabla `propietarios`
@@ -984,6 +1035,18 @@ ALTER TABLE `antivirus`
 --
 ALTER TABLE `ip`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `RecursoRed`
+--
+ALTER TABLE `recursored`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `propietarios`

@@ -138,7 +138,7 @@
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-cogs"></i> <span>Configuraciones</span>
+                            <i class="fa fa-cogs"></i> <span>Módulos</span>
                             <span class="pull-right-container">
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
