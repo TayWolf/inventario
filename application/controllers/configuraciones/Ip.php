@@ -36,7 +36,7 @@ class Ip extends CI_Controller {
 
 			$data = array(
 				"descripcion" => $descripcion,
-				"estado" => 1
+				"estado" => 0
 			);
 
 			if ($this->Ip_model->save($data)) {

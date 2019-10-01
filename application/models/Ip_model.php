@@ -10,6 +10,19 @@ class Ip_model extends CI_Model {
 		$resultados = $this->db->get("ip");
 		return $resultados->result();
 	}
+	public function getIpsReporte($estado = false,$search,$fechainicio = false, $fechafinal =false){
+		$this->db->select("i.*");
+		$this->db->from("ip i");
+	
+		$this->db->like("CONCAT(i.id)",$search);
+		$resultados = $this->db->get();
+		return $resultados->result();
+	}
+	public function getIpLibre(){
+		$this->db->where("estado",0);
+		$resultados = $this->db->get("ip");
+		return $resultados->result();
+	}
 
 	public function save($data){
 		return $this->db->insert("ip",$data);

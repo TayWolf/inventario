@@ -177,9 +177,9 @@
                             <li><a href="<?php echo base_url();?>reportes/computadoras"><i class="fa fa-circle-o"></i> Computadoras</a></li>
                             <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
                             <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/tablets"><i class="fa fa-circle-o"></i> Tablets</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/ip"><i class="fa fa-circle-o"></i> Ips</a></li>
                             <li><a href="<?php echo base_url();?>reportes/proyectores"><i class="fa fa-circle-o"></i> Proyectores</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/lectores"><i class="fa fa-circle-o"></i> Lector de Codigo</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/lectores"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
                         </ul>
                     </li>
                     <?php if ($this->session->userdata("rol") == 1): ?>

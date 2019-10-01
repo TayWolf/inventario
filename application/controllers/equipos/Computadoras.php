@@ -50,7 +50,7 @@ class Computadoras extends CI_Controller {
 			"sistemas" => $this->Sistemas_model->getSistemas(),
 			"office" => $this->Office_model->getOffice(),
 			"antivirus" => $this->Antivirus_model->getAntivirus(),
-			"ips" => $this->Ip_model->getIps(),
+			"ips" => $this->Ip_model->getIpLibre(),
 			"procesadores" => $this->Procesadores_model->getProcesadores(),
 			"fecregistro" => date("Y-m-d H:i:s"),
 		);
@@ -159,7 +159,7 @@ class Computadoras extends CI_Controller {
 			"sistemas" => $this->Sistemas_model->getSistemas(),
 			"office" => $this->Office_model->getOffice(),
 			"antivirus" => $this->Antivirus_model->getAntivirus(),
-			"ips" => $this->Ip_model->getIps(),
+			"ips" => $this->Ip_model->getIpLibre(),
 			"procesadores" => $this->Procesadores_model->getProcesadores(),
 		);
 

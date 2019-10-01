@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tablets extends CI_Controller {
+class Ip extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
-		$this->load->model("Tablets_model");
+		$this->load->model("Ip_model");
 	}
 
 	public function index(){
@@ -16,20 +16,20 @@ class Tablets extends CI_Controller {
 		$fecfin = $this->input->post("fecfin");
 
 		if ($this->input->post("buscar")) {
-			$tablets = $this->Tablets_model->getTablets(false,"",$fecinicio,$fecfin);
+			$ip = $this->Ip_model->getIpsReporte(false,"",$fecinicio,$fecfin);
 		}
 		else{
-			$tablets = $this->Tablets_model->getTablets(false,"");
+			$ip = $this->Ip_model->getIpsReporte(false,"");
 		}
 
 		$contenido_interno = array(
-			"tablets" => $tablets,
+			"ip" => $ip,
 			"fecinicio" => $fecinicio,
 			"fecfin" => $fecfin
 
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/reportes/tablets",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/reportes/ip",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
@@ -45,16 +45,16 @@ class Tablets extends CI_Controller {
 		$inicio = ($numeropagina -1)*$cantidad;
 
 		if ($checkfecha == 1) {
-			$tablets = $this->Tablets_model->getTablets(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
-			$total = $this->Tablets_model->getTablets(1,$buscar,false,false,$fecinicio,$fecfin);
+			$ip = $this->Ip_model->getIpsReporte(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
+			$total = $this->Ip_model->getIpsReporte(1,$buscar,false,false,$fecinicio,$fecfin);
 		}else{
-			$tablets = $this->Tablets_model->getTablets(1,$buscar,$inicio,$cantidad);
-			$total = $this->Tablets_model->getTablets(1,$buscar);
+			$ip = $this->Ip_model->getIpsReporte(1,$buscar,$inicio,$cantidad);
+			$total = $this->Ip_model->getIpsReporte(1,$buscar);
 		}
 		
 		
 		$data = array(
-			"tablets" => $tablets,
+			"ip" => $ip,
 			"totalregistros" => count($total),
 			"cantidad" =>$cantidad
 			
@@ -72,7 +72,7 @@ class Tablets extends CI_Controller {
 			//Cargamos la librería de excel.
 	    	$this->load->library('excel');
 			$this->excel->setActiveSheetIndex(0);
-	        $this->excel->getActiveSheet()->setTitle('Tablets');
+	        $this->excel->getActiveSheet()->setTitle('IPs');
 	        //Contador de filas
 	        $contador = 3;
 	        //Le aplicamos ancho las columnas.
@@ -83,10 +83,6 @@ class Tablets extends CI_Controller {
 	        $this->excel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
 	        $this->excel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
 	        $this->excel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
-	        $this->excel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
-	        $this->excel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
-	        $this->excel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
-	        $this->excel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
 
 	        
 	        //Le aplicamos negrita a los títulos de la cabecera.
@@ -95,10 +91,6 @@ class Tablets extends CI_Controller {
 	        $this->excel->getActiveSheet()->getStyle("C{$contador}")->getFont()->setBold(true);
 	        
 	        $this->excel->getActiveSheet()->getStyle("D{$contador}")->getFont()->setBold(true);
-	        $this->excel->getActiveSheet()->getStyle("E{$contador}")->getFont()->setBold(true);
-	        $this->excel->getActiveSheet()->getStyle("F{$contador}")->getFont()->setBold(true);
-	        $this->excel->getActiveSheet()->getStyle("G{$contador}")->getFont()->setBold(true);
-	        $this->excel->getActiveSheet()->getStyle("H{$contador}")->getFont()->setBold(true);
 	        
 	        //
 	        $this->excel->getActiveSheet()->getRowDimension(1)->setRowHeight(35);
@@ -114,56 +106,41 @@ class Tablets extends CI_Controller {
 			$objDrawing->setWorksheet($this->excel->getActiveSheet());
 
 	        //Definimos los títulos de la cabecera.
-	        $this->excel->getActiveSheet()->setCellValue("C1", 'Empresa de Transporte');	
-	        $this->excel->getActiveSheet()->setCellValue("D1",date("d-m-Y"));	
-	        $this->excel->getActiveSheet()->setCellValue("A{$contador}", 'Nro.');	        
-	        $this->excel->getActiveSheet()->setCellValue("B{$contador}", 'Codigo');
-	        $this->excel->getActiveSheet()->setCellValue("C{$contador}", 'Fabricante');
-	        $this->excel->getActiveSheet()->setCellValue("D{$contador}", 'Modelo');
+	        $this->excel->getActiveSheet()->setCellValue("C1", 'FONCA');	
+	        $this->excel->getActiveSheet()->setCellValue("D1",date("d-m-Y"));		        
+	        $this->excel->getActiveSheet()->setCellValue("A{$contador}", 'ID');
 	        
+	        $this->excel->getActiveSheet()->setCellValue("B{$contador}", 'IP');
 	        
-	        $this->excel->getActiveSheet()->setCellValue("E{$contador}", 'Descripcion');
-	        
-	        
-	        $this->excel->getActiveSheet()->setCellValue("F{$contador}", 'Usuario');
-	        $this->excel->getActiveSheet()->setCellValue("G{$contador}", 'Fec. Registro');
-	        $this->excel->getActiveSheet()->setCellValue("H{$contador}", 'Estado');
+	        ;
+	        $this->excel->getActiveSheet()->setCellValue("C{$contador}", 'Estado');
 
 	        if ($fechainicio != "" && $fechafin != "") {
-	        	$tablets = $this->Tablets_model->getTablets(false,$search,$fechainicio,$fechafin);
+	        	$ip = $this->Ip_model->getIpsReporte(false,$search,$fechainicio,$fechafin);
 	        }else{
-	        	$tablets = $this->Tablets_model->getTablets(false,$search,false,false);
+	        	$ip = $this->Ip_model->getIpsReporte(false,$search,false,false);
 	        }
 
 
 	         //Definimos la data del cuerpo.
 	        $i = 1;
-	        foreach($tablets as $mon){
+	        foreach($ip as $mon){
 	        	//Incrementamos una fila más, para ir a la siguiente.
 	        	$contador++;
 	        	//Informacion de las filas de la consulta.
-				$this->excel->getActiveSheet()->setCellValue("A{$contador}", $i);
-		        $this->excel->getActiveSheet()->setCellValue("B{$contador}", $mon->codigo);
-		        
-		        $this->excel->getActiveSheet()->setCellValue("C{$contador}", $mon->fabricante);
-		        $this->excel->getActiveSheet()->setCellValue("D{$contador}", $mon->modelo);
-		        
-		      
-		        $this->excel->getActiveSheet()->setCellValue("E{$contador}", $mon->descripcion);
-		       
-		        $this->excel->getActiveSheet()->setCellValue("F{$contador}", $mon->nombres);
-		        $this->excel->getActiveSheet()->setCellValue("G{$contador}", $mon->fecregistro);
-		        $status = $mon->estado == 1 ? "Activo":"Inactivo"; 
-		        $this->excel->getActiveSheet()->setCellValue("H{$contador}", $status);
+		        $this->excel->getActiveSheet()->setCellValue("A{$contador}", $mon->id); 
+		        $this->excel->getActiveSheet()->setCellValue("B{$contador}", $mon->descripcion);
+		        $status = $mon->estado == 1 ? "Ocupada":"Libre"; 
+		        $this->excel->getActiveSheet()->setCellValue("C{$contador}", $status);
 
 		        $i++;
 	        }
 	        //Le ponemos un nombre al archivo que se va a generar.
-	        $archivo = "Listado_de_tablets".date("dmYHis").".xls";
-	        header('Content-Type: application/vnd.ms-excel');
+	        $archivo = "Listado_de_tablets".date("dmYHis").".xlsx";
+	        header('Content-Type: application/vnd.ms-excel; charset=utf-8');
 	        header('Content-Disposition: attachment;filename="'.$archivo.'"');
 	        header('Cache-Control: max-age=0');
-	        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5'); 
+	        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel2007'); 
 	        //Hacemos una salida al navegador con el archivo Excel.
 	        $objWriter->save('php://output');
 		}
@@ -172,7 +149,7 @@ class Tablets extends CI_Controller {
 	        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
 	        
 	  
-	        $pdf->SetTitle('Reporte de tablets '.date("d-m-Y"));
+	        $pdf->SetTitle('Reporte de IPs '.date("d-m-Y"));
 
 			$pdf->SetPrintHeader(false);
 
@@ -216,40 +193,29 @@ class Tablets extends CI_Controller {
 	        $html .= '</tr>';
 	        $html .= '</thead></table>';
 
-	        $html .= '<h2 style="text-align:center;">Reportes de tablets</h2>';
+	        $html .= '<h2 style="text-align:center;">Reportes de IPs</h2>';
 	
 	        $html .= '<table width="100%" cellpadding="3" border="1"><thead>';
 	        $html .= '<tr>';
 	        $html .= "<th>Nro.</th>";
-            $html .= '<th>Codigo</th>';
-            $html .= '<th>Fabricante</th>';
-            $html .= '<th>Modelo</th>';
-            $html .= '<th>Descripcion</th>';
-            $html .= '<th>Ultimo Mant.</th>';
-            $html .= '<th>Usuario</th>';
+            $html .= '<th>IP</th>';
             
             $html .= '<th>Estado</th></tr></thead><tbody>';
     
 
             if ($fechainicio != "" && $fechafin != "") {
-	        	$tablets = $this->Tablets_model->getTablets(false,$search,$fechainicio,$fechafin);
+	        	$ip = $this->Ip_model->getIpsReporte(false,$search,$fechainicio,$fechafin);
 	        }else{
-	        	$tablets = $this->Tablets_model->getTablets(false,$search,false,false);
+	        	$ip = $this->Ip_model->getIpsReporte(false,$search,false,false);
 	        }
         
 	        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
-	         foreach ($tablets as $mon){
+	         foreach ($ip as $mon){
 	         	$html.='<tr>';
                 $html.='<td>'.$mon->id.'</td>';
-                $html.='<td>'.$mon->codigo.'</td>';
-                $html.='<td>'.$mon->fabricante.'</td>';
-                $html.='<td>'.$mon->modelo.'</td>';
                 
                 $html.='<td>'.$mon->descripcion.'</td>';
-                $html.='<td>'.$mon->ultimo_mante.'</td>';
-                
-                $html.='<td>'.$mon->nombres.'</td>';
-                $status = $mon->estado == 1 ? "Activo":"Inactivo";
+                $status = $mon->estado == 1 ? "Ocupada":"Libre";
                 $html.='<td>'.$status.'</td></tr>';
                
 	         }
@@ -262,7 +228,7 @@ class Tablets extends CI_Controller {
 			// ---------------------------------------------------------
 			// Cerrar el documento PDF y preparamos la salida
 			// Este método tiene varias opciones, consulte la documentación para más información.
-        	$nombre_archivo = utf8_decode("Reportes_de_tablets_".date("dmYHis").".pdf");
+        	$nombre_archivo = utf8_decode("Reportes_de_Ips".date("dmYHis").".pdf");
         	$pdf->Output($nombre_archivo, 'D');
 		}
 	
