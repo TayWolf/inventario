@@ -93,7 +93,13 @@
                         </div>
                         <div class="form-group">
                             <label for="ip">IP:</label>
-                            <input type="text" name="ip" id="ip" class="form-control">
+                            <!-- <input type="text" name="ip" id="ip" class="form-control"> -->
+                            <select name="ip" id="ip" class="form-control" required="required">
+                                <option value="">Elija la IP</option>
+                                <?php foreach ($ips as $ip): ?>
+                                    <option value="<?php echo $ip->id;?>"><?php echo $ip->descripcion;?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
 
                     </div>
@@ -149,7 +155,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="serial_office">Serial S.O:</label>
+                            <label for="serial_office">Serial Office:</label>
                             <input type="text" name="serial_office" id="serial_office" class="form-control">
                         </div>
                         <div class="form-group">

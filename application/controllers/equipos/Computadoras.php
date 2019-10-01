@@ -17,6 +17,7 @@ class Computadoras extends CI_Controller {
 		$this->load->model("Office_model");
 		$this->load->model("Antivirus_model");
 		$this->load->model("Memorias_model");
+		$this->load->model("Ip_model");
 		$this->load->model("Sistemas_model");
 		$this->load->model("Discos_model");
 		$this->load->model("Procesadores_model");
@@ -49,6 +50,7 @@ class Computadoras extends CI_Controller {
 			"sistemas" => $this->Sistemas_model->getSistemas(),
 			"office" => $this->Office_model->getOffice(),
 			"antivirus" => $this->Antivirus_model->getAntivirus(),
+			"ips" => $this->Ip_model->getIps(),
 			"procesadores" => $this->Procesadores_model->getProcesadores(),
 			"fecregistro" => date("Y-m-d H:i:s"),
 		);
@@ -97,7 +99,7 @@ class Computadoras extends CI_Controller {
 				"office_id" => $office,
 				"serial_office" => $serial_office,
 				"antivirus_id" => $antivirus,
-				"ip" => $ip,
+				"ip_id" => $ip,
 				"mac" => $mac,
 				"bitacora" => $bitacora,
 				"fecregistro" => date("Y-m-d H:i:s"), 
@@ -157,6 +159,7 @@ class Computadoras extends CI_Controller {
 			"sistemas" => $this->Sistemas_model->getSistemas(),
 			"office" => $this->Office_model->getOffice(),
 			"antivirus" => $this->Antivirus_model->getAntivirus(),
+			"ips" => $this->Ip_model->getIps(),
 			"procesadores" => $this->Procesadores_model->getProcesadores(),
 		);
 
@@ -213,7 +216,7 @@ class Computadoras extends CI_Controller {
 			"office_id" => $office,
 			"serial_office" => $serial_office,
 			"antivirus_id" => $antivirus,
-			"ip" => $ip,
+			"ip_id" => $ip,
 			"mac" => $mac,
 			"bitacora" => $bitacora,
 			"estado" => $estado,
@@ -266,6 +269,45 @@ class Computadoras extends CI_Controller {
  	}
 
  	public function getMantenimientos(){
+ 		$id = $this->input->post("idequipo");
+ 		$mantenimientos = $this->Computadoras_model->getMantenimientos($id);
+ 		echo json_encode($mantenimientos);
+ 	}
+
+ 	public function addUsuarios(){
+		$id = $this->input->post("idequipo");
+		$fecha = $this->input->post("fecha");
+		$tecnico = $this->input->post("tecnico");
+		$descripcion = $this->input->post("descripcion");
+
+		$data = array(
+			"computadora_id" => $id,
+			"fecha" => $fecha,
+			"tecnico" => $tecnico,
+			"descripcion" => $descripcion
+		);
+
+		$dataComp = array(
+			"ultimo_mante" => $fecha
+		);
+
+
+
+		if ($this->Computadoras_model->saveMante($data)) {
+			$computadora = $this->Computadoras_model->getComputadora($id);
+			$this->backend_lib->savelog($this->modulo,"Registro de Mantenimiento a la Computadora con Codigo ".$computadora->codigo);
+
+			$this->Computadoras_model->update($id,$dataComp);
+			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
+			redirect(base_url()."equipos/computadoras");
+		}else{
+			$this->session->set_flashdata("error", "Los datos no fueron guardados");
+			redirect(base_url()."equipos/computadoras");
+		}
+
+ 	}
+
+ 	public function getUsuarios(){
  		$id = $this->input->post("idequipo");
  		$mantenimientos = $this->Computadoras_model->getMantenimientos($id);
  		echo json_encode($mantenimientos);

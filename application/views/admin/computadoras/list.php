@@ -38,7 +38,7 @@
                                     <th>Disco Duro</th>
                                     <th>Monitor</th>
                                     <th>Memoria RAM</th>
-                                    <th>Serial S.O</th>
+                                    <th>IP</th>
                                     
                                     <th>Usuario</th>
                                     <th>Estado</th>
@@ -57,7 +57,7 @@
                                         <td><?php echo $computadora->monitor?></td>
                                         <td><?php echo $computadora->memoria?></td>
                                         
-                                        <td><?php echo $computadora->serial_so?></td>
+                                        <td><?php echo $computadora->direccionIP?></td>
                                         
                                         <td><?php echo $computadora->nombres?></td>
                                         
@@ -77,6 +77,9 @@
                                                 
                                                 <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $computadora->id;?>">
                                                     <span class="fa fa-wrench"></span>
+
+                                                <button type="button" class="btn btn-default btn-flat btn-mante" data-toggle="modal" data-target="#modal-usuario" title="Usuario del equipo" value="<?php echo $computadora->id;?>">
+                                                    <span class="fa fa-user"></span>
                                                 </button>
                                             </div>
                                         </td>
@@ -165,6 +168,71 @@
                     <div class="form-group">
                         <label for="">Descripcion</label>
                         <textarea name="descripcion" id="descripcion"  rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-usuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Usuario del equipo</h4>
+      </div>
+      <div class="modal-body">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#listadoUsuario">Listado</a></li>
+            <li><a data-toggle="tab" href="#agregarUsuario">Agregar</a></li>
+            
+        </ul>
+
+        <div class="tab-content">
+            <div id="listadoUsuario" class="tab-pane fade in active">
+                <h2>Usuario(s) del equipo</h2>
+                <table class="table table-bordered" id="tbusuario">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Área</th>
+                            <th>Recurso de Red</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="agregarUsuario" class="tab-pane fade">
+                <h2>Nuevo Usuario</h2>
+                <form action="<?php echo base_url();?>equipos/computadoras/addUsuarios" method="POST">
+                    <input type="hidden" name="idequipo" id="idequipo">
+                    <div class="form-group">
+                        <label for="">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Área</label>
+                        <input type="text" class="form-control" name="area" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Recurso de Red</label>
+                        <textarea name="recursoRed" id="recursoRed"  rows="3" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Guardar</button>

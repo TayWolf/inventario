@@ -5,7 +5,7 @@ class Tablets_model extends CI_Model {
 
 	public function getTablets($estado = false,$search,$fechainicio = false, $fechafinal =false){
 		$this->db->select("t.*,f.nombre as fabricante,u.nombres");
-		$this->db->from("tablets t");
+		$this->db->from("telefonos t");
 		$this->db->join("fabricantes f","t.fabricante_id = f.id");
 		$this->db->join("usuarios u","t.usuario_id = u.id");
 		if ($fechainicio !== false && $fechafinal !== false) {
@@ -23,7 +23,7 @@ class Tablets_model extends CI_Model {
 
 	public function infoTablet($id){
 		$this->db->select("t.*, fa.nombre as fabricante");
-		$this->db->from("tablets t");
+		$this->db->from("telefonos t");
 		$this->db->join("fabricantes fa","t.fabricante_id = fa.id");
 		$this->db->where("t.id", $id);
 		$resultados = $this->db->get();
@@ -31,29 +31,29 @@ class Tablets_model extends CI_Model {
 	}
 
 	public function save($data){
-		return $this->db->insert("tablets",$data);
+		return $this->db->insert("telefonos",$data);
 	}
 
 	public function getTablet($id){
 		$this->db->where("id", $id);
-		$resultados = $this->db->get("tablets");
+		$resultados = $this->db->get("telefonos");
 		return $resultados->row();
 	}
 
 	public function update($id,$data){
 		$this->db->where("id", $id);
-		return $this->db->update("tablets",$data);
+		return $this->db->update("telefonos",$data);
 	}
 
 	public function saveMante($data){
-		return $this->db->insert("tablets_mantenimientos",$data);
+		return $this->db->insert("telefonos_mantenimientos",$data);
 	}
 
 	public function getMantenimientos($id){
 		
 		$this->db->where("tablet_id",$id);
 		
-		$resultados = $this->db->get("tablets_mantenimientos");
+		$resultados = $this->db->get("telefonos_mantenimientos");
 		return $resultados->result();
 	}
 

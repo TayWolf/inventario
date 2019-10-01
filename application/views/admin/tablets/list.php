@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Tablets <small> Listado</small>
+        Teléfonos <small> Listado</small>
     </h1>
 
 </section>
@@ -23,19 +23,20 @@
             <input type="hidden" id="modulo" value="tablets">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>equipos/tablets/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Tablet</a>
+                    <a href="<?php echo base_url();?>equipos/tablets/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Teléfono</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Fabricante</th>
+                                    <th>No. EXT</th>
+                                    <th>No. Serie</th>
                                     <th>Modelo</th>
-                                    <th>Descripcion</th>
-                                    <th>Ultimo Mante.</th>
+                                    <th>Área</th>
                                     <th>Usuario</th>
+                                    <!-- <th>IP</th> -->
+                                    <th>Ultimo Mante.</th>
                                     <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -48,8 +49,9 @@
                                         <td><?php echo $tablet->fabricante?></td>
                                         <td><?php echo $tablet->modelo?></td>
                                         <td><?php echo $tablet->descripcion?></td>
-                                        <td><?php echo $tablet->ultimo_mante?></td>
                                         <td><?php echo $tablet->nombres?></td>
+                                        <!-- <td><?php echo $tablet->ip?></td> -->
+                                        <td><?php echo $tablet->ultimo_mante?></td>
                                         <td><?php echo $tablet->estado == 0 ?"Inactivo":"Activo";?></td>
                                         <td>
                                             <div class="btn-group">
@@ -91,7 +93,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion del Tablet</h4>
+        <h4 class="modal-title">Informacion del Teléfono</h4>
       </div>
       <div class="modal-body">
         
@@ -132,7 +134,7 @@
                         <tr>
                             <th>#</th>
                             <th>Fecha</th>
-                            <th>Tecnico</th>
+                            <th>Especialista</th>
                             <th>Descripcion</th>
                         </tr>
                     </thead>

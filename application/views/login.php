@@ -33,7 +33,7 @@
                                 </div>
                             <?php endif ?>
                             <div class="form-group">
-                                <label for="email">Email:</label>
+                                <label for="email">Nombre de usuario:</label>
                                 <input type="text" name="email" id="email" class="form-control" required>
                             </div>
                             <div class="form-group">
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 
                                 <input type="submit" name="login" value="Iniciar Sesión" class="btn btn-primary">
-                                <a href="<?php echo base_url(); ?>auth/registro" class="btn btn-success">Registrase</a>
+                                <a href="<?php echo base_url(); ?>auth/registro" class="btn btn-success">Registrarse</a>
                             </div>
                         </form>
                     </div>  

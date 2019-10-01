@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Despachos | Dashboard</title>
+    <title>Inventario | FONCA</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -62,6 +62,9 @@
             background-color: #510B23;
             color: #404141;
             text-align: center;
+        }
+        .line{
+            border-bottom: 1px solid #fff; 
         }
     </style>
     <!-- SweetAlert  -->
@@ -130,10 +133,9 @@
                             <li><a href="<?php echo base_url();?>equipos/computadoras"><i class="fa fa-circle-o"></i> Computadoras</a></li>
                             <li><a href="<?php echo base_url();?>equipos/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
                             <li><a href="<?php echo base_url();?>equipos/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/tablets"><i class="fa fa-circle-o"></i> Tablets</a></li>
+                            <li><a href="<?php echo base_url();?>equipos/tablets"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
                             <li><a href="<?php echo base_url();?>equipos/proyectores"><i class="fa fa-circle-o"></i> Proyectores</a></li>
-
-                            <li><a href="<?php echo base_url();?>equipos/lectores"><i class="fa fa-circle-o"></i> Lector de Codigo</a></li>
+                            <li><a href="<?php echo base_url();?>equipos/lectores"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -153,15 +155,15 @@
                             <li><a href="<?php echo base_url();?>configuraciones/modelo"><i class="fa fa-circle-o"></i> Modelo</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/ip"><i class="fa fa-circle-o"></i> IP's</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
-                            
-                            <!-- <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>
+                            <div class="line"></div>
+                            <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/memorias"><i class="fa fa-circle-o"></i> Memorias RAM</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/discos"><i class="fa fa-circle-o"></i> Discos Duros</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/antivirus"><i class="fa fa-circle-o"></i> Antivirus</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/sistemas"><i class="fa fa-circle-o"></i> Sistemas Opertivos</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/office"><i class="fa fa-circle-o"></i> Office</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/proveedores"><i class="fa fa-circle-o"></i> Proveedores</a></li>
- -->                        </ul>
+                        </ul>
                     </li>
                     <?php endif ?>
                     <li class="treeview">

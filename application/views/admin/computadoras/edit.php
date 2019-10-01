@@ -93,7 +93,13 @@
                         </div>
                         <div class="form-group">
                             <label for="ip">IP:</label>
-                            <input type="text" name="ip" id="ip" class="form-control" value="<?php echo $computadora->ip;?>">
+                            <!-- <input type="text" name="ip" id="ip" class="form-control" value="<?php echo $computadora->ip;?>"> -->
+                            <select name="ip" id="ip" class="form-control" required="required">
+                                <option value="">Elija la IP</option>
+                                <?php foreach ($ips as $ip): ?>
+                                    <option value="<?php echo $ip->id;?>" <?php echo $ip->id == $computadora->ip_id ? "selected":"";?>><?php echo $ip->descripcion;?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                         <?php if ($computadora->estado == 0): ?>
                             <div class="form-group">

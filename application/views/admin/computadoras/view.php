@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">IP</th>
-					<td><?php echo $computadora->ip; ?></td>
+					<td><?php echo $computadora->direccionIP; ?></td>
 					<th style="background-color: #f4f4f4;">MAC</th>
 					<td><?php echo $computadora->mac; ?></td>
 				</tr>
@@ -64,12 +64,34 @@
 					<td></td>
 				</tr>
 				<tr>
-					<th style="background-color: #3c8dbc; color: #FFF;" class="text-center" colspan="4">Ultimos Mantenimientos</th>
+					<th style="background-color: #510B23; color: #FFF;" class="text-center" colspan="4">Ultimos Mantenimientos</th>
 				</tr>
 				<tr>
 					<th>Fecha</th>
 					<th>Tecnico</th>
 					<th colspan="2">Descripcion</th>
+				</tr>
+				<?php if (!empty($mantenimientos)): ?>
+					<?php foreach ($mantenimientos as $mantenimiento): ?>
+						<tr>
+							<td><?php echo $mantenimiento->fecha;?></td>
+							<td><?php echo $mantenimiento->tecnico;?></td>
+							<td colspan="2"><?php echo $mantenimiento->descripcion;?></td>
+						</tr>
+					<?php endforeach ?>
+					
+				<?php else: ?>
+					<tr>
+						<td colspan="4">No se ha realizo ningun mantenimiento</td>
+					</tr>
+				<?php endif ?>
+				<tr>
+					<th style="background-color: #510B23; color: #FFF;" class="text-center" colspan="4">Usuario del equipo</th>
+				</tr>
+				<tr>
+					<th>Nombre</th>
+					<th>Área</th>
+					<th colspan="2">Recurso de red</th>
 				</tr>
 				<?php if (!empty($mantenimientos)): ?>
 					<?php foreach ($mantenimientos as $mantenimiento): ?>

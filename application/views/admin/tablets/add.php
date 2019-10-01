@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Tablets <small>Registro</small>
+        Teléfono <small>Registro</small>
     </h1>
 
 </section>
@@ -26,25 +26,43 @@
                         <?php endif ?>
                         
                         <div class="form-group">
-                            <label for="codigo">Codigo:</label>
+                            <label for="codigo">No. EXT:</label>
                             <input type="text" name="codigo" id="codigo" class="form-control" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="fabricante">Fabricante:</label>
-                            <select name="fabricante" id="fabricante" class="form-control" required="required">
-                                <option value="">Elija Fabricante</option>
-                                <?php foreach ($fabricantes as $fabricante): ?>
-                                    <option value="<?php echo $fabricante->id;?>"><?php echo $fabricante->nombre;?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <label for="codigo">No. Serie:</label>
+                            <input type="text" name="codigo" id="codigo" class="form-control" required="required">
                         </div>
                         <div class="form-group">
                             <label for="modelo">Modelo:</label>
                             <input type="text" name="modelo" id="modelo" class="form-control" required="required">
                         </div>
                         <div class="form-group">
-                            <label for="descripcion">Descripcion:</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" required="required">
+                            <label for="fabricante">Área:</label>
+                            <select name="fabricante" id="fabricante" class="form-control" required="required">
+                                <option value="">Elija área</option>
+                                <?php foreach ($fabricantes as $fabricante): ?>
+                                    <option value="<?php echo $fabricante->id;?>"><?php echo $fabricante->nombre;?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fabricante">Usuario:</label>
+                            <select name="fabricante" id="fabricante" class="form-control" required="required">
+                                <option value="">Elija usuario</option>
+                                <?php foreach ($fabricantes as $fabricante): ?>
+                                    <option value="<?php echo $fabricante->id;?>"><?php echo $fabricante->nombre;?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">IP:</label>
+                            <select name="fabricante" id="fabricante" class="form-control" required="required">
+                                <option value="">Elija IP</option>
+                                <?php foreach ($fabricantes as $fabricante): ?>
+                                    <option value="<?php echo $fabricante->id;?>"><?php echo $fabricante->nombre;?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                         
                         <div class="form-group">

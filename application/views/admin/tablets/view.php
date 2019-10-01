@@ -1,13 +1,17 @@
 <div class="row">
 	<div class="col-xs-12">
-		<h2><strong>Codigo del Tablet : </strong> <?php echo $tablet->codigo; ?> </h2>
+		<h2><strong>Codigo del Teléfono : </strong> <?php echo $tablet->codigo; ?> </h2>
 		<table class="table table-bordered">
 			<tbody>
 				
 				
 				<tr>
-					<th style="background-color: #f4f4f4;">Fabricante</th>
+					<th style="background-color: #f4f4f4;">No. EXT</th>
 					<td><?php echo $tablet->fabricante; ?></td>
+				</tr>
+				<tr>
+					<th style="background-color: #f4f4f4;">No. Serie</th>
+					<td><?php echo $tablet->noSerie; ?></td>
 				</tr>
 				<tr>
 					
@@ -16,8 +20,16 @@
 				</tr>
 				
 				<tr>
-					<th style="background-color: #f4f4f4;">Descripcion</th>
+					<th style="background-color: #f4f4f4;">Área</th>
 					<td><?php echo $tablet->descripcion; ?></td>
+				</tr>
+				<tr>
+					<th style="background-color: #f4f4f4;">Usuario</th>
+					<td><?php echo $tablet->usuario; ?></td>
+				</tr>
+				<tr>
+					<th style="background-color: #f4f4f4;">IP</th>
+					<td><?php echo $tablet->ip; ?></td>
 				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">Estado</th>
@@ -28,7 +40,7 @@
 				</tr>
 				<tr>
 					<th>Fecha</th>
-					<th>Tecnico</th>
+					<th>Especialista</th>
 					<th colspan="2">Descripcion</th>
 				</tr>
 				<?php if (!empty($mantenimientos)): ?>

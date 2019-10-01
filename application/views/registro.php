@@ -50,8 +50,8 @@
                                 <input type="text" name="nombres" id="nombres" class="form-control" required="required" value="<?php echo set_value('nombres'); ?>">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" name="email" id="email" class="form-control" value="<?php echo set_value('email'); ?>" required="required">
+                                <label for="email">Nombre de usuario:</label>
+                                <input type="text" name="email" id="email" class="form-control" value="<?php echo set_value('email'); ?>" required="required">
                                 <?php echo form_error('email', '<span class="help-block errorValidation">', '</span>'); ?>
                             </div>
                             <div class="form-group">

@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Computadoras_model extends CI_Model {
 
-	public function getComputadoras($estado = false,$search,$fechainicio = false, $fechafinal =false){
+	public function getComputadoras($estado = false,$search,$fechainicio = false, $fechafinal =false, $ip = 0){
 		
 
-		$this->db->select("c.*,p.nombre as presentacion, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,pr.referencia,pr.velocidad,m.capacidad as memoria,d.capacidad as disco,o.nombre as office,s.descripcion as sistema,ant.descripcion as antivirus,a.nombre as area,mo.codigo as monitor,u.nombres");
+		$this->db->select("c.*,p.nombre as presentacion, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,pr.referencia,pr.velocidad,m.capacidad as memoria,d.capacidad as disco,o.nombre as office,s.descripcion as sistema,ant.descripcion as antivirus,a.nombre as area,mo.codigo as monitor,u.nombres, ip.descripcion as direccionIP");
 		$this->db->from("computadoras c");
 		$this->db->join("monitores mo","c.monitor_id = mo.id");
 		$this->db->join("presentaciones p","c.presentacion_id = p.id");
@@ -21,11 +21,15 @@ class Computadoras_model extends CI_Model {
 		$this->db->join("antivirus ant","c.antivirus_id = ant.id");
 		$this->db->join("areas a","c.area_id = a.id");
 		$this->db->join("usuarios u","c.usuario_id = u.id");
+		$this->db->join("ip","c.ip_id = ip.id_codigo");
 
 		if ($fechainicio !== false && $fechafinal !== false) {
 			$this->db->where("c.fecregistro >=", $fechainicio." "."00:00:00");
 			$this->db->where("c.fecregistro <=", $fechafinal." "."23:59:59");
 
+		}
+		if ($ip == 1) {
+			$this->db->where("ip.estado",0);
 		}
 		if ($estado != false) {
 			$this->db->where("c.estado",1);
@@ -36,7 +40,7 @@ class Computadoras_model extends CI_Model {
 	}
 
 	public function infoComputadora($id){
-		$this->db->select("c.*,p.nombre as presentacion, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,pr.referencia,pr.velocidad,m.capacidad as memoria,d.capacidad as disco,o.nombre as office,s.descripcion as sistema,ant.descripcion as antivirus,a.nombre as area,a.nombre as area,mo.codigo as monitor");
+		$this->db->select("c.*,p.nombre as presentacion, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,pr.referencia,pr.velocidad,m.capacidad as memoria,d.capacidad as disco,o.nombre as office,s.descripcion as sistema,ant.descripcion as antivirus,a.nombre as area,a.nombre as area,mo.codigo as monitor, ip.descripcion as direccionIP");
 		$this->db->from("computadoras c");
 		$this->db->join("monitores mo","c.monitor_id = mo.id");
 		$this->db->join("presentaciones p","c.presentacion_id = p.id");
@@ -50,6 +54,7 @@ class Computadoras_model extends CI_Model {
 		$this->db->join("office o","c.office_id = o.id");
 		$this->db->join("antivirus ant","c.antivirus_id = ant.id");
 		$this->db->join("areas a","c.area_id = a.id");
+		$this->db->join("ip","c.ip_id = ip.id_codigo");
 		$this->db->where("c.id", $id);
 		$resultados = $this->db->get();
 		return $resultados->row();
