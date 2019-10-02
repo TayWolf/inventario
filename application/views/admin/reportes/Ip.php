@@ -44,7 +44,7 @@
                 <div class="col-md-12">
                 
                     <div class="table-responsive">
-                        <table id="tb-without-buttons" class="table table-bordered table-hover">
+                        <table id="tbip" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     
@@ -61,8 +61,8 @@
                                         
                                         <td><?php echo $ips->id?></td>
                                         <td><?php echo $ips->descripcion?></td>
-                                        
-                                        <td><?php echo $ips->estado?></td>
+                                        <?php $estado = $ips->estado==1 ? 'Ocupada' : 'Libre';?>
+                                        <td><?php echo $estado?></td>
                                         
                                         <td>
                                             <div class="btn-group">
@@ -88,10 +88,10 @@
                                 <input type="hidden" id="searchfecha" name="searchfecha" value="0">
                                 <input type="hidden" id="search" name="search">
                                 <input type="hidden" name="tipoarchivo" id="tipoarchivo">
-                                <button id="file-excel" type="submit" class="btn btn-success btn-flat">
+                                <!-- <button id="file-excel" type="submit" class="btn btn-success btn-flat">
                                     <span class="fa fa-file-excel-o"></span> Exportar a Excel
-                                </button>
-                                <button id="file-pdf" type="submit" class="btn btn-danger btn-flat">
+                                </button> -->
+                                <button id="file-pdf" type="submit" class="btn btn-danger btn-flat" style="margin-left: 700px;>
                                     <span class="fa fa-file-pdf-o"></span> Exportar a PDF
                                 </button>
                             </form>

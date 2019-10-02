@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Reportes <small> Lectores</small>
+        Reportes <small> No-BREAK</small>
     </h1>
 
 </section>
@@ -11,7 +11,7 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="lectores">
+            <input type="hidden" id="modulo" value="nobreak">
 
             <form action="<?php echo current_url();?>" method="POST">
                 <div class="row">
@@ -33,7 +33,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <input type="submit" name="buscar" class="btn btn-success btn-flat" value="Buscar">
-                            <a href="<?php echo base_url();?>reportes/lectores" class="btn btn-danger btn-flat">Reestablecer</a>
+                            <a href="<?php echo base_url();?>reportes/nobreak" class="btn btn-danger btn-flat">Reestablecer</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="col-md-12">
                  
                     <div class="table-responsive">
-                        <table id="tb-without-buttons" class="table table-bordered table-hover">
+                        <table id="tbnobreak" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     
@@ -93,10 +93,10 @@
                         <input type="hidden" id="searchfecha" name="searchfecha" value="0">
                         <input type="hidden" id="search" name="search">
                         <input type="hidden" name="tipoarchivo" id="tipoarchivo">
-                        <button id="file-excel" type="submit" class="btn btn-success btn-flat">
+                        <!-- <button id="file-excel" type="submit" class="btn btn-success btn-flat">
                             <span class="fa fa-file-excel-o"></span> Exportar a Excel
-                        </button>
-                        <button id="file-pdf" type="submit" class="btn btn-danger btn-flat">
+                        </button> -->
+                        <button id="file-pdf" type="submit" class="btn btn-danger btn-flat" style="margin-left: 700px;>
                             <span class="fa fa-file-pdf-o"></span> Exportar a PDF
                         </button>
                     </form>

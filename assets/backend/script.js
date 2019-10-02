@@ -840,6 +840,182 @@ $(document).ready(function(){
         });
     } );
 
+    //Reporte de impresoras
+    $(document).ready(function() {
+        $('#tbimpresoras').DataTable({
+            dom: 'lBfrtip',
+            language: {
+	            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+	            "zeroRecords": "No se encontraron resultados en su busqueda",
+	            "searchPlaceholder": "Buscar registros",
+	            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+	            "infoEmpty": "No existen registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "search": "Buscar:",
+	            "paginate": {
+	                "first": "Primero",
+	                "last": "Último",
+	                "next": "Siguiente",
+	                "previous": "Anterior"
+	            },
+	        },
+            buttons: [
+                {
+	                extend: 'excelHtml5',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1,2, 3, 4,5]
+	                }
+	            },
+	            {
+	                extend: 'print',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1,2, 3, 4,5]
+	                }
+	                
+	            }
+            ],
+            pageSize: 'A4',
+            content: [{ style: 'fullWidth' }],
+            styles: { // style for printing PDF body
+                    fullWidth: { fontSize: 18, bold: true, alignment: 'right', margin: [0,0,0,0] }
+            },
+        });
+    } );
+
+    //Reporte de impresoras
+    $(document).ready(function() {
+        $('#tbip').DataTable({
+            dom: 'lBfrtip',
+            language: {
+	            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+	            "zeroRecords": "No se encontraron resultados en su busqueda",
+	            "searchPlaceholder": "Buscar registros",
+	            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+	            "infoEmpty": "No existen registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "search": "Buscar:",
+	            "paginate": {
+	                "first": "Primero",
+	                "last": "Último",
+	                "next": "Siguiente",
+	                "previous": "Anterior"
+	            },
+	        },
+            buttons: [
+                {
+	                extend: 'excelHtml5',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2]
+	                }
+	            },
+	            {
+	                extend: 'print',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2]
+	                }
+	                
+	            }
+            ],
+            pageSize: 'A4',
+            content: [{ style: 'fullWidth' }],
+            styles: { // style for printing PDF body
+                    fullWidth: { fontSize: 18, bold: true, alignment: 'right', margin: [0,0,0,0] }
+            },
+        });
+    } );
+
+    //Reporte de monitores
+    $(document).ready(function() {
+        $('#tbmonitores').DataTable({
+            dom: 'lBfrtip',
+            language: {
+	            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+	            "zeroRecords": "No se encontraron resultados en su busqueda",
+	            "searchPlaceholder": "Buscar registros",
+	            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+	            "infoEmpty": "No existen registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "search": "Buscar:",
+	            "paginate": {
+	                "first": "Primero",
+	                "last": "Último",
+	                "next": "Siguiente",
+	                "previous": "Anterior"
+	            },
+	        },
+            buttons: [
+                {
+	                extend: 'excelHtml5',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2, 3, 4, 5, 6]
+	                }
+	            },
+	            {
+	                extend: 'print',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2, 3, 4, 5, 6]
+	                }
+	                
+	            }
+            ],
+            pageSize: 'A4',
+            content: [{ style: 'fullWidth' }],
+            styles: { // style for printing PDF body
+                    fullWidth: { fontSize: 18, bold: true, alignment: 'right', margin: [0,0,0,0] }
+            },
+        });
+    } );
+
+    //Reporte de No-BREAK
+    $(document).ready(function() {
+        $('#tbnobreak').DataTable({
+            dom: 'lBfrtip',
+            language: {
+	            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+	            "zeroRecords": "No se encontraron resultados en su busqueda",
+	            "searchPlaceholder": "Buscar registros",
+	            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+	            "infoEmpty": "No existen registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "search": "Buscar:",
+	            "paginate": {
+	                "first": "Primero",
+	                "last": "Último",
+	                "next": "Siguiente",
+	                "previous": "Anterior"
+	            },
+	        },
+            buttons: [
+                {
+	                extend: 'excelHtml5',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2, 3, 4]
+	                }
+	            },
+	            {
+	                extend: 'print',
+	                title: "Listado de Impresoras",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2, 3, 4]
+	                }
+	                
+	            }
+            ],
+            pageSize: 'A4',
+            content: [{ style: 'fullWidth' }],
+            styles: { // style for printing PDF body
+                    fullWidth: { fontSize: 18, bold: true, alignment: 'right', margin: [0,0,0,0] }
+            },
+        });
+    } );
+
 });
 
 function ActualizarUsuario(idusuario, estado){
