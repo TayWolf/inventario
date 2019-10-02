@@ -53,12 +53,13 @@
           </div>
         </div>
         <!-- ./col -->
+        <?php if ($this->session->userdata("rol") == 1): ?>
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
               <h3><?php echo $totalusu;?></h3>
-
+          
               <p>Usuarios</p>
             </div>
             <div class="icon">
@@ -68,6 +69,7 @@
           </div>
         </div>
         <!-- ./col -->
+        <?php endif ?>
     </div>
    
 

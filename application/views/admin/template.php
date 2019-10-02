@@ -73,10 +73,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-
+        <?php if ($this->session->userdata("rol") <= 3): ?>
         <header class="main-header">
             <!-- Logo -->
             <a href="<?php echo base_url();?>dashboard" class="logo">
+                       
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>IF</b></span>
                 <!-- logo for regular state and mobile devices -->
@@ -106,7 +107,43 @@
                 </div>
             </nav>
         </header>
+        <?php endif ?>
 
+        <?php if ($this->session->userdata("rol") == 4): ?>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="<?php echo base_url();?>usuario/perfil" class="logo">
+                       
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>IF</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Inventario FONCA</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <?php echo $this->session->userdata("nombres");?>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="<?php echo base_url();?>auth/logout">Cerrar Session</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <?php endif ?>
         <!-- =============================================== -->
 
         <!-- Left side column. contains the sidebar -->
@@ -116,10 +153,10 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Menú de Navegación</li>
+                    <?php if ($this->session->userdata("rol") < 3): ?>
                     <li>
                         <a href="<?php echo base_url();?>dashboard"><i class="fa fa-home"></i> <span>Inicio</span></a>
                     </li>
-                    <?php if ($this->session->userdata("rol") < 3): ?>
                         
                     
                     <li class="treeview">
@@ -166,6 +203,7 @@
                         </ul>
                     </li>
                     <?php endif ?>
+                    <?php if ($this->session->userdata("rol") == 1 || $this->session->userdata("rol") == 3): ?>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-list"></i> <span>Reportes</span>
@@ -178,10 +216,11 @@
                             <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
                             <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
                             <li><a href="<?php echo base_url();?>reportes/ip"><i class="fa fa-circle-o"></i> Ips</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/proyectores"><i class="fa fa-circle-o"></i> Proyectores</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/proyectores"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
                             <li><a href="<?php echo base_url();?>reportes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
                         </ul>
                     </li>
+                    <?php endif ?>
                     <?php if ($this->session->userdata("rol") == 1): ?>
                         <li class="treeview">
                         <a href="#">
@@ -199,11 +238,11 @@
                     </li>
                     <?php endif ?>
                     
-                 
+                    <?php if ($this->session->userdata("rol") <= 4): ?>
                     <li>
                         <a href="<?php echo base_url();?>usuario/perfil"><i class="fa fa-info-circle"></i> <span>Mi perfil</span></a>
                     </li>
-                    
+                    <?php endif ?>
                 </ul>
             </section>
             <!-- /.sidebar -->

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Lectores extends CI_Controller {
+class nobreak extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -29,7 +29,7 @@ class Lectores extends CI_Controller {
 
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/reportes/lectores",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/reportes/nobreak",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}

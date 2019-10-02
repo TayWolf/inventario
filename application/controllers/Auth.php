@@ -38,7 +38,7 @@ class Auth extends CI_Controller {
 			$sexo = $this->input->post("sexo");
 			$imagen = "imagen_masculino.jpg";
 
-			$this->form_validation->set_rules("email","Correo Electronico","required|valid_email|is_unique[usuarios.email]", array('is_unique' => 'El correo electronico %s ya esta en uso.'));
+			$this->form_validation->set_rules("email","Correo Electronico","required|is_unique[usuarios.email]", array('is_unique' => 'El correo electronico %s ya esta en uso.'));
 			$this->form_validation->set_rules("cedula","Cedula","required|is_unique[usuarios.cedula]", array('is_unique' => 'La cedula %s ya esta en uso.'));
 			$this->form_validation->set_rules('password', 'Contraseña', 'trim|required');
 			$this->form_validation->set_rules('confirmarpassword', 'Confirmacion de contraseña', 'trim|required|matches[password]');
@@ -90,7 +90,7 @@ class Auth extends CI_Controller {
 				redirect(base_url());
 				//echo "0";
 			}
-			else{
+			else if($res->rol_id == 1 || $res->rol_id == 2 || $res->rol_id == 3){
 
 				
 				$data  = array(
@@ -112,6 +112,19 @@ class Auth extends CI_Controller {
 				}*/
 				
 				//echo "1";
+			}
+			elseif($res->rol_id == 4)
+			{
+				$data  = array(
+					'id' => $res->id, 
+					'nombres' => $res->nombres,
+					'rol' => $res->rol_id,
+					'login' => TRUE
+				);
+				$this->session->set_userdata($data);
+				$this->backend_lib->savelog($this->modulo,"Inicio de sesión");
+
+				redirect(base_url()."usuario/perfil");
 			}
 		}
 

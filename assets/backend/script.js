@@ -994,14 +994,58 @@ $(document).ready(function(){
             buttons: [
                 {
 	                extend: 'excelHtml5',
-	                title: "Listado de Impresoras",
+	                title: "Listado de No-BREAKS",
 	                exportOptions: {
 	                    columns: [ 0, 1, 2, 3, 4]
 	                }
 	            },
 	            {
 	                extend: 'print',
-	                title: "Listado de Impresoras",
+	                title: "Listado de No-BREAKS",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2, 3, 4]
+	                }
+	                
+	            }
+            ],
+            pageSize: 'A4',
+            content: [{ style: 'fullWidth' }],
+            styles: { // style for printing PDF body
+                    fullWidth: { fontSize: 18, bold: true, alignment: 'right', margin: [0,0,0,0] }
+            },
+        });
+    } );
+
+    //Reporte de Teléfonos
+    $(document).ready(function() {
+        $('#tbtelefonos').DataTable({
+            dom: 'lBfrtip',
+            language: {
+	            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+	            "zeroRecords": "No se encontraron resultados en su busqueda",
+	            "searchPlaceholder": "Buscar registros",
+	            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+	            "infoEmpty": "No existen registros",
+	            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+	            "search": "Buscar:",
+	            "paginate": {
+	                "first": "Primero",
+	                "last": "Último",
+	                "next": "Siguiente",
+	                "previous": "Anterior"
+	            },
+	        },
+            buttons: [
+                {
+	                extend: 'excelHtml5',
+	                title: "Listado de Teléfonos",
+	                exportOptions: {
+	                    columns: [ 0, 1, 2, 3, 4]
+	                }
+	            },
+	            {
+	                extend: 'print',
+	                title: "Listado de Teléfonos",
 	                exportOptions: {
 	                    columns: [ 0, 1, 2, 3, 4]
 	                }
