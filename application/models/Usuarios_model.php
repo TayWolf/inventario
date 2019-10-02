@@ -4,9 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuarios_model extends CI_Model {
 
 	public function getUsuarios(){
-		$this->db->select("*");
+		$this->db->select("u.*");
 		$this->db->from("usuarios u");
-		$this->db->join("roles r", "u.rol_id = r.id","left");
+		$this->db->join("roles r", "r.id = u.id","left");
+		$this->db->order_by("id", "asc");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}

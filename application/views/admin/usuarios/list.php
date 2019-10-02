@@ -20,7 +20,7 @@
                                     <th>#</th>
                                     <th>Cedula</th>
                                     <th>Nombres</th>
-                                    <th>Email</th>
+                                    <th>Usuario</th>
                                     <th>Rol</th>
                                     <th>Estado</th>
                                     <th>Accion</th>
@@ -33,7 +33,22 @@
                                         <td><?php echo $usuario->cedula?></td>
                                         <td><?php echo $usuario->nombres?></td>
                                         <td><?php echo $usuario->email?></td>
-                                        <td><?php echo $usuario->nombre;?></td>
+                                        <?php 
+                                            if ( $usuario->rol_id == 1) 
+                                            {
+                                                $rol = $usuario->rol_id = "Administrador";
+                                            }
+                                            elseif ($usuario->rol_id == 2) {
+                                                $rol = $usuario->rol_id = "Especialista";
+                                            }
+                                            elseif ($usuario->rol_id == 3) {
+                                                $rol = $usuario->rol_id = "Encargado de Reportes";
+                                            }
+                                            else {
+                                                $rol = $usuario->rol_id = "Usuario";
+                                            } 
+                                        ?>
+                                        <td><?php echo $rol;?></td>
                                         <td><?php echo $usuario->estado == 0 ? "Inactivo":"activo";?></td>
                                         
                                         <td>
