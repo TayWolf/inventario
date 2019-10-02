@@ -39,7 +39,7 @@
                                                 $rol = $usuario->rol_id = "Administrador";
                                             }
                                             elseif ($usuario->rol_id == 2) {
-                                                $rol = $usuario->rol_id = "Especialista";
+                                                $rol = $usuario->rol_id = "Soporte Técnico";
                                             }
                                             elseif ($usuario->rol_id == 3) {
                                                 $rol = $usuario->rol_id = "Encargado de Reportes";

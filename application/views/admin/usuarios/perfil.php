@@ -58,8 +58,8 @@
                                 <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $usuario->nombres;?>">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $usuario->email;?>">
+                                <label for="email">Nombre de Usuario:</label>
+                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $usuario->email;?>">
                             </div>
                             <div class="form-group">
                                 <label for="">Sexo:</label>

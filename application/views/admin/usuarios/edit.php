@@ -26,19 +26,19 @@
                         <?php endif ?>
                         <input type="hidden" name="idUsuario" value="<?php echo $usuario->id;?>">
                         <div class="form-group">
-                            <label for="">Cedula:</label>
+                            <label for="cedula">Cedula:</label>
                             <input type="text" name="cedula" class="form-control" required="required" value="<?php echo $usuario->cedula?>">
                         </div>
                         <div class="form-group">
-                            <label for="">Nombres y Apellidos</label>
+                            <label for="nombres">Nombres y Apellidos</label>
                             <input type="text" name="nombres" class="form-control" required="required" value="<?php echo $usuario->nombres ?>">
                         </div>
                         <div class="form-group">
-                            <label for="">Email:</label>
-                            <input type="email" name="email" class="form-control" required="required" value="<?php echo $usuario->email?>">
+                            <label for="email">Nombre de Usuario:</label>
+                            <input type="text" name="email" class="form-control" required="required" value="<?php echo $usuario->email?>">
                         </div>
                         <div class="form-group">
-                            <label for="">Rol:</label>
+                            <label for="rol">Rol:</label>
                             <select name="rol" id="rol" required class="form-control">
                                 <option value="">Seleccione Rol</option>
                                 <?php foreach ($roles as $rol): ?>
@@ -48,7 +48,7 @@
                         </div >
                         <?php if ($usuario->estado == 0): ?>
                             <div class="form-group">
-                                <label for="">Estado:</label>
+                                <label for="estado">Estado:</label>
                                 <select name="estado" id="estado" required class="form-control">
                                     <option value="1">Activo</option>
                                     <option value="2" selected>Inactivo</option>

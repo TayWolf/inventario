@@ -229,15 +229,15 @@ class Usuarios extends CI_Controller {
 	
 		$data = array(
 			"nombres" => $nombres,
-			"email" => $email,
-			"rol_id" => $rol,
-			"estado" => $estado,
-			"cedula" => $cedula
+			"email"   => $email,
+			"rol_id"  => $rol,
+			"estado"  => $estado,
+			"cedula"  => $cedula
 		);
 
 		if ($this->Usuarios_model->update($id, $data)) {
 
-			/*$this->backend_lib->savelog($this->modulo,"Actualización del Usuario ".$email);*/
+			$this->backend_lib->savelog($this->modulo,"Actualización del Usuario ".$email);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."administrador/usuarios");
 		} else {
