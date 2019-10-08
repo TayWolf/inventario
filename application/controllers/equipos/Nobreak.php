@@ -1,68 +1,68 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tablets extends CI_Controller {
-	private $modulo = "Tablets";
+class Nobreak extends CI_Controller {
+	private $modulo = "No-BREAK";
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
-		$this->load->model("Tablets_model");
-		$this->load->model("Fabricantes_model");
+		$this->load->model("Nobreak_model");
+		$this->load->model("Areas_model");
 	}
 
 	public function index()
 	{
 
 		$contenido_interno = array(
-			"tablets" => $this->Tablets_model->getTablets(false,""),
+			"nobreaks" => $this->Nobreak_model->getNobreaks(false,""),
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/tablets/list",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/nobreak/list",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
 	public function add(){
 		$contenido_interno = array(
-			"fabricantes" => $this->Fabricantes_model->getFabricantes(),
+			"areas" => $this->Areas_model->getAreas(),
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/tablets/add",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/nobreak/add",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
 	public function store(){
 		if ($this->input->post("guardar")) {
-			$codigo = $this->input->post("codigo");
+			$codigo = $this->input->post("no_serie");
 			$modelo = $this->input->post("modelo");
+			$area = $this->input->post("area");
 			$descripcion = $this->input->post("descripcion");
-			$fabricante = $this->input->post("fabricante");
 
 			$data = array(
-				"codigo" => $codigo,
+				"no_serie" => $codigo,
 				"modelo" => $modelo,
+				"id_area" => $area,
 				"descripcion" => $descripcion,
-				"fabricante_id" => $fabricante,
 				"estado" => 1,
-				"fecregistro" => date("Y-m-d H:i:s"),
+				"fecregistro" => date("Y-m-d"),
 				"usuario_id" => $this->session->userdata("id"),
 			);
 
-			if ($this->Tablets_model->save($data)) {
-				$this->backend_lib->savelog($this->modulo,"Inserción de nuevo Tablet con Codigo ".$codigo);
+			if ($this->Nobreak_model->save($data)) {
+				$this->backend_lib->savelog($this->modulo,"Inserción de nuevo No-BREAK con No. de Serie ".$codigo);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-				redirect(base_url()."equipos/tablets");
+				redirect(base_url()."equipos/nobreak");
 			} else {
 				$this->session->set_flashdata("error", "Los datos no fueron guardados");
-				redirect(base_url()."equipos/tablets/add");
+				redirect(base_url()."equipos/nobreak/add");
 
 			}
 			
 		} else {
-			redirect(base_url()."equipos/tablets/add");
+			redirect(base_url()."equipos/nobreak/add");
 		}
 		
 	}
@@ -71,41 +71,38 @@ class Tablets extends CI_Controller {
 		$id = $this->input->post("id");
 
 		$data = array(
-			"tablet" => $this->Tablets_model->infoTablet($id),
-			"mantenimientos" => $this->Tablets_model->getMantenimientos($id)
+			"nobreak" => $this->Nobreak_model->infoNobreak($id),
+			"areas" => $this->Areas_model->getAreas($id)
 		);
 
-		$this->load->view("admin/tablets/view", $data);
+		$this->load->view("admin/nobreak/view", $data);
 	}
 	public function delete($id){
-		$tablet = $this->Tablets_model->getTablet($id);
-		$data = array(
-			"estado" => "0"
-		);
-
-		$this->Tablets_model->update($id, $data);
-		$this->backend_lib->savelog($this->modulo,"Eliminación de la Tablet con Codigo ".$tablet->codigo);
-		echo "equipos/tablets";
+		$nobreak = $this->Nobreak_model->getNobreak($id);
+		$this->Nobreak_model->delete($id);
+		$this->backend_lib->savelog($this->modulo,"Eliminación del No-BREAK ".$nobreak->no_serie);
+		echo "equipos/nobreak";
 	}
 
 	public function edit($id){
 		$contenido_interno = array(
-			"tablet" => $this->Tablets_model->getTablet($id),
-			"fabricantes" => $this->Fabricantes_model->getFabricantes(),
+			"nobreak" => $this->Nobreak_model->getNobreak($id),
+			"areas" => $this->Areas_model->getAreas(),
 		);
 
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/tablets/edit",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/nobreak/edit",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
 	public function update(){
-		$id = $this->input->post("idTablet");
-		$codigo = $this->input->post("codigo");
+		$id = $this->input->post("idNobreak");
+		$no_serie = $this->input->post("no_serie");
 		$modelo = $this->input->post("modelo");
+		$area = $this->input->post("area");
 		$descripcion = $this->input->post("descripcion");
-		$fabricante = $this->input->post("fabricante");
+
 		$estado = 1;
 
 		if ($this->input->post("estado") ) {
@@ -115,61 +112,61 @@ class Tablets extends CI_Controller {
 		}
 
 		$data = array(
-			"codigo" => $codigo,
+			"no_serie" => $no_serie,
 			"modelo" => $modelo,
+			"id_area" => $area,
 			"descripcion" => $descripcion,
-			"fabricante_id" => $fabricante,
 			"estado" => $estado,
 		);
-		if ($this->Tablets_model->update($id, $data)) {
-			$this->backend_lib->savelog($this->modulo,"Actualización del Tablet con Codigo ".$codigo);
+		if ($this->Nobreak_model->update($id, $data)) {
+			$this->backend_lib->savelog($this->modulo,"Actualización del No-Break ".$no_serie);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-			redirect(base_url()."equipos/tablets");
+			redirect(base_url()."equipos/nobreak");
 		} else {
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
-			redirect(base_url()."equipos/tablets/edit/".$id);
+			redirect(base_url()."equipos/nobreak/edit/".$id);
 
 		}
 		
 	}
 
-	public function addmantenimiento(){
+	/*public function addmantenimiento(){
 		$id = $this->input->post("idequipo");
 		$fecha = $this->input->post("fecha");
 		$tecnico = $this->input->post("tecnico");
 		$descripcion = $this->input->post("descripcion");
 
 		$data = array(
-			"tablet_id" => $id,
+			"lector_id" => $id,
 			"fecha" => $fecha,
 			"tecnico" => $tecnico,
 			"descripcion" => $descripcion
 		);
 
-		$dataTablet = array(
+		$dataLector = array(
 			"ultimo_mante" => $fecha
 		);
 
 
 
-		if ($this->Tablets_model->saveMante($data)) {
-			$tablet = $this->Tablets_model->getTablet($id);
-			$this->backend_lib->savelog($this->modulo,"Registro de Mantenimiento al Tablet con Codigo ".$tablet->codigo);
-			$this->Tablets_model->update($id,$dataTablet);
+		if ($this->Nobreak_model->saveMante($data)) {
+			$lector = $this->Nobreak_model->getNobreak($id);
+			$this->backend_lib->savelog($this->modulo,"Registro de Mantenimiento al Lector con Codigo ".$lector->codigo);
+			$this->Nobreak_model->update($id,$dataLector);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-			redirect(base_url()."equipos/tablets");
+			redirect(base_url()."equipos/lectores");
 		}else{
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
-			redirect(base_url()."equipos/tablets");
+			redirect(base_url()."equipos/lectores");
 		}
 
  	}
 
  	public function getMantenimientos(){
  		$id = $this->input->post("idequipo");
- 		$mantenimientos = $this->Tablets_model->getMantenimientos($id);
+ 		$mantenimientos = $this->Nobreak_model->getMantenimientos($id);
  		echo json_encode($mantenimientos);
- 	}
+ 	}*/
 
 
 }

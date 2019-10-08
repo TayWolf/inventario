@@ -22,6 +22,7 @@ class Computadoras extends CI_Controller {
 		$this->load->model("Discos_model");
 		$this->load->model("Procesadores_model");
 		$this->load->model("Monitores_model");
+		$this->load->model("Propietario_model");
 	}
 
 	public function index()
@@ -29,7 +30,8 @@ class Computadoras extends CI_Controller {
 		
 
 		$contenido_interno = array(
-			"computadoras" => $this->Computadoras_model->getComputadoras(false,"")
+			"computadoras" => $this->Computadoras_model->getComputadoras(false,""),
+			"propietarios" => $this->Propietario_model->getPropietarios(false,"")
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/computadoras/list",$contenido_interno,TRUE)
@@ -52,6 +54,7 @@ class Computadoras extends CI_Controller {
 			"antivirus" => $this->Antivirus_model->getAntivirus(),
 			"ips" => $this->Ip_model->getIpLibre(),
 			"procesadores" => $this->Procesadores_model->getProcesadores(),
+			"propietarios" => $this->Propietario_model->getPropietarios(),
 			"fecregistro" => date("Y-m-d H:i:s"),
 		);
 		$contenido_externo = array(
@@ -81,6 +84,7 @@ class Computadoras extends CI_Controller {
 			$ip = $this->input->post("ip");
 			$mac = $this->input->post("mac");
 			$bitacora = $this->input->post("bitacora");
+			$propietario = $this->input->post("propietario");
 
 			$data = array(
 				"codigo" => $codigo,
@@ -89,6 +93,7 @@ class Computadoras extends CI_Controller {
 				"proveedor_id" => $proveedor,
 				"finca_id" => $finca,
 				"area_id" => $area,
+				"id_propietario" => $propietario,
 				"contacto" => $contacto,
 				"fabricante_id" => $fabricante,
 				"procesador_id" => $procesador,
@@ -108,6 +113,13 @@ class Computadoras extends CI_Controller {
 			);
 
 			if ($this->Computadoras_model->save($data)) {
+
+				$ip = $this->Ip_model->getIp($id);
+				$data = array(
+					"estado" => "1"
+				);
+				$this->Ip_model->update($id, $data);
+
 				$this->backend_lib->savelog($this->modulo,"Inserción de nueva Computadora con Codigo ".$codigo);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 				redirect(base_url()."equipos/computadoras");
@@ -136,11 +148,8 @@ class Computadoras extends CI_Controller {
 	public function delete($id){
 		
 		$computadora = $this->Computadoras_model->getComputadora($id);
-		$data = array(
-			"estado" => "0"
-		);
-
-		$this->Computadoras_model->update($id, $data);
+		
+		$this->Computadoras_model->delete($id);
 		$this->backend_lib->savelog($this->modulo,"Eliminación de la Computadora con Codigo ".$computadora->codigo);
 		echo "equipos/computadoras";
 	}
@@ -161,6 +170,7 @@ class Computadoras extends CI_Controller {
 			"antivirus" => $this->Antivirus_model->getAntivirus(),
 			"ips" => $this->Ip_model->getIpLibre(),
 			"procesadores" => $this->Procesadores_model->getProcesadores(),
+			"propietarios" => $this->Propietario_model->getPropietarios()
 		);
 
 		$contenido_externo = array(
@@ -177,6 +187,7 @@ class Computadoras extends CI_Controller {
 		$proveedor = $this->input->post("proveedor");
 		$finca = $this->input->post("finca");
 		$area = $this->input->post("area");
+		$propietario = $this->input->post("propietario");
 		$contacto = $this->input->post("contacto");
 		$fabricante = $this->input->post("fabricante");
 		$procesador = $this->input->post("procesador");
@@ -206,6 +217,7 @@ class Computadoras extends CI_Controller {
 			"proveedor_id" => $proveedor,
 			"finca_id" => $finca,
 			"area_id" => $area,
+			"id_propietario" => $propietario,
 			"contacto" => $contacto,
 			"fabricante_id" => $fabricante,
 			"procesador_id" => $procesador,
@@ -275,29 +287,18 @@ class Computadoras extends CI_Controller {
  	}
 
  	public function addUsuarios(){
-		$id = $this->input->post("idequipo");
-		$fecha = $this->input->post("fecha");
-		$tecnico = $this->input->post("tecnico");
-		$descripcion = $this->input->post("descripcion");
+		$id = $this->input->post("idPropietario");
+		$nombre = $this->input->post("nombre");
 
 		$data = array(
-			"computadora_id" => $id,
-			"fecha" => $fecha,
-			"tecnico" => $tecnico,
-			"descripcion" => $descripcion
+			"id" => $id,
+			"id_propietario" => $nombre
 		);
 
-		$dataComp = array(
-			"ultimo_mante" => $fecha
-		);
-
-
-
-		if ($this->Computadoras_model->saveMante($data)) {
+		if ($this->Computadoras_model->savePropietario($data)) {
 			$computadora = $this->Computadoras_model->getComputadora($id);
-			$this->backend_lib->savelog($this->modulo,"Registro de Mantenimiento a la Computadora con Codigo ".$computadora->codigo);
+			$this->backend_lib->savelog($this->modulo,"Registro de Propietario al equipo ".$computadora->codigo);
 
-			$this->Computadoras_model->update($id,$dataComp);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."equipos/computadoras");
 		}else{
@@ -308,8 +309,8 @@ class Computadoras extends CI_Controller {
  	}
 
  	public function getUsuarios(){
- 		$id = $this->input->post("idequipo");
- 		$mantenimientos = $this->Computadoras_model->getMantenimientos($id);
+ 		$id = $this->input->post("idPropietario");
+ 		$mantenimientos = $this->Computadoras_model->getPropietarios($id);
  		echo json_encode($mantenimientos);
  	}
 

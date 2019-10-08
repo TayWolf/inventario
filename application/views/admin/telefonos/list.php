@@ -20,10 +20,10 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="tablets">
+            <input type="hidden" id="modulo" value="telefonos">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>equipos/tablets/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Teléfono</a>
+                    <a href="<?php echo base_url();?>equipos/telefonos/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Teléfono</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
@@ -42,30 +42,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($tablets as $tablet): ?>
+                                <?php foreach ($telefonos as $telefono): ?>
                                     <tr>
-                                        <td><?php echo $tablet->id?></td>
-                                        <td><?php echo $tablet->codigo?></td>
-                                        <td><?php echo $tablet->fabricante?></td>
-                                        <td><?php echo $tablet->modelo?></td>
-                                        <td><?php echo $tablet->descripcion?></td>
-                                        <td><?php echo $tablet->nombres?></td>
-                                        <!-- <td><?php echo $tablet->ip?></td> -->
-                                        <td><?php echo $tablet->ultimo_mante?></td>
-                                        <td><?php echo $tablet->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $telefono->id?></td>
+                                        <td><?php echo $telefono->no_ext?></td>
+                                        <td><?php echo $telefono->no_serie?></td>
+                                        <td><?php echo $telefono->modelo?></td>
+                                        <td><?php echo $telefono->area?></td>
+                                        <td><?php echo $telefono->usuario_telefono?></td>
+                                        <!-- <td><?php echo $telefono->ip?></td> -->
+                                        <td><?php echo $telefono->ultimo_mante?></td>
+                                        <td><?php echo $telefono->estado == 0 ?"Inactivo":"Activo";?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $tablet->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $telefono->id;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>equipos/tablets/edit/<?php echo $tablet->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <a href="<?php echo base_url();?>equipos/telefonos/edit/<?php echo $telefono->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
                                                 <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>equipos/tablets/delete/<?php echo $tablet->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                    <a href="<?php echo base_url();?>equipos/telefonos/delete/<?php echo $telefono->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>
                                                 
-                                                <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $tablet->id; ?>">
+                                                <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $telefono->id; ?>">
                                                     <span class="fa fa-wrench"></span>
                                                 </button>
                                             </div>
@@ -143,14 +143,14 @@
             </div>
             <div id="agregar" class="tab-pane fade">
                 <h2>Nuevo Mantenimiento</h2>
-                <form action="<?php echo base_url();?>equipos/tablets/addmantenimiento" method="POST">
+                <form action="<?php echo base_url();?>equipos/telefonos/addmantenimiento" method="POST">
                     <input type="hidden" name="idequipo" id="idequipo">
                     <div class="form-group">
                         <label for="">Fecha</label>
                         <input type="date" class="form-control" name="fecha" value="<?php echo date("Y-m-d")?>" required="required">
                     </div>
                     <div class="form-group">
-                        <label for="">Tecnico</label>
+                        <label for="">Especialista</label>
                         <input type="text" class="form-control" name="tecnico" required="required">
                     </div>
                     <div class="form-group">

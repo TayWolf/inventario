@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Lector de Codigo <small>Editar</small>
+        No-BREAK <small>Editar</small>
     </h1>
 
 </section>
@@ -13,8 +13,8 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-xs-12">
-                    <form action="<?php echo base_url();?>equipos/lectores/update" method="POST">
-                        <input type="hidden" name="idLector" value="<?php echo $lector->id;?>">
+                    <form action="<?php echo base_url();?>equipos/nobreak/update" method="POST">
+                        <input type="hidden" name="idNobreak" value="<?php echo $nobreak->id;?>">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");
@@ -27,27 +27,27 @@
                         <?php endif ?>
                         
                         <div class="form-group">
-                            <label for="codigo">Codigo:</label>
-                            <input type="text" name="codigo" id="codigo" class="form-control" required="required" value="<?php echo $lector->codigo ?>">
+                            <label for="no_serie">No. de Serie:</label>
+                            <input type="text" name="no_serie" id="no_serie" class="form-control" required="required" value="<?php echo $nobreak->no_serie ?>">
                         </div>
                         <div class="form-group">
-                            <label for="fabricante">Fabricante:</label>
-                            <select name="fabricante" id="fabricante" class="form-control" required="required">
-                                <option value="">Elija Fabricante</option>
-                                <?php foreach ($fabricantes as $fabricante): ?>
-                                    <option value="<?php echo $fabricante->id;?>" <?php echo $fabricante->id == $lector->fabricante_id ? "selected":"";?>><?php echo $fabricante->nombre;?></option>
+                            <label for="modelo">Modelo:</label>
+                            <input type="text" name="modelo" id="modelo" class="form-control" required="required" value="<?php echo $nobreak->modelo; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Área:</label>
+                            <select name="area" id="area" class="form-control" required="required">
+                                <option value="">Elija el área</option>
+                                <?php foreach ($areas as $area): ?>
+                                    <option value="<?php echo $area->id;?>" <?php echo $area->id == $nobreak->id_area ? "selected":"";?>><?php echo $area->nombre;?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="modelo">Modelo:</label>
-                            <input type="text" name="modelo" id="modelo" class="form-control" required="required" value="<?php echo $lector->modelo; ?>">
-                        </div>
-                        <div class="form-group">
                             <label for="descripcion">Descripcion:</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" required="required" value="<?php echo $lector->descripcion; ?>">
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" required="required" value="<?php echo $nobreak->descripcion; ?>">
                         </div>
-                        <?php if ($lector->estado == 0): ?>
+                        <?php if ($nobreak->estado == 0): ?>
                             <div class="form-group">
                                 <label for="">Estado:</label>
                                 <select name="estado" id="estado" required class="form-control">

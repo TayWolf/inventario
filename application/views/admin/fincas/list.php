@@ -30,7 +30,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>NIT</th>
+                                    <th>No. Control</th>
                                     <th>Nombre</th>
                                     <th>Direccion</th>
                                     <th>Telefono</th>

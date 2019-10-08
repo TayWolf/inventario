@@ -15,7 +15,7 @@
                 <div class="col-md-6 col-sm-8 col-xs-12">
                     <form action="<?php echo base_url();?>configuraciones/categoria/update" method="POST">
 
-                        <input type="hidden" name="idCategoria" value="<?php echo $sistema->id;?>">
+                        <input type="hidden" name="idCategoria" value="<?php echo $categoria->id;?>">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");
@@ -29,9 +29,9 @@
                         
                         <div class="form-group">
                             <label for="descripcion">Descripcion:</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $sistema->descripcion?>" required="required">
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $categoria->descripcion?>" required="required">
                         </div>
-                        <?php if ($sistema->estado == 0): ?>
+                        <?php if ($categoria->estado == 0): ?>
                             <div class="form-group">
                                 <label for="">Estado:</label>
                                 <select name="estado" id="estado" required class="form-control">

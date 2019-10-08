@@ -32,7 +32,7 @@ class Monitores extends CI_Controller {
 			"fabricantes" => $this->Fabricantes_model->getFabricantes(),
 			"proveedores" => $this->Proveedores_model->getProveedores(),
 			"fincas" => $this->Fincas_model->getFincas(),
-			"areas" => $this->Areas_model->getAreas(),
+			"areas" => $this->Areas_model->getAreas()
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/monitores/add",$contenido_interno,TRUE)

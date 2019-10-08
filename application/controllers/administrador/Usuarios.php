@@ -296,32 +296,30 @@ class Usuarios extends CI_Controller {
 					for($row=2; $row<=$highestRow; $row++)
 					{
 						$codigo = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-						$presentacion = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-						$proveedor = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-						$contacto = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-						$fabricante = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-						$finca = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-						$area = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-					
-						$procesador = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-						$disco = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
-						$monitor = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+						$monitor = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+						$presentacion = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+						$proveedor = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+						$finca = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+						$area = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+						$propietario = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+						$contacto = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+						$fabricante = $worksheet->getCellByColumnAndRow(9, $row)->getValue();	
+						$procesador = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
 						$memoria = $worksheet->getCellByColumnAndRow(11, $row)->getValue();
-						$sistema = $worksheet->getCellByColumnAndRow(12, $row)->getValue();
-						$serial_so = $worksheet->getCellByColumnAndRow(13, $row)->getValue();
-						$office = $worksheet->getCellByColumnAndRow(14, $row)->getValue();
-						$serial_office = $worksheet->getCellByColumnAndRow(15, $row)->getValue();
-						$antivirus = $worksheet->getCellByColumnAndRow(16, $row)->getValue();
-						$bitacora = $worksheet->getCellByColumnAndRow(17, $row)->getValue();
+						$disco = $worksheet->getCellByColumnAndRow(12, $row)->getValue();
+						$sistema = $worksheet->getCellByColumnAndRow(13, $row)->getValue();
+						$serial_so = $worksheet->getCellByColumnAndRow(14, $row)->getValue();
+						$office = $worksheet->getCellByColumnAndRow(15, $row)->getValue();
+						$serial_office = $worksheet->getCellByColumnAndRow(16, $row)->getValue();
+						$antivirus = $worksheet->getCellByColumnAndRow(17, $row)->getValue();
 						$ip = $worksheet->getCellByColumnAndRow(18, $row)->getValue();
 						$mac = $worksheet->getCellByColumnAndRow(19, $row)->getValue();
-						$ultimo_mante = $worksheet->getCellByColumnAndRow(20, $row)->getValue();
-						$usuario = $worksheet->getCellByColumnAndRow(21, $row)->getValue();
-						$fecregistro = $worksheet->getCellByColumnAndRow(22, $row)->getValue();
-						$estado = $worksheet->getCellByColumnAndRow(23, $row)->getValue();
-						
-						
-						
+						$bitacora = $worksheet->getCellByColumnAndRow(20, $row)->getValue();
+						$estado = $worksheet->getCellByColumnAndRow(21, $row)->getValue();
+						$ultimo_mante = $worksheet->getCellByColumnAndRow(22, $row)->getValue();
+						$fecregistro = $worksheet->getCellByColumnAndRow(23, $row)->getValue();
+						$usuario = $worksheet->getCellByColumnAndRow(24, $row)->getValue();
+							
 						$data[] = array(
 							"codigo" => $codigo,
 							"monitor_id" => $monitor,
@@ -329,6 +327,7 @@ class Usuarios extends CI_Controller {
 							"proveedor_id" => $proveedor,
 							"finca_id" => $finca,
 							"area_id" => $area,
+							"id_propietario" => $propietario,
 							"contacto" => $contacto,
 							"fabricante_id" => $fabricante,
 							"procesador_id" => $procesador,
@@ -339,13 +338,13 @@ class Usuarios extends CI_Controller {
 							"office_id" => $office,
 							"serial_office" => $serial_office,
 							"antivirus_id" => $antivirus,
-							"ip" => $ip,
+							"ip_id" => $ip,
 							"mac" => $mac,
 							"bitacora" => $bitacora,
-							"fecregistro" => $fecregistro, 
 							"estado" => 1,
-							"usuario_id" => $usuario,
 							"ultimo_mante" => $ultimo_mante,
+							"fecregistro" => $fecregistro, 
+							"usuario_id" => $usuario
 						);
 					}
 				}
@@ -392,6 +391,28 @@ class Usuarios extends CI_Controller {
 					}
 				}
 				$this->Backend_model->insert("impresoras",$data);
+				echo "1";
+			}else if($tabla==4){
+				foreach($object->getWorksheetIterator() as $worksheet)
+				{
+					$highestRow = $worksheet->getHighestRow();
+					$highestColumn = $worksheet->getHighestColumn();
+					for($row=2; $row<=$highestRow; $row++)
+					{
+						$nombre = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+						$apMat  = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+						$apPat  = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+						$estado = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+						
+						$data[] = array(
+							"nombre" => $nombre,
+							"apMat" => $apMat,
+							"apPat" => $apPat,
+							"estado" => $estado
+						);
+					}
+				}
+				$this->Backend_model->insert("propietarios",$data);
 				echo "1";
 			}
 			else{

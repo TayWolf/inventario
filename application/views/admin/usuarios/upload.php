@@ -16,12 +16,13 @@
                     <form action="<?php echo base_url();?>administrador/usuarios/importar" method="POST" id="upload-data" enctype="multipart/form-data">
                         
                         <div class="form-group">
-                            <label for="tabla">Seleccione Tabla:</label>
+                            <label for="tabla">Tabla a la que desea importar datos:</label>
                             <select name="tabla" id="tabla" required="required" class="form-control">
-                                <option value="">Elija...</option>
+                                <option value="">Elija la tabla...</option>
                                 <option value="1">Computadoras</option>
                                 <option value="2">Impresoras</option>
                                 <option value="3">Monitores</option>
+                                <option value="4">Usuarios</option>
                             </select>
                         </div >
                         <div class="form-group">

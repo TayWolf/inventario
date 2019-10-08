@@ -39,9 +39,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="presentacion">Presentacion:</label>
+                            <label for="presentacion">Modelo:</label>
                             <select name="presentacion" id="presentacion" class="form-control" required="required">
-                                <option value="">Elija presentacion</option>
+                                <option value="">Elija el Modelo</option>
                                 <?php foreach ($presentaciones as $presentacion): ?>
                                     <option value="<?php echo $presentacion->id;?>" <?php echo $presentacion->id == $computadora->presentacion_id ? "selected":"";?>><?php echo $presentacion->nombre;?></option>
                                 <?php endforeach ?>
@@ -57,9 +57,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="finca">Finca:</label>
+                            <label for="finca">Elemento:</label>
                             <select name="finca" id="finca" class="form-control" required="required">
-                                <option value="">Elija finca</option>
+                                <option value="">Elija elemento</option>
                                 <?php foreach ($fincas as $finca): ?>
                                     <option value="<?php echo $finca->id;?>" <?php echo $finca->id == $computadora->finca_id ? "selected":"";?>><?php echo $finca->nombre;?></option>
                                 <?php endforeach ?>
@@ -179,6 +179,16 @@
                         <div class="form-group">
                             <label for="mac">MAC:</label>
                             <input type="text" name="mac" id="mac" class="form-control" value="<?php echo $computadora->mac;?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="propietario">Usuario del equipo:</label>
+                            <select name="propietario" id="propietario" class="form-control" required="required">
+                                <option value="">Elija el usuario del equipo</option>
+                                <?php foreach ($propietarios as $propietario): ?>
+                                    <option value="<?php echo $propietario->id;?>" <?php echo $propietario->id == $computadora->id_propietario ? "selected":"";?>><?php echo $propietario->nombre.' '.$propietario->apPat.' '.$propietario->apMat;?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                     </div>
                     

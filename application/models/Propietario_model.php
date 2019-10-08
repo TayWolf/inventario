@@ -16,18 +16,18 @@ class Propietario_model extends CI_Model {
 	}
 
 	public function getPropietario($id){
-		$this->db->where("id", $id);
+		$this->db->where("id_prop", $id);
 		$resultados = $this->db->get("propietarios");
 		return $resultados->row();
 	}
 
 	public function update($id,$data){
-		$this->db->where("id", $id);
+		$this->db->where("id_prop", $id);
 		return $this->db->update("propietarios",$data);
 	}
 
 	public function delete($id){
-		$this->db->where("id", $id);
+		$this->db->where("id_prop", $id);
 		return $this->db->delete("propietarios");
 	}
 

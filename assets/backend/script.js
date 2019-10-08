@@ -1040,14 +1040,14 @@ $(document).ready(function(){
 	                extend: 'excelHtml5',
 	                title: "Listado de Teléfonos",
 	                exportOptions: {
-	                    columns: [ 0, 1, 2, 3, 4]
+	                    columns: [ 0, 1, 2, 3, 4, 5, 6]
 	                }
 	            },
 	            {
 	                extend: 'print',
 	                title: "Listado de Teléfonos",
 	                exportOptions: {
-	                    columns: [ 0, 1, 2, 3, 4]
+	                    columns: [ 0, 1, 2, 3, 4,5 , 6]
 	                }
 	                
 	            }

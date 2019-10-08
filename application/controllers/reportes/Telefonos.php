@@ -1,14 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Proyectores extends CI_Controller {
+class Telefonos extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
-		$this->load->model("Proyectores_model");
+		$this->load->model("Telefonos_model");
+		$this->load->model("Ip_model");
+		$this->load->model("Areas_model");
 	}
 
 	public function index(){
@@ -16,20 +18,20 @@ class Proyectores extends CI_Controller {
 		$fecfin = $this->input->post("fecfin");
 
 		if ($this->input->post("buscar")) {
-			$proyectores = $this->Proyectores_model->getProyectores(false,"",$fecinicio,$fecfin);
+			$telefonos = $this->Telefonos_model->getTelefonos(false,"",$fecinicio,$fecfin);
 		}
 		else{
-			$proyectores = $this->Proyectores_model->getProyectores(false,"");
+			$telefonos = $this->Telefonos_model->getTelefonos(false,"");
 		}
 
 		$contenido_interno = array(
-			"proyectores" => $proyectores,
+			"telefonos" => $telefonos,
 			"fecinicio" => $fecinicio,
 			"fecfin" => $fecfin
 
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/reportes/proyectores",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/reportes/telefonos",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
@@ -45,16 +47,16 @@ class Proyectores extends CI_Controller {
 		$inicio = ($numeropagina -1)*$cantidad;
 
 		if ($checkfecha == 1) {
-			$proyectores = $this->Proyectores_model->getProyectores(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
-			$total = $this->Proyectores_model->getProyectores(1,$buscar,false,false,$fecinicio,$fecfin);
+			$telefonos = $this->Telefonos_model->getTelefonos(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
+			$total = $this->Telefonos_model->getTelefonos(1,$buscar,false,false,$fecinicio,$fecfin);
 		}else{
-			$proyectores = $this->Proyectores_model->getProyectores(1,$buscar,$inicio,$cantidad);
-			$total = $this->Proyectores_model->getProyectores(1,$buscar);
+			$telefonos = $this->Telefonos_model->getTelefonos(1,$buscar,$inicio,$cantidad);
+			$total = $this->Telefonos_model->getTelefonos(1,$buscar);
 		}
 		
 		
 		$data = array(
-			"proyectores" => $proyectores,
+			"telefonos" => $telefonos,
 			"totalregistros" => count($total),
 			"cantidad" =>$cantidad
 			
@@ -130,9 +132,9 @@ class Proyectores extends CI_Controller {
 	        $this->excel->getActiveSheet()->setCellValue("H{$contador}", 'Estado');
 
 	        if ($fechainicio != "" && $fechafin != "") {
-	        	$proyectores = $this->Proyectores_model->getProyectores(1,$search,$fechainicio,$fechafin);
+	        	$proyectores = $this->Telefonos_model->getTelefonos(1,$search,$fechainicio,$fechafin);
 	        }else{
-	        	$proyectores = $this->Proyectores_model->getProyectores(1,$search,false,false);
+	        	$proyectores = $this->Telefonos_model->getTelefonos(1,$search,false,false);
 	        }
 
 
@@ -159,7 +161,7 @@ class Proyectores extends CI_Controller {
 		        $i++;
 	        }
 	        //Le ponemos un nombre al archivo que se va a generar.
-	        $archivo = "Listado_de_proyectores".date("dmYHis").".xls";
+	        $archivo = "Listado_de_telefonos".date("dmYHis").".xls";
 	        header('Content-Type: application/vnd.ms-excel');
 	        header('Content-Disposition: attachment;filename="'.$archivo.'"');
 	        header('Cache-Control: max-age=0');
@@ -172,7 +174,7 @@ class Proyectores extends CI_Controller {
 	        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
 	        
 	  
-	        $pdf->SetTitle('Reporte de proyectores '.date("d-m-Y"));
+	        $pdf->SetTitle('Reporte de teléfonos '.date("d-m-Y"));
 
 			$pdf->SetPrintHeader(false);
 
@@ -205,9 +207,9 @@ class Proyectores extends CI_Controller {
 	        $html .= '<tr>';
 
 	        $html .= '<td width="15%" rowspan="2">
-					<img src="'.base_url("assets/images/logo.png").'" width="30" height="30">
+					<img src="'.base_url("assets/images/logo.png").'" width="150" height="50">
 	        </td>';
-	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:30px !important;"><h1>Empresa de Transporte</h1></td>';
+	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:30px !important;"><h1>FONCA</h1></td>';
 	        $html .= '<td width="15%" style="font-weight:bold;text-align:center;">Fecha</td>';
 	        $html .= '</tr>';
 	        $html .= '<tr>';
@@ -216,39 +218,43 @@ class Proyectores extends CI_Controller {
 	        $html .= '</tr>';
 	        $html .= '</thead></table>';
 
-	        $html .= '<h2 style="text-align:center;">Reportes de Proyectores</h2>';
+	        $html .= '<h2 style="text-align:center;">Reportes de Teléfonos</h2>';
 	
 	        $html .= '<table width="100%" cellpadding="3" border="1"><thead>';
 	        $html .= '<tr>';
-	        $html .= "<th>Nro.</th>";
-            $html .= '<th>Codigo</th>';
-            $html .= '<th>Fabricante</th>';
-            $html .= '<th>Modelo</th>';
-            $html .= '<th>Descripcion</th>';
-            $html .= '<th>Ultimo Mant.</th>';
+            $html .= '<th>#</th>';
+            $html .= '<th>No. de Extensión</th>';
+            $html .= '<th>No. de Serie</th>';
             $html .= '<th>Usuario</th>';
+            $html .= '<th>IP</th>';
+            $html .= '<th>Modelo</th>';
+            $html .= '<th>Área</th>';
+            $html .= '<th>Último Mantenimiento</th>';
+            $html .= '<th>Fecha de registro</th>';
             
             $html .= '<th>Estado</th></tr></thead><tbody>';
     
 
             if ($fechainicio != "" && $fechafin != "") {
-	        	$proyectores = $this->Proyectores_model->getProyectores(1,$search,$fechainicio,$fechafin);
+	        	$proyectores = $this->Telefonos_model->getTelefonos(1,$search,$fechainicio,$fechafin);
 	        }else{
-	        	$proyectores = $this->Proyectores_model->getProyectores(1,$search,false,false);
+	        	$proyectores = $this->Telefonos_model->getTelefonos(1,$search,false,false);
 	        }
         
 	        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
 	         foreach ($proyectores as $mon){
 	         	$html.='<tr>';
                 $html.='<td>'.$mon->id.'</td>';
-                $html.='<td>'.$mon->codigo.'</td>';
-                $html.='<td>'.$mon->fabricante.'</td>';
-                $html.='<td>'.$mon->modelo.'</td>';
-                
+                $html.='<td>'.$mon->no_ext.'</td>';
+                $html.='<td>'.$mon->no_serie.'</td>';
+                $html.='<td>'.$mon->usuario_telefono.'</td>';
                 $html.='<td>'.$mon->descripcion.'</td>';
+                $html.='<td>'.$mon->modelo.'</td>';
+                $html.='<td>'.$mon->area.'</td>';
+                
                 $html.='<td>'.$mon->ultimo_mante.'</td>';
                 
-                $html.='<td>'.$mon->nombres.'</td>';
+                $html.='<td>'.$mon->fecregistro.'</td>';
                 $status = $mon->estado == 1 ? "Activo":"Inactivo";
                 $html.='<td>'.$status.'</td></tr>';
                
@@ -262,7 +268,7 @@ class Proyectores extends CI_Controller {
 			// ---------------------------------------------------------
 			// Cerrar el documento PDF y preparamos la salida
 			// Este método tiene varias opciones, consulte la documentación para más información.
-        	$nombre_archivo = utf8_decode("Reportes_de_proyectores_".date("dmYHis").".pdf");
+        	$nombre_archivo = utf8_decode("Reportes_de_telefonos_".date("dmYHis").".pdf");
         	$pdf->Output($nombre_archivo, 'D');
 		}
 	

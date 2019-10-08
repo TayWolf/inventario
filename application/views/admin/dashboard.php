@@ -17,7 +17,7 @@
               <p>Computadoras</p>
             </div>
             <div class="icon">
-              <i class="ion ion-card"></i>
+              <i class="ion ion-laptop"></i>
             </div>
             <a href="<?php echo base_url();?>equipos/computadoras" class="small-box-footer">Ver Información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -32,7 +32,7 @@
               <p>Monitores</p>
             </div>
             <div class="icon">
-              <i class="ion ion-ios-compose"></i>
+              <i class="ion ion-ios-monitor"></i>
             </div>
             <a href="<?php echo base_url();?>equipos/monitores" class="small-box-footer">Ver Información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -47,7 +47,7 @@
               <p>Impresoras</p>
             </div>
             <div class="icon">
-              <i class="ion ion-closed-captioning"></i>
+              <i class="ion ion-printer"></i>
             </div>
             <a href="<?php echo base_url();?>equipos/impresoras" class="small-box-footer" >Ver Información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -63,7 +63,7 @@
               <p>Usuarios</p>
             </div>
             <div class="icon">
-              <i class="ion ion-android-car"></i>
+              <i class="ion ion-ios-people"></i>
             </div>
             <a href="<?php echo base_url();?>administrador/usuarios" class="small-box-footer">Ver Información <i class="fa fa-arrow-circle-right"></i></a>
           </div>

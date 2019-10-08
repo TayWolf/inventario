@@ -47,7 +47,7 @@
                                         <td><?php echo $monitor->id?></td>
                                         <td><?php echo $monitor->codigo?></td>
                                         <td><?php echo $monitor->tamaño?></td>
-                                        <td><?php echo $monitor->finca?></td>
+                                        <td><?php echo $monitor->elemento?></td>
                                         <td><?php echo $monitor->area?></td>
                                         <td><?php echo $monitor->bitacora?></td>
                                         <td><?php echo $monitor->nombres?></td>

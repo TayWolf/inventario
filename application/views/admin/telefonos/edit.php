@@ -13,8 +13,8 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-xs-12">
-                    <form action="<?php echo base_url();?>equipos/tablets/update" method="POST">
-                        <input type="hidden" name="idTablet" value="<?php echo $tablet->id;?>">
+                    <form action="<?php echo base_url();?>equipos/telefonos/update" method="POST">
+                        <input type="hidden" name="idTelefono" value="<?php echo $telefono->id;?>">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");
@@ -27,45 +27,40 @@
                         <?php endif ?>
                         
                         <div class="form-group">
-                            <label for="codigo">No. EXT:</label>
-                            <input type="text" name="codigo" id="codigo" class="form-control" required="required" value="<?php echo $tablet->codigo ?>">
+                            <label for="no_ext">No. EXT:</label>
+                            <input type="text" name="no_ext" id="no_ext" class="form-control" required="required" value="<?php echo $telefono->no_ext ?>">
                         </div>
                         <div class="form-group">
-                            <label for="codigo">No. Serie:</label>
-                            <input type="text" name="codigo" id="codigo" class="form-control" required="required" value="<?php echo $tablet->codigo ?>">
+                            <label for="no_serie">No. Serie:</label>
+                            <input type="text" name="no_serie" id="no_serie" class="form-control" required="required" value="<?php echo $telefono->no_serie ?>">
                         </div>
                         <div class="form-group">
                             <label for="modelo">Modelo:</label>
-                            <input type="text" name="modelo" id="modelo" class="form-control" required="required" value="<?php echo $tablet->modelo; ?>">
+                            <input type="text" name="modelo" id="modelo" class="form-control" required="required" value="<?php echo $telefono->modelo; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="fabricante">Área:</label>
-                            <select name="fabricante" id="fabricante" class="form-control" required="required">
-                                <option value="">Elija Fabricante</option>
-                                <?php foreach ($fabricantes as $fabricante): ?>
-                                    <option value="<?php echo $fabricante->id;?>" <?php echo $fabricante->id == $tablet->fabricante_id ? "selected":"";?>><?php echo $fabricante->nombre;?></option>
+                            <label for="area">Área:</label>
+                            <select name="area" id="fabricareaante" class="form-control" required="required">
+                                <option value="">Elija el Área</option>
+                                <?php foreach ($areas as $area): ?>
+                                    <option value="<?php echo $area->id;?>" <?php echo $area->id == $telefono->id_area ? "selected":"";?>><?php echo $area->nombre;?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="fabricante">Usuario:</label>
-                            <select name="fabricante" id="fabricante" class="form-control" required="required">
-                                <option value="">Elija Usuario</option>
-                                <?php foreach ($fabricantes as $fabricante): ?>
-                                    <option value="<?php echo $fabricante->id;?>" <?php echo $fabricante->id == $tablet->fabricante_id ? "selected":"";?>><?php echo $fabricante->nombre;?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <label for="usuario_telefono">Usuario:</label>
+                            <input type="text" name="usuario_telefono" id="usuario_telefono" class="form-control" required="required" value="<?php echo $telefono->usuario_telefono; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="descripcion">IP:</label>
-                            <select name="fabricante" id="fabricante" class="form-control" required="required">
-                                <option value="">Elija IP</option>
-                                <?php foreach ($fabricantes as $fabricante): ?>
-                                    <option value="<?php echo $fabricante->id;?>" <?php echo $fabricante->id == $tablet->fabricante_id ? "selected":"";?>><?php echo $fabricante->nombre;?></option>
+                            <label for="ip">IP:</label>
+                            <select name="ip" id="ip" class="form-control" required="required">
+                                <option value="">Elija la IP</option>
+                                <?php foreach ($ips as $ip): ?>
+                                    <option value="<?php echo $ip->id;?>" <?php echo $ip->id == $telefono->id_ip ? "selected":"";?>><?php echo $ip->descripcion;?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
-                        <?php if ($tablet->estado == 0): ?>
+                        <?php if ($telefono->estado == 0): ?>
                             <div class="form-group">
                                 <label for="">Estado:</label>
                                 <select name="estado" id="estado" required class="form-control">

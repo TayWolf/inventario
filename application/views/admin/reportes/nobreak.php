@@ -47,29 +47,29 @@
                             <thead>
                                 <tr>
                                     
-                                    <th>Codigo</th>
-                                    <th>Fabricante</th>
+                                    <th>No. de Serie</th>
                                     <th>Modelo</th>
-                                    <th>Usuario</th>
-                                    <th>Fec. Registro</th>
+                                    <th>Área</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha de registro</th>
                                     
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($lectores as $lector): ?>
+                                <?php foreach ($nobreaks as $nobreak): ?>
                                     <tr>
                                         
-                                        <td><?php echo $lector->codigo?></td>
-                                        <td><?php echo $lector->fabricante?></td>
-                                        <td><?php echo $lector->modelo?></td>
+                                        <td><?php echo $nobreak->no_serie?></td>
+                                        <td><?php echo $nobreak->modelo?></td>
+                                        <td><?php echo $nobreak->area?></td>
                                         
-                                        <td><?php echo $lector->nombres?></td>
-                                        <?php $fecha = new DateTime($lector->fecregistro); ?>
+                                        <td><?php echo $nobreak->descripcion?></td>
+                                        <?php $fecha = new DateTime($nobreak->fecregistro); ?>
                                         <td><?php echo $fecha->format("d-m-Y");?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $lector->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $nobreak->id;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
                                                 
@@ -87,7 +87,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <form action="<?php echo base_url();?>reportes/lectores/exportar" method="POST">
+                    <form action="<?php echo base_url();?>reportes/nobreak/exportar" method="POST">
                         <input type="hidden" id="fechainicio" name="fechainicio" value="<?php echo isset($fecinicio) ? $fecinicio:"";?>">
                         <input type="hidden" id="fechafin" name="fechafin" value="<?php echo isset($fecfin) ? $fecfin:"";?>">
                         <input type="hidden" id="searchfecha" name="searchfecha" value="0">

@@ -59,7 +59,7 @@
                                         
                                         <td><?php echo $computadora->direccionIP?></td>
                                         
-                                        <td><?php echo $computadora->nombres?></td>
+                                        <td><?php echo $computadora->nombre.' '.$computadora->apPat.' '.$computadora->apMat?></td>
                                         
                                         <td><?php echo $computadora->estado == 0 ?"Inactivo":"Activo";?></td>
                                         
@@ -210,8 +210,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nombre</th>
-                            <th>Área</th>
+                            <th>Propietario</th>
                             <th>Recurso de Red</th>
                         </tr>
                     </thead>
@@ -219,21 +218,19 @@
                 </table>
             </div>
             <div id="agregarUsuario" class="tab-pane fade">
-                <h2>Nuevo Usuario</h2>
+                <h2>Agregar Propietario</h2>
                 <form action="<?php echo base_url();?>equipos/computadoras/addUsuarios" method="POST">
-                    <input type="hidden" name="idequipo" id="idequipo">
+                    <input type="hidden" name="idPropietario" id="idPropietario">
                     <div class="form-group">
-                        <label for="">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" required="required">
+                        <label for="nombre">Nombre</label>
+                        <select name="nombre" id="nombre" class="form-control" required="required">
+                            <option value="">Elije el propietario del equipo</option>
+                            <?php foreach ($propietarios as $propietario): ?>
+                                <option value="<?php echo $propietario->id;?>"><?php echo $propietario->nombre.' '.$propietario->apMat.' '.$propietario->apPat;?></option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="">Área</label>
-                        <input type="text" class="form-control" name="area" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Recurso de Red</label>
-                        <textarea name="recursoRed" id="recursoRed"  rows="3" class="form-control"></textarea>
-                    </div>
+                  
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Guardar</button>
                     </div>

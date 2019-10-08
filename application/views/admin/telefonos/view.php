@@ -1,39 +1,34 @@
 <div class="row">
 	<div class="col-xs-12">
-		<h2><strong>Codigo del Teléfono : </strong> <?php echo $tablet->codigo; ?> </h2>
+		<h2><strong>Extensión del Teléfono : </strong> <?php echo $telefono->no_ext; ?> </h2>
 		<table class="table table-bordered">
 			<tbody>
 				
-				
-				<tr>
-					<th style="background-color: #f4f4f4;">No. EXT</th>
-					<td><?php echo $tablet->fabricante; ?></td>
-				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">No. Serie</th>
-					<td><?php echo $tablet->noSerie; ?></td>
+					<td><?php echo $telefono->no_serie; ?></td>
 				</tr>
 				<tr>
 					
 					<th style="background-color: #f4f4f4;">Modelo</th>
-					<td><?php echo $tablet->modelo; ?></td>
+					<td><?php echo $telefono->modelo; ?></td>
 				</tr>
 				
 				<tr>
 					<th style="background-color: #f4f4f4;">Área</th>
-					<td><?php echo $tablet->descripcion; ?></td>
+					<td><?php echo $telefono->area; ?></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th style="background-color: #f4f4f4;">Usuario</th>
-					<td><?php echo $tablet->usuario; ?></td>
-				</tr>
-				<tr>
+					<td><?php echo $telefono->nombres; ?></td>
+				</tr> -->
+				<!-- <tr>
 					<th style="background-color: #f4f4f4;">IP</th>
-					<td><?php echo $tablet->ip; ?></td>
-				</tr>
+					<td><?php echo $telefono->ip; ?></td>
+				</tr> -->
 				<tr>
 					<th style="background-color: #f4f4f4;">Estado</th>
-					<td><?php echo $tablet->estado == 1 ? "Activo":"Inactivo"; ?></td>
+					<td><?php echo $telefono->estado == 1 ? "Activo":"Inactivo"; ?></td>
 				</tr>
 				<tr>
 					<th style="background-color: #3c8dbc; color: #FFF;" class="text-center" colspan="4">Ultimos Mantenimientos</th>

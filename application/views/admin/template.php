@@ -170,9 +170,9 @@
                             <li><a href="<?php echo base_url();?>equipos/computadoras"><i class="fa fa-circle-o"></i> Computadoras</a></li>
                             <li><a href="<?php echo base_url();?>equipos/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
                             <li><a href="<?php echo base_url();?>equipos/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/tablets"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
+                            <li><a href="<?php echo base_url();?>equipos/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
                             <li><a href="<?php echo base_url();?>equipos/proyectores"><i class="fa fa-circle-o"></i> Proyectores</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/lectores"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
+                            <li><a href="<?php echo base_url();?>equipos/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -216,7 +216,7 @@
                             <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
                             <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
                             <li><a href="<?php echo base_url();?>reportes/ip"><i class="fa fa-circle-o"></i> Ips</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/proyectores"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
                             <li><a href="<?php echo base_url();?>reportes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
                         </ul>
                     </li>

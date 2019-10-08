@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tablets_model extends CI_Model {
+class Telefonos_model extends CI_Model {
 
-	public function getTablets($estado = false,$search,$fechainicio = false, $fechafinal =false){
-		$this->db->select("t.*,f.nombre as fabricante,u.nombres");
+	public function getTelefonos($estado = false,$search,$fechainicio = false, $fechafinal =false){
+		$this->db->select("t.*,u.nombres, a.nombre as area, i.descripcion");
 		$this->db->from("telefonos t");
-		$this->db->join("fabricantes f","t.fabricante_id = f.id");
-		$this->db->join("usuarios u","t.usuario_id = u.id");
+		$this->db->join("areas a","t.id_area = a.id", "left");
+		$this->db->join("ip i","t.id_ip = i.id", "left");
+		$this->db->join("usuarios u","t.usuario_id = u.id", "left");
 		if ($fechainicio !== false && $fechafinal !== false) {
 			$this->db->where("t.fecregistro >=", $fechainicio." "."00:00:00");
 			$this->db->where("t.fecregistro <=", $fechafinal." "."23:59:59");
@@ -16,15 +17,16 @@ class Tablets_model extends CI_Model {
 		if ($estado != false) {
 			$this->db->where("t.estado",1);
 		}
-		$this->db->like("CONCAT(t.codigo, '', f.nombre, '',t.modelo,'',u.nombres)",$search);
+		$this->db->like("CONCAT(t.no_ext, '',t.modelo,'',u.nombres)",$search);
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
-	public function infoTablet($id){
-		$this->db->select("t.*, fa.nombre as fabricante");
+	public function infoTelefono($id){
+		$this->db->select("t.*, a.nombre as area, i.descripcion");
 		$this->db->from("telefonos t");
-		$this->db->join("fabricantes fa","t.fabricante_id = fa.id");
+		$this->db->join("ip i","t.id_ip = i.id");
+		$this->db->join("areas a","t.id_area = a.id");
 		$this->db->where("t.id", $id);
 		$resultados = $this->db->get();
 		return $resultados->row();
@@ -34,7 +36,7 @@ class Tablets_model extends CI_Model {
 		return $this->db->insert("telefonos",$data);
 	}
 
-	public function getTablet($id){
+	public function getTelefono($id){
 		$this->db->where("id", $id);
 		$resultados = $this->db->get("telefonos");
 		return $resultados->row();

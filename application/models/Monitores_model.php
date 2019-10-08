@@ -4,13 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Monitores_model extends CI_Model {
 
 	public function getMonitores($estado = false,$search,$fechainicio = false, $fechafinal =false){
-		$this->db->select("m.*,f.nombre as fabricante,a.nombre as area,p.nombre as proveedor,fi.nombre as finca,u.nombres");
+		$this->db->select("m.*, e.nombre as elemento, a.nombre as area, u.nombres");
 		$this->db->from("monitores m");
-		$this->db->join("fabricantes f","m.fabricante_id = f.id");
-		$this->db->join("proveedores p","m.proveedor_id = p.id");
-		$this->db->join("areas a","m.area_id = a.id");
-		$this->db->join("elemento fi","m.finca_id = fi.id");
-		$this->db->join("usuarios u","m.usuario_id = u.id");
+		$this->db->join("elemento e","m.finca_id = e.id", "Left");
+		$this->db->join("areas a","m.area_id = a.id", "Left");
+		$this->db->join("usuarios u","m.usuario_id = u.id", "Left");
 		if ($fechainicio !== false && $fechafinal !== false) {
 			$this->db->where("m.fecregistro >=", $fechainicio." "."00:00:00");
 			$this->db->where("m.fecregistro <=", $fechafinal." "."23:59:59");
@@ -19,7 +17,7 @@ class Monitores_model extends CI_Model {
 		if ($estado != false) {
 			$this->db->where("m.estado",1);
 		}
-		$this->db->like("CONCAT(m.codigo,'',m.tamaño,'', fi.nombre, '', a.nombre,'',p.nombre,u.nombres)",$search);
+		$this->db->like("CONCAT(m.codigo,'',m.tamaño,'', e.nombre, '', a.nombre, '', u.nombres)",$search);
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}

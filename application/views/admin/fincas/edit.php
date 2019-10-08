@@ -26,7 +26,7 @@
                             </script>
                         <?php endif ?>
                         <div class="form-group">
-                            <label for="nit">NIT:</label>
+                            <label for="nit">Número de Control:</label>
                             <input type="text" name="nit" id="nit" class="form-control" required="required" value="<?php echo $finca->nit;?>">
                         </div>
                         <div class="form-group">

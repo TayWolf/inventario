@@ -43,9 +43,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="finca">Finca:</label>
+                            <label for="finca">Elemento:</label>
                             <select name="finca" id="finca" class="form-control" required="required">
-                                <option value="">Elija finca</option>
+                                <option value="">Elija elemento</option>
                                 <?php foreach ($fincas as $finca): ?>
                                     <option value="<?php echo $finca->id;?>"><?php echo $finca->nombre;?></option>
                                 <?php endforeach ?>

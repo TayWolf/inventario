@@ -11,7 +11,7 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="proyectores">
+            <input type="hidden" id="modulo" value="telefonos">
 
             <form action="<?php echo current_url();?>" method="POST">
                 <div class="row">
@@ -33,7 +33,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <input type="submit" name="buscar" class="btn btn-success btn-flat" value="Buscar">
-                            <a href="<?php echo base_url();?>reportes/proyectores" class="btn btn-danger btn-flat">Reestablecer</a>
+                            <a href="<?php echo base_url();?>reportes/telefonos" class="btn btn-danger btn-flat">Reestablecer</a>
                         </div>
                     </div>
                 </div>
@@ -48,27 +48,31 @@
                             <thead>
                                 <tr>
                                     
-                                    <th>Codigo</th>
-                                    <th>Fabricante</th>
-                                    <th>Modelo</th>
+                                    <th>No. de Extensión</th>
+                                    <th>No. de Serie</th>
                                     <th>Usuario</th>
-                                    <th>Fec. Registro</th>
+                                    <th>IP</th>
+                                    <th>Modelo</th>
+                                    <th>Área</th>
+                                    <th>Fecha de Registro</th>
                                     
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($proyectores as $proyector): ?>
+                                <?php foreach ($telefonos as $telefono): ?>
                                     <tr>
-                                        <td><?php echo $proyector->codigo?></td>
-                                        <td><?php echo $proyector->fabricante?></td>
-                                        <td><?php echo $proyector->modelo?></td>
-                                        <td><?php echo $proyector->nombres?></td>
-                                        <?php $fecha = new DateTime($proyector->fecregistro); ?>
+                                        <td><?php echo $telefono->no_ext?></td>
+                                        <td><?php echo $telefono->no_serie?></td>
+                                        <td><?php echo $telefono->usuario_telefono?></td>
+                                        <td><?php echo $telefono->descripcion?></td>
+                                        <td><?php echo $telefono->modelo?></td>
+                                        <td><?php echo $telefono->area?></td>
+                                        <?php $fecha = new DateTime($telefono->fecregistro); ?>
                                         <td><?php echo $fecha->format("d-m-Y");?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $proyector->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $telefono->id;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
                                                 
@@ -86,7 +90,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <form action="<?php echo base_url();?>reportes/proyectores/exportar" method="POST">
+                    <form action="<?php echo base_url();?>reportes/telefonos/exportar" method="POST">
                         <input type="hidden" id="fechainicio" name="fechainicio" value="<?php echo isset($fecinicio) ? $fecinicio:"";?>">
                         <input type="hidden" id="fechafin" name="fechafin" value="<?php echo isset($fecfin) ? $fecfin:"";?>">
                         <input type="hidden" id="searchfecha" name="searchfecha" value="0">
