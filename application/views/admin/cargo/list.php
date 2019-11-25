@@ -31,25 +31,23 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Descripcion</th>
-                                    <th>Estado</th>
+                                    <th>Cargo</th>
                                     <th class="not-export-col">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($cargos as $cargo): ?>
                                     <tr>
-                                        <td><?php echo $cargo->id?></td>
-                                        <td><?php echo $cargo->descripcion?></td>
-                                        <td><?php echo $cargo->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $cargo->id_cargo?></td>
+                                        <td><?php echo $cargo->cargo?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $cargo->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $cargo->id_cargo;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/cargo/edit/<?php echo $cargo->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/cargo/delete/<?php echo $cargo->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>configuraciones/cargo/edit/<?php echo $cargo->id_cargo?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>configuraciones/cargo/delete/<?php echo $cargo->id_cargo?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                         <span class="fa fa-times"></span>
                                                     </a>
                                                 <?php endif?>

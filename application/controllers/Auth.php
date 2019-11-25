@@ -90,13 +90,13 @@ class Auth extends CI_Controller {
 				redirect(base_url());
 				//echo "0";
 			}
-			else if($res->rol_id == 1 || $res->rol_id == 2 || $res->rol_id == 3){
+			else if($res->id_rol == 1 || $res->id_rol == 2 || $res->id_rol == 3){
 
 				
 				$data  = array(
-					'id' => $res->id, 
-					'nombres' => $res->nombres,
-					'rol' => $res->rol_id,
+					'id_usuario' => $res->id_usuario, 
+					'usuario' => $res->usuario,
+					'id_rol' => $res->id_rol,
 					'login' => TRUE
 				);
 				$this->session->set_userdata($data);
@@ -113,12 +113,12 @@ class Auth extends CI_Controller {
 				
 				//echo "1";
 			}
-			elseif($res->rol_id == 4)
+			elseif($res->id_rol == 4)
 			{
 				$data  = array(
-					'id' => $res->id, 
-					'nombres' => $res->nombres,
-					'rol' => $res->rol_id,
+					'id_usuario' => $res->id_usuario, 
+					'usuario' => $res->usuario,
+					'id_rol' => $res->id_rol,
 					'login' => TRUE
 				);
 				$this->session->set_userdata($data);

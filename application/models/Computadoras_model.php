@@ -5,104 +5,95 @@ class Computadoras_model extends CI_Model {
 
 	public function getComputadoras($estado = false,$search,$fechainicio = false, $fechafinal =false, $ip = 0){
 		
-
-		$this->db->select("c.*,p.nombre as presentacion, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,pr.referencia,pr.velocidad,m.capacidad as memoria,d.capacidad as disco,o.nombre as office,s.descripcion as sistema,ant.descripcion as antivirus,a.nombre as area,mo.codigo as monitor,u.nombres, ip.descripcion as direccionIP, prop.nombre, prop.apPat, prop.apMat");
-		$this->db->from("computadoras c");
-		$this->db->join("monitores mo","c.monitor_id = mo.id","Left");
-		$this->db->join("presentaciones p","c.presentacion_id = p.id","Left");
-		$this->db->join("proveedores pro","c.proveedor_id = pro.id","Left");
-		$this->db->join("elemento f","c.finca_id = f.id","Left");
-		$this->db->join("fabricantes fa","c.fabricante_id = fa.id","Left");
-		$this->db->join("procesadores pr","c.procesador_id = pr.id","Left");
-		$this->db->join("memorias m","c.ram_id = m.id","Left");
-		$this->db->join("propietarios prop","c.id_propietario = prop.id","Left");
-		$this->db->join("discos d","c.disco_id = d.id","Left");
-		$this->db->join("sistemas s","c.so_id = s.id","Left");
-		$this->db->join("office o","c.office_id = o.id","Left");
-		$this->db->join("antivirus ant","c.antivirus_id = ant.id","Left");
-		$this->db->join("areas a","c.area_id = a.id","Left");
-		$this->db->join("usuarios u","c.usuario_id = u.id","Left");
-		$this->db->join("ip","c.ip_id = ip.id","Left");
+		$this->db->select("b.*, e.*, a.nombre_area, u.usuario, ips.direccion_ip, per.*, mar.marca, stat.nombre_status");
+		$this->db->from("bienes b");
+		$this->db->join("elementos e","b.id_elemento = e.id_elemento","Left");
+		$this->db->join("personas per","b.id_persona = per.id_persona","Left");
+		$this->db->join("marcas mar","b.id_marca = mar.id_marca","Left");
+		$this->db->join("areas a","per.id_area = a.id_area","Left");
+		$this->db->join("usuarios u","b.id_usuario = u.id_usuario","Left");
+		$this->db->join("cat_status stat","b.id_status = stat.id_status","Left");
+		$this->db->join("ips","b.id_ip = ips.id_ip","Left");
+		$this->db->where("b.id_elemento =", 1);
 
 		if ($fechainicio !== false && $fechafinal !== false) {
-			$this->db->where("c.fecregistro >=", $fechainicio." "."00:00:00");
-			$this->db->where("c.fecregistro <=", $fechafinal." "."23:59:59");
+			$this->db->where("b.fecregistro >=", $fechainicio." "."00:00:00");
+			$this->db->where("b.fecregistro <=", $fechafinal." "."23:59:59");
 
 		}
 		if ($ip == 1) {
-			$this->db->where("ip.estado",0);
+			$this->db->where("ip.id_status",0);
 		}
 		if ($estado != false) {
-			$this->db->where("c.estado",1);
+			$this->db->where("b.id_status",5);
 		}
-		$this->db->like("CONCAT(c.codigo, '', f.nombre, '', a.nombre,'',pr.velocidad,'',d.capacidad,'',m.capacidad,'',mo.codigo,'',c.serial_so,'',u.nombres)",$search);
+		$this->db->like("CONCAT(b.id_bien, '', e.elemento, '', a.nombre_area,'',u.usuario,'',per.nombres,'',per.ap_paterno,'',per.ap_materno)",$search);
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
 	public function infoComputadora($id){
-		$this->db->select("c.*,p.nombre as presentacion, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,pr.referencia,pr.velocidad,m.capacidad as memoria,d.capacidad as disco,o.nombre as office,s.descripcion as sistema,ant.descripcion as antivirus,a.nombre as area,a.nombre as area,mo.codigo as monitor, ip.descripcion as direccionIP, prop.*");
-		$this->db->from("computadoras c");
-		$this->db->join("monitores mo","c.monitor_id = mo.id","Left");
-		$this->db->join("presentaciones p","c.presentacion_id = p.id","Left");
-		$this->db->join("proveedores pro","c.proveedor_id = pro.id","Left");
-		$this->db->join("elemento f","c.finca_id = f.id","Left");
-		$this->db->join("propietarios prop","c.id_propietario = prop.id","Left");
-		$this->db->join("fabricantes fa","c.fabricante_id = fa.id","Left");
-		$this->db->join("procesadores pr","c.procesador_id = pr.id","Left");
-		$this->db->join("memorias m","c.ram_id = m.id","Left");
-		$this->db->join("discos d","c.disco_id = d.id","Left");
-		$this->db->join("sistemas s","c.so_id = s.id","Left");
-		$this->db->join("office o","c.office_id = o.id","Left");
-		$this->db->join("antivirus ant","c.antivirus_id = ant.id","Left");
-		$this->db->join("areas a","c.area_id = a.id","Left");
-		$this->db->join("ip","c.ip_id = ip.id","Left");
-		$this->db->where("c.id", $id);
+		$this->db->select("b.*, e.*, a.nombre_area, u.usuario, ips.direccion_ip, per.*, mar.marca, stat.nombre_status, tp.tipo_propiedad");
+		$this->db->from("bienes b");
+		$this->db->join("elementos e","b.id_elemento = e.id_elemento","Left");
+		$this->db->join("personas per","b.id_persona = per.id_persona","Left");
+		$this->db->join("marcas mar","b.id_marca = mar.id_marca","Left");
+		$this->db->join("areas a","per.id_area = a.id_area","Left");
+		$this->db->join("usuarios u","b.id_usuario = u.id_usuario","Left");
+		$this->db->join("cat_status stat","b.id_status = stat.id_status","Left");
+		$this->db->join("tipo_propiedades tp","b.id_tipo_propiedad = tp.id_tipo_propiedad","Left");
+		$this->db->join("ips","b.id_ip = ips.id_ip","Left");
+		$this->db->where("b.id_bien", $id);
 		$resultados = $this->db->get();
 		return $resultados->row();
 	}
 
 	public function save($data){
-		return $this->db->insert("computadoras",$data);
+		return $this->db->insert("bienes",$data);
 	}
 
-	public function getComputadora($id){
-		$this->db->where("id", $id);
-		$resultados = $this->db->get("computadoras");
+	public function getComputadora($id_bien){
+		$this->db->where("id_bien", $id_bien);
+		$resultados = $this->db->get("bienes");
 		return $resultados->row();
 	}
 
-	public function update($id,$data){
-		$this->db->where("id", $id);
-		return $this->db->update("computadoras",$data);
+	public function update($id_bien, $data){
+		$this->db->where("id_bien", $id_bien);
+		return $this->db->update("bienes",$data);
 	}
 
-	public function delete($id){
-		$this->db->where("id", $id);
-		return $this->db->delete("computadoras");
+	public function delete($id_bien){
+		$this->db->where("id_bien", $id_bien);
+		return $this->db->delete("bienes");
 	}
 
 	public function saveMante($data){
-		return $this->db->insert("computadoras_mantenimientos",$data);
+		return $this->db->insert("mantenimientos",$data);
 	}
 
-	public function savePropietario($data){
-		return $this->db->insert("computadoras",$data);
-	}
+	/*public function savePropietario($data){
+		return $this->db->insert("bienes",$data);
+	}*/
 
-	public function getMantenimientos($id){
+	public function getMantenimientos($id_bien)
+	{
+		$this->db->select("man.*, u.id_persona, per.*, stat.nombre_status");
+		$this->db->from("mantenimientos man");
+		$this->db->join("usuarios u","man.id_usuario = u.id_usuario","Left");
+		$this->db->join("personas per","u.id_persona = per.id_persona","Left");
+		$this->db->join("cat_status stat","man.id_status = stat.id_status","Left");
+		$this->db->where("id_bien",$id_bien);
 		
-		$this->db->where("computadora_id",$id);
-		
-		$resultados = $this->db->get("computadoras_mantenimientos");
+		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
-	public function getPropietarios($id){
+	public function getPropietarios($id_bien){
 		
-		$this->db->where("id_propietario",$id);
+		$this->db->where("id_personas",$id_bien);
 		
-		$resultados = $this->db->get("propietarios");
+		$resultados = $this->db->get("personas");
 		return $resultados->result();
 	}
 

@@ -26,8 +26,18 @@
                         <?php endif ?>
                         
                         <div class="form-group">
-                            <label for="descripcion">Dirección IP:</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" required="required">
+                            <label for="direccion_ip">Dirección IP:</label>
+                            <input type="text" name="direccion_ip" id="direccion_ip" class="form-control" required="required">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rango_ip">Rango de la IP:</label>
+                            <select name="rango_ip" id="rango_ip" class="form-control" required="required">
+                                <option value="">Elija el rango de la IP</option>
+                                <option value="1">Datos</option>
+                                <option value="2">Voz</option>
+                                <option value="3">Servidor</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">

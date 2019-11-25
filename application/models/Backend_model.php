@@ -2,19 +2,33 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Backend_model extends CI_Model {
-	public function countRows($table){
-		
+	public function countRowsPC($table)
+	{
+		$this->db->where("id_elemento =", 1);	
+		return $this->db->get($table)->num_rows();
+	}
+	public function countRowsImp($table)
+	{
+		$this->db->where("id_elemento =", 6);	
+		return $this->db->get($table)->num_rows();
+	}
+	public function countRowsPer($table)
+	{	
+		return $this->db->get($table)->num_rows();
+	}
+	public function countRowsUsu($table)
+	{
 		return $this->db->get($table)->num_rows();
 	}
 	public function getLogs(){
-		$this->db->select("l.*, u.email");
-		$this->db->from("logs l");
-		$this->db->join("usuarios u", "l.usuario_id = u.id");
+		$this->db->select("l.*, u.usuario");
+		$this->db->from("logeos l");
+		$this->db->join("usuarios u", "l.id_usuario = u.id_usuario");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 	public function savelogs($data){
-		return $this->db->insert("logs",$data);
+		return $this->db->insert("logeos",$data);
 	}
 	public function getTarjetas($fecha){
 		$this->db->where("tarjeta <=",$fecha);

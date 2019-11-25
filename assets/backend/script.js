@@ -61,7 +61,7 @@ $(document).ready(function(){
 		id = $(this).val();
 		modulo = $("#modulo").val();
 		$.ajax({
-			url: base_url + "equipos/"+modulo+"/view",
+			url: base_url + "bienes/"+modulo+"/view",
 			type: "POST",
 			data: {id:id},
 			success: function(resp){
@@ -121,7 +121,7 @@ $(document).ready(function(){
 		modulo = $("#modulo").val();
 
 		$.ajax({
-			url: base_url + "equipos/"+modulo+"/getMantenimientos",
+			url: base_url + "bienes/"+modulo+"/getMantenimientos",
 			type: "POST",
 			data:{idequipo:idequipo},
 			dataType: "json",

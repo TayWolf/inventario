@@ -38,17 +38,17 @@
                             <tbody>
                                 <?php foreach ($areas as $area): ?>
                                     <tr>
-                                        <td><?php echo $area->id?></td>
-                                        <td><?php echo $area->nombre?></td>
-                                        <td><?php echo $area->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $area->id_area?></td>
+                                        <td><?php echo $area->nombre_area?></td>
+                                        <td><?php echo $area->id_status == 1 ?"Activa":"Inactiva";?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $area->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $area->id_area;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/areas/edit/<?php echo $area->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/areas/delete/<?php echo $area->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>configuraciones/areas/edit/<?php echo $area->id_area?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>configuraciones/areas/delete/<?php echo $area->id_area?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                         <span class="fa fa-times"></span>
                                                     </a>
                                                 <?php endif?>

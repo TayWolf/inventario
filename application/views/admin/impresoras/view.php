@@ -1,38 +1,27 @@
 <div class="row">
 	<div class="col-xs-12">
-		<h2><strong>Codigo de la Impresora : </strong> <?php echo $impresora->codigo; ?> </h2>
+		<h2><strong>Codigo de la Impresora : </strong> <?php echo $impresora->no_serie; ?> </h2>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					
-					<th style="background-color: #f4f4f4;">Proveedor</th>
-					<td colspan="3"><?php echo $impresora->proveedor; ?></td>
+					<th style="background-color: #f4f4f4;">Modelo</th>
+					<td colspan="3"><?php echo $impresora->modelo; ?></td>
 				</tr>
 				<tr>
+					<th style="background-color: #f4f4f4;">Marca</th>
+					<td><?php echo $impresora->marca; ?></td>
 					<th style="background-color: #f4f4f4;">Elemento</th>
-					<td><?php echo $impresora->finca; ?></td>
-					<th style="background-color: #f4f4f4;">Area</th>
-					<td><?php echo $impresora->area; ?></td>
+					<td><?php echo $impresora->elemento; ?></td>
 				</tr>
 				<tr>
-					<th style="background-color: #f4f4f4;">Contacto</th>
-					<td><?php echo $impresora->contacto; ?></td>
-					<th style="background-color: #f4f4f4;">Fabricante</th>
-					<td><?php echo $impresora->fabricante; ?></td>
-				</tr>
-				
-				
-				<tr>
-					<th style="background-color: #f4f4f4;">Serial Fab.</th>
-					<td><?php echo $impresora->serial_fabricante; ?></td>
-					<th style="background-color: #f4f4f4;">Referencia</th>
-					<td><?php echo $impresora->referencia; ?></td>
+					<th style="background-color: #f4f4f4;">Dirección IP</th>
+					<td><?php echo $impresora->direccion_ip; ?></td>
+					<th style="background-color: #f4f4f4;">Status</th>
+					<td><?php echo $impresora->nombre_status?></td>
 				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">Bitacora</th>
-					<td><?php echo $impresora->bitacora; ?></td>
-					<th style="background-color: #f4f4f4;">Estado</th>
-					<td><?php echo $impresora->estado == 1?"Activo":"Inactivo"; ?></td>
+					<td colspan="3"><?php echo $impresora->estado_bien; ?></td>
 				</tr>
 				<tr>
 					<th style="background-color: #3c8dbc; color: #FFF;" class="text-center" colspan="4">Ultimos Mantenimientos</th>

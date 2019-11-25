@@ -1,11 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ip extends CI_Controller {
+class Ip extends CI_Controller 
+{
 	private $modulo = "Ip";
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
-		if (!$this->session->userdata("login")) {
+		if (!$this->session->userdata("login")) 
+		{
 			redirect(base_url());
 		}
 		$this->load->model("Ip_model");
@@ -23,39 +26,49 @@ class Ip extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function add(){
+	public function add()
+	{
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/ip/add","",TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function store(){
-		if ($this->input->post("guardar")) {
-			$descripcion = $this->input->post("descripcion");
-
+	public function store()
+	{
+		if ($this->input->post("guardar")) 
+		{
+			$direccion_ip = $this->input->post("direccion_ip");
+			$rango_ip = $this->input->post("rango_ip");
+			
 			$data = array(
-				"descripcion" => $descripcion,
-				"estado" => 0
+				"direccion_ip" => $direccion_ip,
+				"rango_ip" => $rango_ip,
+				"id_status" => 3
 			);
 
-			if ($this->Ip_model->save($data)) {
-				$this->backend_lib->savelog($this->modulo,"Inserción de IP ".$descripcion);
+			if ($this->Ip_model->save($data)) 
+			{
+				$this->backend_lib->savelog($this->modulo,"Inserción de la IP ".$direccion_ip);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 				redirect(base_url()."configuraciones/ip");
-			} else {
+			} 
+			else 
+			{
 				$this->session->set_flashdata("error", "Los datos no fueron guardados");
 				redirect(base_url()."configuraciones/ip/add");
 
 			}
 			
-		} else {
+		} 
+		else 
+		{
 			redirect(base_url()."configuraciones/ip/add");
-		}
-		
+		}	
 	}
 
-	public function view(){
+	public function view()
+	{
 		$id = $this->input->post("id");
 
 		$data = array(
@@ -64,18 +77,18 @@ class Ip extends CI_Controller {
 
 		$this->load->view("admin/ip/view", $data);
 	}
-	public function delete($id){
-		$ip = $this->Ip_model->getIp($id);
-		$data = array(
-			"estado" => "0"
-		);
 
-		$this->Ip_model->update($id, $data);
-		$this->backend_lib->savelog($this->modulo,"Eliminación de IP ".$ip->descripcion);
+	public function delete($id)
+	{
+		$ip = $this->Ip_model->getIp($id);
+
+		$this->Ip_model->delete($id);
+		$this->backend_lib->savelog($this->modulo,"Eliminación de la IP ".$ip->direccion_ip);
 		echo "configuraciones/ip";
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$contenido_interno = array(
 			"ip" => $this->Ip_model->getIp($id)
 		);
@@ -86,34 +99,31 @@ class Ip extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function update(){
+	public function update()
+	{
 		$id = $this->input->post("idIp");
-		$descripcion = $this->input->post("descripcion");
-		$estado = 1;
+		$direccion_ip = $this->input->post("direccion_ip");
+		$rango_ip = $this->input->post("rango_ip");
 
-		if ($this->input->post("estado") ) {
-			if ($this->input->post("estado") == 2) {
-				$estado = 0;
-			}
-		}
 		$data = array(
-			"descripcion" => $descripcion,
-			"estado" => $estado
+			"direccion_ip" => $direccion_ip,
+			"rango_ip" => $rango_ip
 		);
-		if ($this->Ip_model->update($id, $data)) {
-			$this->backend_lib->savelog($this->modulo,"Actualización de IP ".$descripcion);
+		if ($this->Ip_model->update($id, $data)) 
+		{
+			$this->backend_lib->savelog($this->modulo,"Actualización de la IP ".$direccion_ip);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."configuraciones/ip");
-		} else {
+		} 
+		else 
+		{
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
 			redirect(base_url()."configuraciones/ip/edit/".$id);
-
 		}
-
-		
 	}
 
-	public function excel(){
+	public function excel()
+	{
 		//Cargamos la librería de excel.
     	$this->load->library('excel');
 		$this->excel->setActiveSheetIndex(0);
@@ -139,7 +149,8 @@ class Ip extends CI_Controller {
         $antivirus = $this->Ip_model->getAntivirus();
 
          //Definimos la data del cuerpo.
-        foreach($antivirus as $a){
+        foreach($antivirus as $a)
+        {
         	//Incrementamos una fila más, para ir a la siguiente.
         	$contador++;
         	//Informacion de las filas de la consulta.
@@ -158,7 +169,8 @@ class Ip extends CI_Controller {
         $objWriter->save('php://output');
 	}
 
-	public function excel2(){
+	public function excel2()
+	{
 		//Cargamos la librería de excel.
     	$this->load->library('excel');
 		$this->excel->setActiveSheetIndex(0);
@@ -199,7 +211,8 @@ class Ip extends CI_Controller {
         $antivirus = $this->Ip_model->getAntivirus();
 
          //Definimos la data del cuerpo.
-        foreach($antivirus as $a){
+        foreach($antivirus as $a)
+        {
         	//Incrementamos una fila más, para ir a la siguiente.
         	$contador++;
         	//Informacion de las filas de la consulta.
@@ -216,8 +229,5 @@ class Ip extends CI_Controller {
         $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5'); 
         //Hacemos una salida al navegador con el archivo Excel.
         $objWriter->save('php://output');
-
 	}
-
-
 }

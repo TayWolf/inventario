@@ -20,12 +20,12 @@
                 <div class="box-body box-profile">
                     <h3 class="profile-username text-center"><?php echo $usuario->nombres;?></h3>
 
-                    <p class="text-muted text-center"><?php echo $usuario->nombre;?></p>
+                    <p class="text-muted text-center"><?php echo $usuario->nombres.' '.$usuario->ap_paterno.' '.$usuario->ap_materno;?></p>
 
-                    <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>assets/images/usuarios/<?php echo $usuario->imagen;?>" alt="User profile picture">
+                    <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>assets/images/usuarios/<?php echo $usuario->imagen_perfil;?>" alt="User profile picture">
                     <hr>
                     <form action="#" method="POST" id="form-change-image" enctype="multipart/form-data">
-                        <input type="hidden" name="idUsuario" value="<?php echo $usuario->id;?>">
+                        <input type="hidden" name="idUsuario" value="<?php echo $usuario->id_usuario;?>">
                         <div class="form-group">
                             <label for="">Cambiar Foto:</label>
                             <input type="file" class="form-control" name="file">
@@ -48,18 +48,18 @@
                 <div class="tab-content">
                     <div class="active tab-pane" id="settings">
                         <form action="<?php echo base_url();?>administrador/usuarios/infousuario" method="POST">
-                            <input type="hidden" name="idUsuario" value="<?php echo $usuario->id;?>">
+                            <input type="hidden" name="idUsuario" value="<?php echo $usuario->id_usuario;?>">
                             <div class="form-group">
                                 <label for="">Cedula:</label>
-                                <input type="text" name="cedula" class="form-control" required="required" value="<?php echo $usuario->cedula?>">
+                                <input type="text" name="cedula" class="form-control" required="required" value="<?php echo $usuario->curp?>">
                             </div>
                             <div class="form-group">
                                 <label for="nombres">Nombres:</label>
-                                <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $usuario->nombres;?>">
+                                <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $usuario->nombres.' '.$usuario->ap_paterno.' '.$usuario->ap_materno;?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Nombre de Usuario:</label>
-                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $usuario->email;?>">
+                                <input type="text" class="form-control" id="email" name="email" value="<?php echo $usuario->usuario;?>">
                             </div>
                             <div class="form-group">
                                 <label for="">Sexo:</label>
@@ -78,7 +78,7 @@
 
                     <div class="tab-pane" id="password">
                         <form action="<?php echo base_url();?>administrador/usuarios/changePassword" method="POST">
-                            <input type="hidden" name="idUsuario" value="<?php echo $usuario->id;?>">
+                            <input type="hidden" name="idUsuario" value="<?php echo $usuario->id_usuario;?>">
                             <div class="form-group">
                                 <label for="newpass">Nueva Contraseña</label>
                                 <input type="password" class="form-control" id="newpass" name="newpass">

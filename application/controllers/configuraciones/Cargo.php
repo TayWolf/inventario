@@ -1,11 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cargo extends CI_Controller {
+class Cargo extends CI_Controller 
+{
 	private $modulo = "Cargos";
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
-		if (!$this->session->userdata("login")) {
+		if (!$this->session->userdata("login")) 
+		{
 			redirect(base_url());
 		}
 		$this->load->model("Cargos_model");
@@ -13,7 +16,6 @@ class Cargo extends CI_Controller {
 
 	public function index()
 	{
-
 		$contenido_interno = array(
 			"cargos" => $this->Cargos_model->getCargos(),
 		);
@@ -23,39 +25,44 @@ class Cargo extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function add(){
+	public function add()
+	{
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/cargo/add","",TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function store(){
-		if ($this->input->post("guardar")) {
+	public function store()
+	{
+		if ($this->input->post("guardar")) 
+		{
 			$descripcion = $this->input->post("descripcion");
 
 			$data = array(
-				"descripcion" => $descripcion,
-				"estado" => 1
+				"cargo" => $descripcion
 			);
 
-			if ($this->Cargos_model->save($data)) {
+			if ($this->Cargos_model->save($data)) 
+			{
 				$this->backend_lib->savelog($this->modulo,"Inserción del cargo ".$descripcion);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 				redirect(base_url()."configuraciones/cargo");
-			} else {
+			} 
+			else 
+			{
 				$this->session->set_flashdata("error", "Los datos no fueron guardados");
 				redirect(base_url()."configuraciones/cargo/add");
-
 			}
-			
-		} else {
+		} 
+		else 
+		{
 			redirect(base_url()."configuraciones/cargo/add");
 		}
-		
 	}
 
-	public function view(){
+	public function view()
+	{
 		$id = $this->input->post("id");
 
 		$data = array(
@@ -64,18 +71,18 @@ class Cargo extends CI_Controller {
 
 		$this->load->view("admin/cargo/view", $data);
 	}
-	public function delete($id){
-		$cargo = $this->Cargos_model->getCargo($id);
-		$data = array(
-			"estado" => "0"
-		);
 
-		$this->Cargos_model->delete($id, $data);
-		$this->backend_lib->savelog($this->modulo,"Eliminación del cargo ".$cargo->descripcion);
+	public function delete($id)
+	{
+		$cargo = $this->Cargos_model->getCargo($id);
+		
+		$this->Cargos_model->delete($id);
+		$this->backend_lib->savelog($this->modulo,"Eliminación del cargo ".$cargo->cargo);
 		echo "configuraciones/cargo";
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$contenido_interno = array(
 			"cargo" => $this->Cargos_model->getCargo($id)
 		);
@@ -86,34 +93,29 @@ class Cargo extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function update(){
+	public function update()
+	{
 		$id = $this->input->post("idCargo");
 		$descripcion = $this->input->post("descripcion");
-		$estado = 1;
-
-		if ($this->input->post("estado") ) {
-			if ($this->input->post("estado") == 2) {
-				$estado = 0;
-			}
-		}
+		
 		$data = array(
-			"descripcion" => $descripcion,
-			"estado" => $estado
+			"cargo" => $descripcion
 		);
-		if ($this->Cargos_model->update($id, $data)) {
+		if ($this->Cargos_model->update($id, $data)) 
+		{
 			$this->backend_lib->savelog($this->modulo,"Actualización del cargo ".$descripcion);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."configuraciones/cargo");
-		} else {
+		} 
+		else 
+		{
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
 			redirect(base_url()."configuraciones/cargo/edit/".$id);
-
 		}
-
-		
 	}
 
-	public function excel(){
+	public function excel()
+	{
 		//Cargamos la librería de excel.
     	$this->load->library('excel');
 		$this->excel->setActiveSheetIndex(0);
@@ -139,7 +141,8 @@ class Cargo extends CI_Controller {
         $antivirus = $this->Cargos_model->getCargos();
 
          //Definimos la data del cuerpo.
-        foreach($antivirus as $a){
+        foreach($antivirus as $a)
+        {
         	//Incrementamos una fila más, para ir a la siguiente.
         	$contador++;
         	//Informacion de las filas de la consulta.
@@ -158,7 +161,8 @@ class Cargo extends CI_Controller {
         $objWriter->save('php://output');
 	}
 
-	public function excel2(){
+	public function excel2()
+	{
 		//Cargamos la librería de excel.
     	$this->load->library('excel');
 		$this->excel->setActiveSheetIndex(0);
@@ -199,7 +203,8 @@ class Cargo extends CI_Controller {
         $antivirus = $this->Cargos_model->getCargos();
 
          //Definimos la data del cuerpo.
-        foreach($antivirus as $a){
+        foreach($antivirus as $a)
+        {
         	//Incrementamos una fila más, para ir a la siguiente.
         	$contador++;
         	//Informacion de las filas de la consulta.
@@ -216,8 +221,5 @@ class Cargo extends CI_Controller {
         $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5'); 
         //Hacemos una salida al navegador con el archivo Excel.
         $objWriter->save('php://output');
-
 	}
-
-
 }

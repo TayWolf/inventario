@@ -23,7 +23,7 @@
             <input type="hidden" id="modulo" value="telefonos">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>equipos/telefonos/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Teléfono</a>
+                    <a href="<?php echo base_url();?>bienes/telefonos/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Teléfono</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
@@ -33,10 +33,9 @@
                                     <th>No. EXT</th>
                                     <th>No. Serie</th>
                                     <th>Modelo</th>
-                                    <th>Área</th>
-                                    <th>Usuario</th>
-                                    <!-- <th>IP</th> -->
-                                    <th>Ultimo Mante.</th>
+                                    <th>Marca</th>
+                                    <th>IP</th>
+                                    <th>Fec. Registro</th>
                                     <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -44,28 +43,27 @@
                             <tbody>
                                 <?php foreach ($telefonos as $telefono): ?>
                                     <tr>
-                                        <td><?php echo $telefono->id?></td>
-                                        <td><?php echo $telefono->no_ext?></td>
+                                        <td><?php echo $telefono->id_bien?></td>
+                                        <td><?php echo $telefono->no_ext_tel?></td>
                                         <td><?php echo $telefono->no_serie?></td>
                                         <td><?php echo $telefono->modelo?></td>
-                                        <td><?php echo $telefono->area?></td>
-                                        <td><?php echo $telefono->usuario_telefono?></td>
-                                        <!-- <td><?php echo $telefono->ip?></td> -->
-                                        <td><?php echo $telefono->ultimo_mante?></td>
-                                        <td><?php echo $telefono->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $telefono->marca?></td>
+                                        <td><?php echo $telefono->direccion_ip?></td>
+                                        <td><?php echo $telefono->fecregistro_bien?></td>
+                                        <td><?php echo $telefono->nombre_status?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $telefono->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $telefono->id_bien;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>equipos/telefonos/edit/<?php echo $telefono->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>equipos/telefonos/delete/<?php echo $telefono->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>bienes/telefonos/edit/<?php echo $telefono->id_bien?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>bienes/telefonos/delete/<?php echo $telefono->id_bien?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>
                                                 
-                                                <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $telefono->id; ?>">
+                                                <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $telefono->id_bien; ?>">
                                                     <span class="fa fa-wrench"></span>
                                                 </button>
                                             </div>

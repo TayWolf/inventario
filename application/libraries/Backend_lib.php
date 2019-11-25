@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('America/Mexico_City');
 class Backend_lib
 {
 
@@ -10,10 +10,10 @@ class Backend_lib
 
 	public function savelog($modulo, $descripcion){
 		$data = array(
-			"usuario_id" => $this->session->userdata("id"),
+			"id_usuario" => $this->session->userdata("id_usuario"),
 			"modulo" => $modulo,
-			"fecha" => date("Y-m-d H:i:s"),
-			"descripcion" => $descripcion,
+			"fecha_logeo" => date("Y-m-d H:i:s"),
+			"accion_modulo" => $descripcion,
 
 		);
 

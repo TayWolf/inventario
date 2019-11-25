@@ -15,7 +15,7 @@
                 <div class="col-md-6 col-sm-8 col-xs-12">
                     <form action="<?php echo base_url();?>configuraciones/areas/update" method="POST">
 
-                        <input type="hidden" name="idArea" value="<?php echo $area->id;?>">
+                        <input type="hidden" name="idArea" value="<?php echo $area->id_area;?>">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");
@@ -29,14 +29,14 @@
                         
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $area->nombre?>"  required="required">
+                            <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $area->nombre_area?>"  required="required">
                         </div>
-                        <?php if ($area->estado == 0): ?>
+                        <?php if ($area->id_status == 1): ?>
                             <div class="form-group">
-                                <label for="">Estado:</label>
+                                <label for="">Status Área:</label>
                                 <select name="estado" id="estado" required class="form-control">
                                     <option value="1">Activo</option>
-                                    <option value="2" selected>Inactivo</option>
+                                    <option value="2">Inactivo</option>
                                 </select>
                             </div>
                         <?php endif ?>

@@ -9,6 +9,7 @@ class Usuarios extends CI_Controller {
 			redirect(base_url());
 		}
 		$this->load->model("Usuarios_model");
+		$this->load->model("Personas_model");
 		$this->load->library('excel');
 
 	}
@@ -42,7 +43,7 @@ class Usuarios extends CI_Controller {
 	}
 	public function perfil(){
 		$contenido_interno = array(
-			"usuario" => $this->Usuarios_model->getUsuario($this->session->userdata("id"))
+			"usuario" => $this->Usuarios_model->getUsuario($this->session->userdata("id_usuario"))
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/usuarios/perfil",$contenido_interno,TRUE)
@@ -107,10 +108,10 @@ class Usuarios extends CI_Controller {
             );
 
             $datos = array(
-            	"imagen" => $data["upload_data"]["file_name"],
+            	"imagen_perfil" => $data["upload_data"]["file_name"],
             );
 
-            if ($this->Usuarios_model->update($id, $datos)) {
+            if ($this->Personas_model->update($id, $datos)) {
 
             	$success = array(
             		"status" =>1
@@ -201,7 +202,7 @@ class Usuarios extends CI_Controller {
 	public function edit($id){
 		$contenido_interno = array(
 			"usuario" => $this->Usuarios_model->getUsuario($id),
-			"roles" => $this->Usuarios_model->getRoles()
+			"rol" => $this->Usuarios_model->getRoles()
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/usuarios/edit",$contenido_interno,TRUE)

@@ -1,11 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Areas extends CI_Controller {
+class Areas extends CI_Controller 
+{
 	private $modulo = "Areas";
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
-		if (!$this->session->userdata("login")) {
+		if (!$this->session->userdata("login")) 
+		{
 			redirect(base_url());
 		}
 		$this->load->model("Areas_model");
@@ -23,39 +26,47 @@ class Areas extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function add(){
+	public function add()
+	{
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/areas/add","",TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function store(){
-		if ($this->input->post("guardar")) {
-			$nombre = $this->input->post("nombre");
+	public function store()
+	{
+		if ($this->input->post("guardar")) 
+		{
+			$nombre = $this->input->post("nombre_area");
 
 			$data = array(
-				"nombre" => $nombre,
-				"estado" => 1
+				"nombre_area" => $nombre,
+				"id_status" => 1
 			);
 
-			if ($this->Areas_model->save($data)) {
-				$this->backend_lib->savelog($this->modulo,"Inserción del area ".$nombre);
+			if ($this->Areas_model->save($data)) 
+			{
+				$this->backend_lib->savelog($this->modulo,"Inserción del Área ".$nombre);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 				redirect(base_url()."configuraciones/areas");
-			} else {
+			} 
+			else 
+			{
 				$this->session->set_flashdata("error", "Los datos no fueron guardados");
 				redirect(base_url()."configuraciones/areas/add");
 
 			}
 			
-		} else {
+		} 
+		else 
+		{
 			redirect(base_url()."configuraciones/areas/add");
 		}
-		
 	}
 
-	public function view(){
+	public function view()
+	{
 		$id = $this->input->post("id");
 
 		$data = array(
@@ -64,18 +75,18 @@ class Areas extends CI_Controller {
 
 		$this->load->view("admin/areas/view", $data);
 	}
-	public function delete($id){
-		$area = $this->Areas_model->getArea($id);
-		$data = array(
-			"estado" => "0"
-		);
 
-		$this->Areas_model->update($id, $data);
-		$this->backend_lib->savelog($this->modulo,"Eliminación del area ".$areas->codigo);
+	public function delete($id)
+	{
+		$area = $this->Areas_model->getArea($id);
+		
+		$this->Areas_model->delete($id);
+		$this->backend_lib->savelog($this->modulo,"Eliminación del area ".$area->nombre_area);
 		echo "configuraciones/areas";
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$contenido_interno = array(
 			"area" => $this->Areas_model->getArea($id)
 		);
@@ -86,31 +97,33 @@ class Areas extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function update(){
+	public function update()
+	{
 		$id = $this->input->post("idArea");
 		$nombre = $this->input->post("nombre");
 		$estado = 1;
 
-		if ($this->input->post("estado") ) {
+		if ($this->input->post("estado") ) 
+		{
 			if ($this->input->post("estado") == 2) {
-				$estado = 0;
+				$estado = 2;
 			}
 		}
 		$data = array(
-			"nombre" => $nombre,
-			"estado" => $estado
+			"nombre_area" => $nombre,
+			"id_status" => $estado
 		);
-		if ($this->Areas_model->update($id, $data)) {
-			$this->backend_lib->savelog($this->modulo,"Actualización del area ".$codigo);
+		if ($this->Areas_model->update($id, $data)) 
+		{
+			$this->backend_lib->savelog($this->modulo,"Actualización del area ".$nombre);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."configuraciones/areas");
-		} else {
+		} 
+		else 
+		{
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
 			redirect(base_url()."configuraciones/areas/edit/".$id);
 
 		}
-		
 	}
-
-
 }

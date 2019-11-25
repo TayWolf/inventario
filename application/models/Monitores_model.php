@@ -4,62 +4,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Monitores_model extends CI_Model {
 
 	public function getMonitores($estado = false,$search,$fechainicio = false, $fechafinal =false){
-		$this->db->select("m.*, e.nombre as elemento, a.nombre as area, u.nombres");
-		$this->db->from("monitores m");
-		$this->db->join("elemento e","m.finca_id = e.id", "Left");
-		$this->db->join("areas a","m.area_id = a.id", "Left");
-		$this->db->join("usuarios u","m.usuario_id = u.id", "Left");
+		$this->db->select("b.*, e.elemento, a.nombre_area as area, u.usuario, per.*, tp.tipo_propiedad, status.nombre_status, m.marca");
+		$this->db->from("bienes b");
+		$this->db->join("elementos e","b.id_elemento = e.id_elemento", "Left");
+		$this->db->join("personas per","b.id_persona = per.id_persona", "Left");
+		$this->db->join("areas a","per.id_area = a.id_area", "Left");
+		$this->db->join("tipo_propiedades tp","b.id_tipo_propiedad = tp.id_tipo_propiedad", "Left");
+		$this->db->join("cat_status status","b.id_status = status.id_status", "Left");
+		$this->db->join("marcas m","b.id_marca = m.id_marca", "Left");
+		$this->db->join("usuarios u","b.id_usuario = u.id_usuario", "Left");
 		if ($fechainicio !== false && $fechafinal !== false) {
 			$this->db->where("m.fecregistro >=", $fechainicio." "."00:00:00");
 			$this->db->where("m.fecregistro <=", $fechafinal." "."23:59:59");
 
 		}
-		if ($estado != false) {
-			$this->db->where("m.estado",1);
-		}
-		$this->db->like("CONCAT(m.codigo,'',m.tamaño,'', e.nombre, '', a.nombre, '', u.nombres)",$search);
+		
+		$this->db->where("b.id_elemento",2);
+		$this->db->like("CONCAT(b.no_serie,'', e.elemento, '', a.nombre_area, '', u.usuario)",$search);
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
 	public function infoMonitor($id){
-		$this->db->select("m.*, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,a.nombre as area");
-		$this->db->from("monitores m");
-	
-		$this->db->join("proveedores pro","m.proveedor_id = pro.id");
-		$this->db->join("elemento f","m.finca_id = f.id");
-		$this->db->join("fabricantes fa","m.fabricante_id = fa.id");
+		$this->db->select("b.*, e.elemento, a.nombre_area as area, u.usuario, per.*, tp.tipo_propiedad, status.nombre_status, m.marca");
+		$this->db->from("bienes b");
+		$this->db->join("elementos e","b.id_elemento = e.id_elemento", "Left");
+		$this->db->join("personas per","b.id_persona = per.id_persona", "Left");
+		$this->db->join("areas a","per.id_area = a.id_area", "Left");
+		$this->db->join("tipo_propiedades tp","b.id_tipo_propiedad = tp.id_tipo_propiedad", "Left");
+		$this->db->join("cat_status status","b.id_status = status.id_status", "Left");
+		$this->db->join("marcas m","b.id_marca = m.id_marca", "Left");
+		$this->db->join("usuarios u","b.id_usuario = u.id_usuario", "Left");
 
-		$this->db->join("areas a","m.area_id = a.id");
-		$this->db->where("m.id", $id);
+		$this->db->where("b.id_bien", $id);
 		$resultados = $this->db->get();
 		return $resultados->row();
 	}
 
 	public function save($data){
-		return $this->db->insert("monitores",$data);
+		return $this->db->insert("bienes",$data);
 	}
 
 	public function getMonitor($id){
-		$this->db->where("id", $id);
-		$resultados = $this->db->get("monitores");
+		$this->db->where("id_bien", $id);
+		$resultados = $this->db->get("bienes");
 		return $resultados->row();
 	}
 
 	public function update($id,$data){
-		$this->db->where("id", $id);
-		return $this->db->update("monitores",$data);
+		$this->db->where("id_bien", $id);
+		return $this->db->update("bienes",$data);
+	}
+
+	public function delete($id){
+		$this->db->where("id_bien", $id);
+		return $this->db->delete("bienes");
 	}
 
 	public function saveMante($data){
-		return $this->db->insert("monitores_mantenimientos",$data);
+		return $this->db->insert("mantenimientos",$data);
 	}
 
 	public function getMantenimientos($id){
 		
-		$this->db->where("monitor_id",$id);
+		$this->db->where("id_bien",$id);
 		
-		$resultados = $this->db->get("monitores_mantenimientos");
+		$resultados = $this->db->get("mantenimientos");
 		return $resultados->result();
 	}
 

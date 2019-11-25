@@ -4,65 +4,76 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Impresoras_model extends CI_Model {
 
 	public function getImpresoras($estado = false,$search,$fechainicio = false, $fechafinal =false){
-		$this->db->select("i.*,f.nombre as fabricante,a.nombre as area,p.nombre as proveedor,fi.nombre as finca,u.nombres");
-		$this->db->from("impresoras i");
-		$this->db->join("fabricantes f","i.fabricante_id = f.id");
-		$this->db->join("proveedores p","i.proveedor_id = p.id");
-		$this->db->join("areas a","i.area_id = a.id");
-		$this->db->join("elemento fi","i.finca_id = fi.id");
-		$this->db->join("usuarios u","i.usuario_id = u.id");
+		$this->db->select("b.*, e.elemento, a.nombre_area as area, u.usuario, per.*, tp.tipo_propiedad, status.nombre_status, m.marca, ip.direccion_ip");
+		$this->db->from("bienes b");
+		$this->db->join("elementos e","b.id_elemento = e.id_elemento", "Left");
+		$this->db->join("personas per","b.id_persona = per.id_persona", "Left");
+		$this->db->join("areas a","per.id_area = a.id_area", "Left");
+		$this->db->join("ips ip","b.id_ip = ip.id_ip", "Left");
+		$this->db->join("tipo_propiedades tp","b.id_tipo_propiedad = tp.id_tipo_propiedad", "Left");
+		$this->db->join("cat_status status","b.id_status = status.id_status", "Left");
+		$this->db->join("marcas m","b.id_marca = m.id_marca", "Left");
+		$this->db->join("usuarios u","b.id_usuario = u.id_usuario", "Left");
 
 		if ($fechainicio !== false && $fechafinal !== false) {
 			$this->db->where("i.fecregistro >=", $fechainicio." "."00:00:00");
 			$this->db->where("i.fecregistro <=", $fechafinal." "."23:59:59");
 
 		}
-		if ($estado != false) {
-			$this->db->where("i.estado",1);
-		}
-		$this->db->like("CONCAT(i.codigo, '', fi.nombre, '', a.nombre,'',p.nombre,u.nombres)",$search);
+		
+		$this->db->where("b.id_elemento",6);
+
+		$this->db->like("CONCAT(b.no_serie, '', e.elemento, '', a.nombre_area,'', per.nombres, '', u.usuario)",$search);
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
 
 	public function infoImpresora($id){
-		$this->db->select("i.*, pro.nombre as proveedor, f.nombre as finca, fa.nombre as fabricante,a.nombre as area");
-		$this->db->from("impresoras i");
-	
-		$this->db->join("proveedores pro","i.proveedor_id = pro.id");
-		$this->db->join("elemento f","i.finca_id = f.id");
-		$this->db->join("fabricantes fa","i.fabricante_id = fa.id");
-
-		$this->db->join("areas a","i.area_id = a.id");
-		$this->db->where("i.id", $id);
+		$this->db->select("b.*, e.elemento, a.nombre_area as area, u.usuario, per.*, tp.tipo_propiedad, status.nombre_status, m.marca, ip.direccion_ip");
+		$this->db->from("bienes b");
+		$this->db->join("elementos e","b.id_elemento = e.id_elemento", "Left");
+		$this->db->join("personas per","b.id_persona = per.id_persona", "Left");
+		$this->db->join("areas a","per.id_area = a.id_area", "Left");
+		$this->db->join("ips ip","b.id_ip = ip.id_ip", "Left");
+		
+		$this->db->join("tipo_propiedades tp","b.id_tipo_propiedad = tp.id_tipo_propiedad", "Left");
+		$this->db->join("cat_status status","b.id_status = status.id_status", "Left");
+		$this->db->join("marcas m","b.id_marca = m.id_marca", "Left");
+		$this->db->join("usuarios u","b.id_usuario = u.id_usuario", "Left");
+		$this->db->where("b.id_bien", $id);
 		$resultados = $this->db->get();
 		return $resultados->row();
 	}
 
 	public function save($data){
-		return $this->db->insert("impresoras",$data);
+		return $this->db->insert("bienes",$data);
 	}
 
 	public function getImpresora($id){
-		$this->db->where("id", $id);
-		$resultados = $this->db->get("impresoras");
+		$this->db->where("id_bien", $id);
+		$resultados = $this->db->get("bienes");
 		return $resultados->row();
 	}
 
 	public function update($id,$data){
-		$this->db->where("id", $id);
-		return $this->db->update("impresoras",$data);
+		$this->db->where("id_bien", $id);
+		return $this->db->update("bienes",$data);
+	}
+
+	public function delete($id){
+		$this->db->where("id_bien", $id);
+		return $this->db->delete("bienes");
 	}
 
 	public function saveMante($data){
-		return $this->db->insert("impresoras_mantenimientos",$data);
+		return $this->db->insert("mantenimientos",$data);
 	}
 
 	public function getMantenimientos($id){
 		
-		$this->db->where("impresora_id",$id);
+		$this->db->where("id_bien",$id);
 		
-		$resultados = $this->db->get("impresoras_mantenimientos");
+		$resultados = $this->db->get("mantenimientos");
 		return $resultados->result();
 	}
 

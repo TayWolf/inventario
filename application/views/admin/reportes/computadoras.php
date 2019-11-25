@@ -54,7 +54,7 @@
                                     <th>Area</th>
                                     <th>Procesador</th>
                                     <th>Disco Duro</th>
-                                    <th>Monitor</th>
+                                    <th>IP</th>
                                     <th>Memoria RAM</th>
                                     <th>Serial S.O</th>
                                     <th>Usuario</th>
@@ -65,20 +65,20 @@
                             <tbody>
                                 <?php foreach ($computadoras as $c): ?>
                                     <tr>
-                                        <td><?php echo $c->codigo;?></td>
-                                        <td><?php echo $c->finca;?></td>
-                                        <td><?php echo $c->area;?></td>
-                                        <td><?php echo $c->referencia." ".$c->velocidad;?></td>
-                                        <td><?php echo $c->disco;?></td>
-                                        <td><?php echo $c->monitor;?></td>
-                                        <td><?php echo $c->memoria;?></td>
-                                        <td><?php echo $c->serial_so;?></td>
+                                        <td><?php echo $c->no_serie;?></td>
+                                        <td><?php echo $c->elemento;?></td>
+                                        <td><?php echo $c->nombre_area;?></td>
+                                        <td><?php echo $c->procesador;?></td>
+                                        <td><?php echo $c->unidad_almacenamiento;?></td>
+                                        <td><?php echo $c->direccion_ip;?></td>
+                                        <td><?php echo $c->ram;?></td>
+                                        <td><?php echo $c->sistema_operativo;?></td>
                                         <td><?php echo $c->nombres;?></td>
-                                        <?php $fecha = new DateTime($c->fecregistro); ?>
+                                        <?php $fecha = new DateTime($c->fecregistro_bien); ?>
                                         <td><?php echo $fecha->format("d-m-Y");?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $c->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $c->id_bien;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
                                                 

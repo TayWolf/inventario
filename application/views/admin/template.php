@@ -73,7 +73,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
-        <?php if ($this->session->userdata("rol") <= 3): ?>
+        <?php if ($this->session->userdata("id_rol") <= 3): ?>
         <header class="main-header">
             <!-- Logo -->
             <a href="<?php echo base_url();?>dashboard" class="logo">
@@ -97,7 +97,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <?php echo $this->session->userdata("nombres");?>
+                                <?php echo $this->session->userdata("usuario");?>
                             </a>
                             <ul class="dropdown-menu">
                               <li><a href="<?php echo base_url();?>auth/logout">Cerrar Session</a></li>
@@ -109,7 +109,7 @@
         </header>
         <?php endif ?>
 
-        <?php if ($this->session->userdata("rol") == 4): ?>
+        <?php if ($this->session->userdata("id_rol") == 4): ?>
         <header class="main-header">
             <!-- Logo -->
             <a href="<?php echo base_url();?>usuario/perfil" class="logo">
@@ -133,7 +133,7 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <?php echo $this->session->userdata("nombres");?>
+                                <?php echo $this->session->userdata("usuario");?>
                             </a>
                             <ul class="dropdown-menu">
                               <li><a href="<?php echo base_url();?>auth/logout">Cerrar Session</a></li>
@@ -153,7 +153,7 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Menú de Navegación</li>
-                    <?php if ($this->session->userdata("rol") < 3): ?>
+                    <?php if ($this->session->userdata("id_rol") < 3): ?>
                     <li>
                         <a href="<?php echo base_url();?>dashboard"><i class="fa fa-home"></i> <span>Inicio</span></a>
                     </li>
@@ -161,23 +161,23 @@
                     
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-desktop"></i> <span>Equipos</span>
+                            <i class="fa fa-desktop"></i> <span>Inventarios</span>
                             <span class="pull-right-container">
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url();?>equipos/computadoras"><i class="fa fa-circle-o"></i> Computadoras</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/proyectores"><i class="fa fa-circle-o"></i> Proyectores</a></li>
-                            <li><a href="<?php echo base_url();?>equipos/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/cpu"><i class="fa fa-circle-o"></i> CPU</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/servidores"><i class="fa fa-circle-o"></i> Servidores</a></li>
+                            <!-- <li><a href="<?php echo base_url();?>bienes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li> -->
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-cogs"></i> <span>Módulos</span>
+                            <i class="fa fa-cogs"></i> <span>Catálogos</span>
                             <span class="pull-right-container">
                               <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -185,25 +185,25 @@
                         <ul class="treeview-menu">
                             <li><a href="<?php echo base_url();?>configuraciones/areas"><i class="fa fa-circle-o"></i> Areas</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/cargo"><i class="fa fa-circle-o"></i> Cargo</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/fincas"><i class="fa fa-circle-o"></i> Elemento</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/propietario"><i class="fa fa-circle-o"></i> Propietario</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/fabricantes"><i class="fa fa-circle-o"></i> Fabricante</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/categoria"><i class="fa fa-circle-o"></i> Categoria</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/modelo"><i class="fa fa-circle-o"></i> Modelo</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/tipobienes"><i class="fa fa-circle-o"></i> Tipo de bien</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/elementos"><i class="fa fa-circle-o"></i> Elemento</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/marcas"><i class="fa fa-circle-o"></i> Marcas</a></li>
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/modelo"><i class="fa fa-circle-o"></i> Modelo</a></li> -->
                             <li><a href="<?php echo base_url();?>configuraciones/ip"><i class="fa fa-circle-o"></i> IP's</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
                             <div class="line"></div>
-                            <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/personas"><i class="fa fa-circle-o"></i> Personas</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/memorias"><i class="fa fa-circle-o"></i> Memorias RAM</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/discos"><i class="fa fa-circle-o"></i> Discos Duros</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/antivirus"><i class="fa fa-circle-o"></i> Antivirus</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/sistemas"><i class="fa fa-circle-o"></i> Sistemas Opertivos</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/office"><i class="fa fa-circle-o"></i> Office</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/proveedores"><i class="fa fa-circle-o"></i> Proveedores</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/proveedores"><i class="fa fa-circle-o"></i> Proveedores</a></li> -->
                         </ul>
                     </li>
                     <?php endif ?>
-                    <?php if ($this->session->userdata("rol") == 1 || $this->session->userdata("rol") == 3): ?>
+                    <?php if ($this->session->userdata("id_rol") == 1 || $this->session->userdata("id_rol") == 3): ?>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-list"></i> <span>Reportes</span>
@@ -221,7 +221,7 @@
                         </ul>
                     </li>
                     <?php endif ?>
-                    <?php if ($this->session->userdata("rol") == 1): ?>
+                    <?php if ($this->session->userdata("id_rol") == 1): ?>
                         <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user"></i> <span>Administrador</span>
@@ -238,7 +238,7 @@
                     </li>
                     <?php endif ?>
                     
-                    <?php if ($this->session->userdata("rol") <= 4): ?>
+                    <?php if ($this->session->userdata("id_rol") <= 4): ?>
                     <li>
                         <a href="<?php echo base_url();?>usuario/perfil"><i class="fa fa-info-circle"></i> <span>Mi perfil</span></a>
                     </li>

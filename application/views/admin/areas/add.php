@@ -26,8 +26,8 @@
                         <?php endif ?>
                         
                         <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" required="required">
+                            <label for="nombre_area">Nombre:</label>
+                            <input type="text" name="nombre_area" id="nombre_area" class="form-control" required="required">
                         </div>
                         
                         <div class="form-group">

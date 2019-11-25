@@ -24,49 +24,51 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>equipos/impresoras/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Impresoras</a>
+                    <a href="<?php echo base_url();?>bienes/impresoras/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span> Agregar Impresoras</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Finca</th>
-                                    <th>Area</th>
-                                    <th>Bitacora</th>
-                                    <th>Ultimo Mant.</th>
-                                    <th>Usuario</th>
+                                    <th>No. Serie</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Elemento</th>
+                                    <th>IP</th>
                                     <th>Fec. Registro</th>
+                                    <th>Ultimo Mant.</th>
                                     <th>Estado</th>
+                                    <th>Bitacora</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($impresoras as $impresora): ?>
                                     <tr>
-                                        <td><?php echo $impresora->id?></td>
-                                        <td><?php echo $impresora->codigo?></td>
-                                        <td><?php echo $impresora->finca?></td>
-                                        <td><?php echo $impresora->area?></td>
-                                        <td><?php echo $impresora->bitacora?></td>
-                                        <td><?php echo $impresora->ultimo_mante?></td>
-                                        <td><?php echo $impresora->nombres?></td>
-                                        <td><?php echo $impresora->fecregistro?></td>
-                                        <td><?php echo $impresora->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $impresora->id_bien?></td>
+                                        <td><?php echo $impresora->no_serie?></td>
+                                        <td><?php echo $impresora->marca?></td>
+                                        <td><?php echo $impresora->modelo?></td>
+                                        <td><?php echo $impresora->elemento?></td>
+                                        <td><?php echo $impresora->direccion_ip?></td>
+                                        <td><?php echo $impresora->fecregistro_bien?></td>
+                                        <td><?php echo $impresora->ultimo_mantenimiento?></td>
+                                        <td><?php echo $impresora->nombre_status?></td>
+                                        <td><?php echo $impresora->estado_bien?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $impresora->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $impresora->id_bien;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>equipos/impresoras/edit/<?php echo $impresora->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>equipos/impresoras/delete/<?php echo $impresora->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>bienes/impresoras/edit/<?php echo $impresora->id_bien?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>bienes/impresoras/delete/<?php echo $impresora->id_bien?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>
                                                 
-                                                <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $impresora->id; ?>">
+                                                <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $impresora->id_bien; ?>">
                                                     <span class="fa fa-wrench"></span>
                                                 </button>
                                             </div>

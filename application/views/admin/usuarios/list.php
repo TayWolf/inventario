@@ -29,32 +29,32 @@
                             <tbody>
                                 <?php foreach ($usuarios as $usuario): ?>
                                     <tr>
-                                        <td><?php echo $usuario->id?></td>
-                                        <td><?php echo $usuario->cedula?></td>
-                                        <td><?php echo $usuario->nombres?></td>
-                                        <td><?php echo $usuario->email?></td>
+                                        <td><?php echo $usuario->id_usuario?></td>
+                                        <td><?php echo $usuario->curp?></td>
+                                        <td><?php echo $usuario->nombres.' '.$usuario->ap_paterno.' '.$usuario->ap_materno?></td>
+                                        <td><?php echo $usuario->usuario?></td>
                                         <?php 
-                                            if ( $usuario->rol_id == 1) 
+                                            if ( $usuario->id_rol == 1) 
                                             {
-                                                $rol = $usuario->rol_id = "Administrador";
+                                                $rol = $usuario->id_rol = "Administrador";
                                             }
-                                            elseif ($usuario->rol_id == 2) {
-                                                $rol = $usuario->rol_id = "Soporte Técnico";
+                                            elseif ($usuario->id_rol == 2) {
+                                                $rol = $usuario->id_rol = "Soporte Técnico";
                                             }
-                                            elseif ($usuario->rol_id == 3) {
-                                                $rol = $usuario->rol_id = "Encargado de Reportes";
+                                            elseif ($usuario->id_rol == 3) {
+                                                $rol = $usuario->id_rol = "Encargado de Reportes";
                                             }
                                             else {
-                                                $rol = $usuario->rol_id = "Usuario";
+                                                $rol = $usuario->id_rol = "Usuario";
                                             } 
                                         ?>
-                                        <td><?php echo $rol;?></td>
-                                        <td><?php echo $usuario->estado == 0 ? "Inactivo":"activo";?></td>
+                                        <td><?php echo $usuario->id_rol;?></td>
+                                        <td><?php echo $usuario->id_status == 1 ? "Activo":"Inactivo";?></td>
                                         
                                         <td>
                                             <div class="btn-group">
-                                                <a href="<?php echo base_url()?>administrador/usuarios/edit/<?php echo $usuario->id;?>" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></a>
-                                                <button type="button" class="btn btn-danger bn-flat btn-deshabilitar" value="<?php echo $usuario->id;?>">
+                                                <a href="<?php echo base_url()?>administrador/usuarios/edit/<?php echo $usuario->id_usuario;?>" class="btn btn-warning btn-flat"><i class="fa fa-pencil"></i></a>
+                                                <button type="button" class="btn btn-danger bn-flat btn-deshabilitar" value="<?php echo $usuario->id_usuario;?>">
                                                     <i class="fa fa-times"></i>
                                                 </button>
                                             </div>

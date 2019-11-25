@@ -27,11 +27,11 @@
                             <tbody>
                                 <?php foreach ($logs as $log): ?>
                                     <tr>
-                                        <td><?php echo $log->id?></td>
+                                        <td><?php echo $log->id_logeo?></td>
                                         <td><?php echo $log->modulo;?></td>
-                                        <td><?php echo $log->descripcion;?></td>
-                                        <td><?php echo $log->email?></td>
-                                        <td><?php echo $log->fecha?></td>
+                                        <td><?php echo $log->accion_modulo;?></td>
+                                        <td><?php echo $log->usuario?></td>
+                                        <td><?php echo $log->fecha_logeo?></td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>

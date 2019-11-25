@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>IP</th>
+                                    <th>Rango</th>
                                     <th>Estado</th>
                                     <th class="not-export-col">Opciones</th>
                                 </tr>
@@ -39,17 +40,30 @@
                             <tbody>
                                 <?php foreach ($ips as $ip): ?>
                                     <tr>
-                                        <td><?php echo $ip->id?></td>
-                                        <td><?php echo $ip->descripcion?></td>
-                                        <td><?php echo $ip->estado == 0 ?"Libre":"Ocupada";?></td>
+                                        <td><?php echo $ip->id_ip?></td>
+                                        <td><?php echo $ip->direccion_ip?></td>
+                                        <td><?php 
+                                                if ($ip->rango_ip == 1) 
+                                                {
+                                                  $ip->rango_ip = "Datos";
+                                                } 
+                                                else if ($ip->rango_ip == 2) 
+                                                {
+                                                    $ip->rango_ip = "Voz";
+                                                } 
+                                                else{
+                                                  $ip->rango_ip = "Servidores";
+                                                }
+                                        echo  $ip->rango_ip?></td>
+                                        <td><?php echo $ip->nombre_status;?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $ip->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $ip->id_ip;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/ip/edit/<?php echo $ip->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/ip/delete/<?php echo $ip->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>configuraciones/ip/edit/<?php echo $ip->id_ip?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>configuraciones/ip/delete/<?php echo $ip->id_ip?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                         <span class="fa fa-times"></span>
                                                     </a>
                                                 <?php endif?>
