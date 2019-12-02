@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="persona">Persona:</label>
-                                <select name="persona" id="persona" class="form-control" required="required">
+                                <select name="persona" id="persona" class="form-control">
                                     <option value="">Elija el propietario del monitor</option>
                                     <?php foreach ($personas as $persona): ?>
                                         <option value="<?php echo $persona->id_persona;?>"><?php echo $persona->nombres.' '.$persona->ap_paterno.' '.$persona->ap_materno;?></option>
@@ -63,8 +63,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="estado_bien">Estado del monitor:</label>
-                                <input type="text" name="estado_bien" id="estado_bien" class="form-control" required="required">
+                                <label for="estado_bien">Bitácora del monitor:</label>
+                                <input type="text" name="estado_bien" id="estado_bien" class="form-control">
                             </div>
                         </div> 
                         <div class="form-group">

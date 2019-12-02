@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Impresoras extends CI_Controller {
+class BusquedaBasica extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -29,7 +29,7 @@ class Impresoras extends CI_Controller {
 
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/reportes/impresoras",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/reportes/busquedabasica",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}

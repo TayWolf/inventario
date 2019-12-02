@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Reportes <small> Impresoras</small>
+        Búsqueda <small> BÁSICA</small>
     </h1>
 
 </section>
@@ -11,75 +11,74 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="impresoras">
-    
-            <form action="<?php echo current_url();?>" method="POST">
+            <input type="hidden" id="modulo" value="cpu">
+            
+                <form action="<?php echo current_url();?>" method="POST">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group" style="padding-top: 5px;">
-                            <label for="">Rango de fechas:</label>
+                            <label for="">Parámetro de Búsqueda:</label>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-7">
                         <div class="form-group">
-                            <input type="date" name="fecinicio" class="form-control" value="<?php echo isset($fecinicio) ? $fecinicio:date("Y-m-d");?>">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <input type="date" name="fecfin" class="form-control" value="<?php echo isset($fecfin) ? $fecfin:date("Y-m-d");?>">
+                            <input type="text" name="busquedabasica" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <input type="submit" name="buscar" class="btn btn-success btn-flat" value="Buscar">
-                            <a href="<?php echo base_url();?>reportes/impresoras" class="btn btn-danger btn-flat">Reestablecer</a>
+                            <a href="<?php echo base_url();?>reportes/busquedabasica" class="btn btn-danger btn-flat">Reestablecer</a>
                         </div>
                     </div>
                 </div>
                 <hr>
             </form>
+     
+            
             <div class="row">
                 <div class="col-md-12">
+                   
                     <div class="table-responsive">
-                        <table id="tbimpresoras" class="table table-bordered table-hover">
+                        <table id="tbcomputadoras" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>No. de Serie</th>
-                                    <th>Modelo</th>
-                                    <th>IP</th>
+                                    <th>Codigo</th>
                                     <th>Elemento</th>
-                                    <th>Encargado</th>
-                                    
                                     <th>Area</th>
+                                    <th>Procesador</th>
+                                    <th>Disco Duro</th>
+                                    <th>IP</th>
+                                    <th>Memoria RAM</th>
+                                    <th>S.O</th>
+                                    <th>Usuario</th>
                                     <th>Fec. Registro</th>
-                                    
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($impresoras as $impresora): ?>
+                                <?php foreach ($impresoras as $c): ?>
                                     <tr>
-                                        
-                                        <td><?php echo $impresora->id_bien?></td>
-                                        <td><?php echo $impresora->no_serie?></td>
-                                        <td><?php echo $impresora->modelo?></td>
-                                        <td><?php echo $impresora->id_ip?></td>
-                                        <td><?php echo $impresora->elemento?></td>
-                                        <td><?php echo $impresora->nombres.' '.$impresora->ap_paterno.' '.$impresora->ap_materno?></td>
-                                        <td><?php echo $impresora->area?></td>
-                                        <?php $fecha = new DateTime($impresora->fecregistro_bien); ?>
-                                        <td><?php echo $fecha->format("d-m-Y");?></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $impresora->id_bien;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $c->id_bien;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
                                                 
                                             </div>
                                         </td>
-
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
@@ -91,8 +90,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <form action="<?php echo base_url();?>reportes/impresoras/exportimpresoras" method="POST">
-                        <input type="hidden" id="fechainicio" name="fechainicio" value="<?php echo isset($fecinicio) ? $fecinicio:"";?>">
+                    <form action="<?php echo base_url();?>reportes/computadoras/exportcomputadoras" method="POST">
+                        <input type="hidden" id="busquedabasica" name="busquedabasica" value="<?php echo isset($fecinicio) ? $fecinicio:"";?>">
                         <input type="hidden" id="fechafin" name="fechafin" value="<?php echo isset($fecfin) ? $fecfin:"";?>">
                         <input type="hidden" id="searchfecha" name="searchfecha" value="0">
                         <input type="hidden" id="search" name="search">
@@ -100,13 +99,13 @@
                         <!-- <button id="file-excel" type="submit" class="btn btn-success btn-flat">
                             <span class="fa fa-file-excel-o"></span> Exportar a Excel
                         </button> -->
-                        <button id="file-pdf" type="submit" class="btn btn-danger btn-flat" style="margin-left: 700px;>
+                        <button id="file-pdf" type="submit" class="btn btn-danger btn-flat" style="margin-left: 700px;">
                             <span class="fa fa-file-pdf-o"></span> Exportar a PDF
                         </button>
                     </form>
                 </div>
                 <div class="col-md-8">
-                    <div class="paginacionImp text-right">
+                    <div class="paginacionComp text-right">
                            
                     </div>
                 </div>
@@ -126,7 +125,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion de la Impresora</h4>
+        <h4 class="modal-title">Informacion de la Computadora</h4>
       </div>
       <div class="modal-body">
         

@@ -197,8 +197,7 @@ class Computadoras extends CI_Controller {
 			 $this->load->library('Pdf');
 	        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
 	        
-	  
-	        $pdf->SetTitle('Reporte de computadoras '.date("d-m-Y"));
+	        $pdf->SetTitle('Reporte de CPU '.date("d-m-Y"));
 
 			$pdf->SetPrintHeader(false);
 
@@ -233,7 +232,7 @@ class Computadoras extends CI_Controller {
 	        $html .= '<td width="15%" rowspan="2">
 					<img src="'.base_url("assets/images/logo.png").'" width="100" height="30">
 	        </td>';
-	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:30px !important;"><h1>FONCA</h1></td>';
+	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:50px !important;"><h1>FONCA</h1></td>';
 	        $html .= '<td width="15%" style="font-weight:bold;text-align:center;">Fecha</td>';
 	        $html .= '</tr>';
 	        $html .= '<tr>';
@@ -242,47 +241,55 @@ class Computadoras extends CI_Controller {
 	        $html .= '</tr>';
 	        $html .= '</thead></table>';
 
-	        $html .= '<h2 style="text-align:center;">Reportes de Computadoras</h2>';
+	        $html .= '<h2 style="text-align:center;">Reportes de CPU</h2>';
 	
-	        $html .= '<table width="100%" cellpadding="3" border="1"><thead>';
+	        $html .= '<table width="100%" cellpadding="4" border="1"><thead>';
 	        $html .= '<tr>';
 	        $html .= "<th>#</th>";
-            $html .= '<th>Codigo</th>';
-            $html .= '<th>Finca</th>';
-            $html .= '<th>Area</th>';
-            $html .= '<th>Procesador</th>';
-            $html .= '<th>Disco Duro</th>';
-            $html .= '<th>Monitor</th>';
-            $html .= '<th>Memoria RAM</th>';
-            $html .= '<th>Serial S.O</th>';
+	        $html .= '<th style="text-align:center;"colspan="2">Propietario</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Elemento</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Modelo</th>';
+            $html .= '<th style="text-align:center;"colspan="2">No_serie</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Marca</th>';
+            $html .= '<th style="text-align:center;">IP</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Procesador</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Unidad de Almacenamiento</th>';
+            $html .= '<th style="text-align:center;">RAM</th>';
+            $html .= '<th style="text-align:center;"colspan="2">MAC</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Fecha de registro</th>';
             
-            $html .= '<th>Usuario</th>';
-            $html .= '<th>Estado</th></tr></thead><tbody>';
+            $html .= '<th style="text-align:center;"colspan="2">Bitácora</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Staus</th></tr></thead><tbody>';
 
 
-            if ($fechainicio != "" && $fechafin != "") {
+            if ($fechainicio != "" && $fechafin != "") 
+            {
 	        	$computadoras = $this->Computadoras_model->getComputadoras(false,$search,$fechainicio,$fechafin);
-	        }else{
+	        }
+	        else
+	        {
 	        	$computadoras = $this->Computadoras_model->getComputadoras(false,$search,false,false);
 	        }
         
 	        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
-	         foreach ($computadoras as $computadora){
-	         	$html.='<tr>';
-                $html.='<td>'.$computadora->id.'</td>';
-                $html.='<td>'.$computadora->codigo.'</td>';
-                $html.='<td>'.$computadora->finca.'</td>';
-                $html.='<td>'.$computadora->area.'</td>';
-                $html.='<td>'.$computadora->velocidad.'</td>';
-                $html.='<td>'.$computadora->disco.'</td>';
-                $html.='<td>'.$computadora->monitor.'</td>';
-                $html.='<td>'.$computadora->memoria.'</td>';
+	         foreach ($computadoras as $computadora)
+	         {
+	         	$html.='<tr nobr="true">';
+                $html.='<td>'.$computadora->id_bien.'</td>';
+                $html.='<td colspan="2">'.$computadora->nombres.' '.$computadora->ap_paterno.' '.$computadora->ap_materno.'</td>';
+                $html.='<td colspan="2">'.$computadora->elemento.'</td>';
+                $html.='<td colspan="2">'.$computadora->modelo.'</td>';
+                $html.='<td colspan="2">'.$computadora->no_serie.'</td>';
+                $html.='<td colspan="2">'.$computadora->marca.'</td>';
+                $html.='<td>'.$computadora->id_ip.'</td>';
+                $html.='<td colspan="2">'.$computadora->procesador.'</td>';
+                $html.='<td colspan="2">'.$computadora->unidad_almacenamiento.'</td>';
+                $html.='<td>'.$computadora->ram.'</td>';
+                $html.='<td colspan="2">'.$computadora->direccion_mac.'</td>';
+                $html.='<td colspan="2">'.$computadora->fecregistro_bien.'</td>';
                 
-                $html.='<td>'.$computadora->serial_so.'</td>';
-                
-                $html.='<td>'.$computadora->nombres.'</td>';
-                $status = $computadora->estado == 1 ? "Activo":"Inactivo";
-                $html.='<td>'.$status.'</td></tr>';
+                $html.='<td colspan="2">'.$computadora->estado_bien.'</td>';
+                $html.='<td colspan="2">'.$computadora->nombre_status.'</td></tr>';
                
 	         }
 
@@ -294,7 +301,7 @@ class Computadoras extends CI_Controller {
 			// ---------------------------------------------------------
 			// Cerrar el documento PDF y preparamos la salida
 			// Este método tiene varias opciones, consulte la documentación para más información.
-        	$nombre_archivo = utf8_decode("Reportes_de_computadoras_".date("dmYHis").".pdf");
+        	$nombre_archivo = utf8_decode("Reportes_de_CPU_".date("dmYHis").".pdf");
         	$pdf->Output($nombre_archivo, 'D');
 		}
 	

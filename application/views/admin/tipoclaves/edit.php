@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Sistemas Operativos <small>Editar</small>
+        Tipo de Clave <small>Editar</small>
     </h1>
 
 </section>
@@ -13,9 +13,9 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-xs-12">
-                    <form action="<?php echo base_url();?>configuraciones/sistemas/update" method="POST">
+                    <form action="<?php echo base_url();?>configuraciones/tipoclaves/update" method="POST">
 
-                        <input type="hidden" name="idSistema" value="<?php echo $sistema->id;?>">
+                        <input type="hidden" name="idTipoClave" value="<?php echo $tipoclave->id_tipo_clave;?>">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");
@@ -28,18 +28,9 @@
                         <?php endif ?>
                         
                         <div class="form-group">
-                            <label for="descripcion">Descripcion:</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $sistema->descripcion?>" required="required">
+                            <label for="nombre_tipo_acceso">Tipo de Clave:</label>
+                            <input type="text" name="nombre_tipo_acceso" id="nombre_tipo_acceso" class="form-control" value="<?php echo $tipoclave->nombre_tipo_acceso?>" required="required">
                         </div>
-                        <?php if ($sistema->estado == 0): ?>
-                            <div class="form-group">
-                                <label for="">Estado:</label>
-                                <select name="estado" id="estado" required class="form-control">
-                                    <option value="1">Activo</option>
-                                    <option value="2" selected>Inactivo</option>
-                                </select>
-                            </div>
-                        <?php endif ?>
                         <div class="form-group">
                             <input type="submit" name="guardar" class="btn btn-success btn-flat" value="Guardar">
                         </div>

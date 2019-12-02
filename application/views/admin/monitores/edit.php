@@ -43,6 +43,15 @@
                                 <?php endforeach ?>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select name="status" id="status" class="form-control" required="required">
+                                    <option value="">Elija el estado del monitor</option>
+                                    <?php foreach ($status as $stat): ?>
+                                    <option value="<?php echo $stat->id_status;?>" <?php echo $stat->id_status==$monitor->id_status?"selected":"";?>><?php echo $stat->nombre_status;?></option>
+                                <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
@@ -64,20 +73,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="estado_bien">Estado del monitor:</label>
-                                <input type="text" name="estado_bien" id="estado_bien" class="form-control" value="<?php echo $monitor->estado_bien;?>" required="required">
+                                <label for="estado_bien">Bitácora del monitor:</label>
+                                <textarea name="estado_bien" id="estado_bien" class="form-control" rows="5" cols="50" style="resize: none;"><?php echo $monitor->estado_bien;?></textarea>
                             </div>
                         </div>
                         <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="status">Estado:</label>
-                                <select name="status" id="status" class="form-control" required="required">
-                                    <option value="">Elija el estado del monitor</option>
-                                    <?php foreach ($status as $stat): ?>
-                                    <option value="<?php echo $stat->id_status;?>" <?php echo $stat->id_status==$monitor->id_status?"selected":"";?>><?php echo $stat->nombre_status;?></option>
-                                <?php endforeach ?>
-                                </select>
-                            </div>
                             <div class="form-group">
                                 <input type="submit" name="guardar" class="btn btn-success btn-flat" value="Guardar">
                             </div>

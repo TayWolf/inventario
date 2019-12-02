@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Sistemas Operativos <small> Listado</small>
+        Tipos de Clave <small> Listado</small>
     </h1>
 
 </section>
@@ -20,35 +20,33 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="sistemas">
+            <input type="hidden" id="modulo" value="tipoclaves">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>configuraciones/sistemas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar S.O</a>
+                    <a href="<?php echo base_url();?>configuraciones/tipoclaves/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Tipo de Clave</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
+                                    <th>Tipo de Clave</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($sistemas as $sistema): ?>
+                                <?php foreach ($tipoclaves as $tipoclave): ?>
                                     <tr>
-                                        <td><?php echo $sistema->id?></td>
-                                        <td><?php echo $sistema->descripcion?></td>
-                                        <td><?php echo $sistema->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $tipoclave->id_tipo_clave?></td>
+                                        <td><?php echo $tipoclave->nombre_tipo_acceso?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $sistema->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $tipoclave->id_tipo_clave;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/sistemas/edit/<?php echo $sistema->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1): ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/sistemas/delete/<?php echo $sistema->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>configuraciones/tipoclaves/edit/<?php echo $tipoclave->id_tipo_clave?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1): ?>
+                                                    <a href="<?php echo base_url();?>configuraciones/tipoclaves/delete/<?php echo $tipoclave->id_tipo_clave?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>
@@ -78,7 +76,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion del Sistema</h4>
+        <h4 class="modal-title">Informacion del Tipo de Clave</h4>
       </div>
       <div class="modal-body">
         

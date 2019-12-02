@@ -188,18 +188,18 @@
                             <li><a href="<?php echo base_url();?>configuraciones/tipobienes"><i class="fa fa-circle-o"></i> Tipo de bien</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/elementos"><i class="fa fa-circle-o"></i> Elemento</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/marcas"><i class="fa fa-circle-o"></i> Marcas</a></li>
-                            <!-- <li><a href="<?php echo base_url();?>configuraciones/modelo"><i class="fa fa-circle-o"></i> Modelo</a></li> -->
                             <li><a href="<?php echo base_url();?>configuraciones/ip"><i class="fa fa-circle-o"></i> IP's</a></li>
                             <div class="line"></div>
                             <li><a href="<?php echo base_url();?>configuraciones/personas"><i class="fa fa-circle-o"></i> Personas</a></li>
+                            <li><a href="<?php echo base_url();?>configuraciones/tipoclaves"><i class="fa fa-circle-o"></i> Tipo de Claves</a></li>
                             <li><a href="<?php echo base_url();?>configuraciones/recursored"><i class="fa fa-circle-o"></i> Recurso de Red</a></li>
-                            <!-- <li><a href="<?php echo base_url();?>configuraciones/procesadores"><i class="fa fa-circle-o"></i> Procesadores</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/memorias"><i class="fa fa-circle-o"></i> Memorias RAM</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/discos"><i class="fa fa-circle-o"></i> Discos Duros</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/antivirus"><i class="fa fa-circle-o"></i> Antivirus</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/sistemas"><i class="fa fa-circle-o"></i> Sistemas Opertivos</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/office"><i class="fa fa-circle-o"></i> Office</a></li>
-                            <li><a href="<?php echo base_url();?>configuraciones/proveedores"><i class="fa fa-circle-o"></i> Proveedores</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/modelo"><i class="fa fa-circle-o"></i> Modelo</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/memorias"><i class="fa fa-circle-o"></i> Memorias RAM</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/discos"><i class="fa fa-circle-o"></i> Discos Duros</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/antivirus"><i class="fa fa-circle-o"></i> Antivirus</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/sistemas"><i class="fa fa-circle-o"></i> Sistemas Opertivos</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/office"><i class="fa fa-circle-o"></i> Office</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>configuraciones/proveedores"><i class="fa fa-circle-o"></i> Proveedores</a></li> -->
                         </ul>
                     </li>
                     <?php endif ?>
@@ -212,12 +212,14 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url();?>reportes/computadoras"><i class="fa fa-circle-o"></i> Computadoras</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/busquedabasica"><i class="fa fa-circle-o"></i> Búsqueda Básica</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/busquedaavanzada"><i class="fa fa-circle-o"></i> Búsqueda Avanzada</a></li>
+                            <!-- <li><a href="<?php echo base_url();?>reportes/computadoras"><i class="fa fa-circle-o"></i> CPU</a></li>
                             <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
                             <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
                             <li><a href="<?php echo base_url();?>reportes/ip"><i class="fa fa-circle-o"></i> Ips</a></li>
                             <li><a href="<?php echo base_url();?>reportes/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li>
+                            <li><a href="<?php echo base_url();?>reportes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li> -->
                         </ul>
                     </li>
                     <?php endif ?>

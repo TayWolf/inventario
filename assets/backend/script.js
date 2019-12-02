@@ -1062,7 +1062,8 @@ $(document).ready(function(){
 
 });
 
-function ActualizarUsuario(idusuario, estado){
+function ActualizarUsuario(idusuario, estado)
+{
 	$.ajax({
 		url: base_url + "administrador/usuarios/actEstado",
 		type: "POST",
@@ -1070,5 +1071,12 @@ function ActualizarUsuario(idusuario, estado){
 		success:function(resp){
 			window.location.href = base_url + resp;
 		}
+	});
+}
+
+function mostrar()
+{
+	$("#ocultar").click(function() {
+	$("#tbBusquedaAvanzada").hide(1500);
 	});
 }

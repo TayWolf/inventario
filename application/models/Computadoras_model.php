@@ -17,8 +17,8 @@ class Computadoras_model extends CI_Model {
 		$this->db->where("b.id_elemento =", 1);
 
 		if ($fechainicio !== false && $fechafinal !== false) {
-			$this->db->where("b.fecregistro >=", $fechainicio." "."00:00:00");
-			$this->db->where("b.fecregistro <=", $fechafinal." "."23:59:59");
+			$this->db->where("b.fecregistro_bien >=", $fechainicio." "."00:00:00");
+			$this->db->where("b.fecregistro_bien <=", $fechafinal." "."23:59:59");
 
 		}
 		if ($ip == 1) {
@@ -28,6 +28,7 @@ class Computadoras_model extends CI_Model {
 			$this->db->where("b.id_status",5);
 		}
 		$this->db->like("CONCAT(b.id_bien, '', e.elemento, '', a.nombre_area,'',u.usuario,'',per.nombres,'',per.ap_paterno,'',per.ap_materno)",$search);
+		$this->db->order_by("id_bien asc");
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}

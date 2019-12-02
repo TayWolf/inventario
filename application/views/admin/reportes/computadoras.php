@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Reportes <small> Computadoras</small>
+        Reportes <small> CPU</small>
     </h1>
 
 </section>
@@ -11,7 +11,7 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="computadoras">
+            <input type="hidden" id="modulo" value="cpu">
             
                 <form action="<?php echo current_url();?>" method="POST">
                 <div class="row">
@@ -48,7 +48,7 @@
                         <table id="tbcomputadoras" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    
+                                    <th>#</th>
                                     <th>Codigo</th>
                                     <th>Elemento</th>
                                     <th>Area</th>
@@ -56,7 +56,7 @@
                                     <th>Disco Duro</th>
                                     <th>IP</th>
                                     <th>Memoria RAM</th>
-                                    <th>Serial S.O</th>
+                                    <th>S.O</th>
                                     <th>Usuario</th>
                                     <th>Fec. Registro</th>
                                     <th>Opciones</th>
@@ -65,6 +65,7 @@
                             <tbody>
                                 <?php foreach ($computadoras as $c): ?>
                                     <tr>
+                                        <td><?php echo $c->id_bien;?></td>
                                         <td><?php echo $c->no_serie;?></td>
                                         <td><?php echo $c->elemento;?></td>
                                         <td><?php echo $c->nombre_area;?></td>
@@ -73,7 +74,7 @@
                                         <td><?php echo $c->direccion_ip;?></td>
                                         <td><?php echo $c->ram;?></td>
                                         <td><?php echo $c->sistema_operativo;?></td>
-                                        <td><?php echo $c->nombres;?></td>
+                                        <td><?php echo $c->nombres.' '.$c->ap_paterno.' '.$c->ap_materno;?></td>
                                         <?php $fecha = new DateTime($c->fecregistro_bien); ?>
                                         <td><?php echo $fecha->format("d-m-Y");?></td>
                                         <td>

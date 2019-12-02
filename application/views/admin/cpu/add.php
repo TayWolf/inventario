@@ -106,7 +106,7 @@
 
                         <div class="form-group">
                             <label for="bitacora">Bitacora del CPU:</label>
-                            <textarea name="bitacora" class="form-control" id="bitacora" rows="10" cols="50" style="resize: none;"></textarea>
+                            <textarea name="bitacora" class="form-control" id="bitacora" rows="12" cols="50" style="resize: none;"></textarea>
                         </div>
                     </div>
 
