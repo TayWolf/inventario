@@ -25,8 +25,20 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-8 col-xs-12">
                         <div class="form-group">
+                            <label for="folio_remision">Folio de Remisión:</label>
+                            <input type="text" name="folio_remision" id="folio_remision" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
                             <label for="no_serie">No. Serie:</label>
                             <input type="text" name="no_serie" id="no_serie" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="monitor">No. Serie Monitor:</label>
+                            <input type="text" name="monitor" id="monitor" class="form-control" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="no_break">No. Serie No-BREAK:</label>
+                            <input type="text" name="no_break" id="no_break" class="form-control" required="required">
                         </div>
                         <div class="form-group">
                             <label for="marca">Marca:</label>
@@ -39,20 +51,23 @@
                         </div>
                         <div class="form-group">
                             <label for="modelo">Modelo:</label>
-                            <input type="text" name="modelo" id="modelo" class="form-control" required="required">
+                            <input type="text" name="modelo" id="modelo" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="procesador">Procesador:</label>
-                            <input type="text" name="procesador" id="procesador" class="form-control" required="required">
+                            <input type="text" name="procesador" id="procesador" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="unidad_almacenamiento">Unidad de Almacenamiento:</label>
-                            <input type="text" name="unidad_almacenamiento" id="unidad_almacenamiento" class="form-control" required="required">
+                            <input type="text" name="unidad_almacenamiento" id="unidad_almacenamiento" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="ram">RAM:</label>
-                            <input type="text" name="ram" id="ram" class="form-control" required="required">
+                            <input type="text" name="ram" id="ram" class="form-control">
                         </div>
+                    </div>
+                    
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="direccion_mac">Direccion MAC:</label>
                             <input type="text" name="direccion_mac" id="direccion_mac" class="form-control">
@@ -66,9 +81,6 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="sistema_operativo">Sistema Operativo:</label>
                             <input type="text" name="sistema_operativo" id="sistema_operativo" class="form-control">
@@ -76,7 +88,7 @@
                         <div class="form-group">
                             <label for="ip">IP:</label>
                             <!-- <input type="text" name="ip" id="ip" class="form-control"> -->
-                            <select name="ip" id="ip" class="form-control" required="required">
+                            <select name="ip" id="ip" class="form-control">
                                 <option value="">Elija la IP</option>
                                 <?php foreach ($ips as $ip): ?>
                                     <option value="<?php echo $ip->id_ip;?>"><?php echo $ip->direccion_ip;?></option>
@@ -106,7 +118,7 @@
 
                         <div class="form-group">
                             <label for="bitacora">Bitacora del CPU:</label>
-                            <textarea name="bitacora" class="form-control" id="bitacora" rows="12" cols="50" style="resize: none;"></textarea>
+                            <textarea name="bitacora" class="form-control" id="bitacora" rows="8" cols="50" style="resize: none;"></textarea>
                         </div>
                     </div>
 

@@ -26,8 +26,20 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-8 col-xs-12">
                         <div class="form-group">
+                            <label for="folio_remision">Folio de Remisión:</label>
+                            <input type="text" name="folio_remision" id="folio_remision" class="form-control" required="required" value="<?php echo $computadora->folio_remision?>">
+                        </div>
+                        <div class="form-group">
                             <label for="no_serie">No. Serie:</label>
                             <input type="text" name="no_serie" id="no_serie" class="form-control" required="required" value="<?php echo $computadora->no_serie?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="monitor">No. Serie Monitor:</label>
+                            <input type="text" name="monitor" id="monitor" class="form-control" required="required" value="<?php echo $computadora->monitor?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="no_break">No. Serie No-BREAK:</label>
+                            <input type="text" name="no_break" id="no_break" class="form-control" required="required" value="<?php echo $computadora->no_break?>">
                         </div>
                         <div class="form-group">
                             <label for="marca">Marca:</label>
@@ -40,21 +52,23 @@
                         </div>
                          <div class="form-group">
                             <label for="modelo">Modelo:</label>
-                            <input type="text" name="modelo" id="modelo" class="form-control" required="required" value="<?php echo $computadora->modelo?>">
+                            <input type="text" name="modelo" id="modelo" class="form-control" value="<?php echo $computadora->modelo?>">
                         </div>
                         <div class="form-group">
                             <label for="procesador">Procesador:</label>
-                            <input type="text" name="procesador" id="procesador" class="form-control" required="required" value="<?php echo $computadora->procesador?>">
+                            <input type="text" name="procesador" id="procesador" class="form-control" value="<?php echo $computadora->procesador?>">
                         </div>
                         <div class="form-group">
                             <label for="unidad_almacenamiento">Unidad de Almacenamiento:</label>
-                            <input type="text" name="unidad_almacenamiento" id="unidad_almacenamiento" class="form-control" required="required" value="<?php echo $computadora->unidad_almacenamiento?>">
-
+                            <input type="text" name="unidad_almacenamiento" id="unidad_almacenamiento" class="form-control" value="<?php echo $computadora->unidad_almacenamiento?>">
                         </div>
                         <div class="form-group">
                             <label for="ram">RAM:</label>
-                            <input type="text" name="ram" id="ram" class="form-control" required="required" value="<?php echo $computadora->ram?>">
+                            <input type="text" name="ram" id="ram" class="form-control" value="<?php echo $computadora->ram?>">
                         </div>
+                    </div>
+
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="direccion_mac">Direccion MAC:</label>
                             <input type="text" name="direccion_mac" id="direccion_mac" class="form-control" value="<?php echo $computadora->direccion_mac?>">
@@ -68,9 +82,6 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="sistema_operativo">Sistema Operativo:</label>
                             <input type="text" name="sistema_operativo" id="sistema_operativo" class="form-control" value="<?php echo $computadora->sistema_operativo?>">
@@ -94,7 +105,6 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-                        
                         <div class="form-group">
                             <label for="personas">Usuario del Equipo:</label>
                             <!-- <input type="text" name="propietario" id="propietario" class="form-control"> -->
@@ -105,13 +115,11 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label for="bitacora">Bitacora del CPU:</label>
-                            <textarea name="bitacora" class="form-control" id="bitacora" rows="10" cols="50" style="resize: none;"><?php echo $computadora->estado_bien?></textarea>
+                            <textarea name="bitacora" class="form-control" id="bitacora" rows="8" cols="50" style="resize: none;"><?php echo $computadora->estado_bien?></textarea>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="row">
                     <div class="col-md-12 form-group">
@@ -121,7 +129,6 @@
             </form>
         </div>
         <!-- /.box-body -->
-        
     </div>
     <!-- /.box -->
 </section>

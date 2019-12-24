@@ -8,7 +8,7 @@ class BusquedaBasica extends CI_Controller {
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
-		$this->load->model("Impresoras_model");
+		$this->load->model("Computadoras_model");
 	}
 
 	public function index(){
@@ -16,14 +16,14 @@ class BusquedaBasica extends CI_Controller {
 		$fecfin = $this->input->post("fecfin");
 
 		if ($this->input->post("buscar")) {
-			$impresoras = $this->Impresoras_model->getImpresoras(false,"",$fecinicio,$fecfin);
+			$computadoras = $this->Computadoras_model->getComputadoras(false,"",$fecinicio,$fecfin);
 		}
 		else{
-			$impresoras = $this->Impresoras_model->getImpresoras(false,"");
+			$computadoras = $this->Computadoras_model->getComputadoras(false,"");
 		}
 
 		$contenido_interno = array(
-			"impresoras" => $impresoras,
+			"computadoras" => $computadoras,
 			"fecinicio" => $fecinicio,
 			"fecfin" => $fecfin
 
@@ -35,44 +35,17 @@ class BusquedaBasica extends CI_Controller {
 	}
 
 
-	public function searchImpresoras(){
-		$buscar = $this->input->post("buscar");
-		$numeropagina = $this->input->post("nropagina");
-		$cantidad = $this->input->post("cantidad");
-		$checkfecha = $this->input->post("checkfecha");
-		$fecfin = $this->input->post("fecfin");
-		$fecinicio = $this->input->post("fecinicio");
-		$inicio = ($numeropagina -1)*$cantidad;
-
-		if ($checkfecha == 1) {
-			$impresoras = $this->Impresoras_model->getImpresoras(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
-			$total = $this->Impresoras_model->getImpresoras(1,$buscar,false,false,$fecinicio,$fecfin);
-		}else{
-			$impresoras = $this->Impresoras_model->getImpresoras(1,$buscar,$inicio,$cantidad);
-			$total = $this->Impresoras_model->getImpresoras(1,$buscar);
-		}
-		
-		
-		$data = array(
-			"impresoras" => $impresoras,
-			"totalregistros" => count($total),
-			"cantidad" =>$cantidad
-			
-		);
-		echo json_encode($data);
-	}
-
-	public function exportimpresoras(){
+	public function exportcomputadoras(){
 		$fechainicio = $this->input->post("fechainicio");
 		$fechafin = $this->input->post("fechafin");
 		$searchfecha = $this->input->post("searchfecha");
-		$search = $this->input->post("search");
+		$search = $this->input->post("busquedaBasica");
 		$tipoarchivo = $this->input->post("tipoarchivo");
 		if ($tipoarchivo == 1) {
 			//Cargamos la librería de excel.
 	    	$this->load->library('excel');
 			$this->excel->setActiveSheetIndex(0);
-	        $this->excel->getActiveSheet()->setTitle('Impresoras');
+	        $this->excel->getActiveSheet()->setTitle('Antivirus');
 	        //Contador de filas
 	        $contador = 3;
 	        //Le aplicamos ancho las columnas.
@@ -93,12 +66,21 @@ class BusquedaBasica extends CI_Controller {
 	        $this->excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
 	        $this->excel->getActiveSheet()->getColumnDimension('M')->setAutoSize(true);
 	        $this->excel->getActiveSheet()->getColumnDimension('N')->setAutoSize(true);
-	        
+	        $this->excel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('R')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('S')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('T')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('U')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('V')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('W')->setAutoSize(true);
+	        $this->excel->getActiveSheet()->getColumnDimension('X')->setAutoSize(true);
 	        //Le aplicamos negrita a los títulos de la cabecera.
 	        $this->excel->getActiveSheet()->getStyle("A{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("B{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("C{$contador}")->getFont()->setBold(true);
-	        
+	        $this->excel->getActiveSheet()->getStyle("C{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("D{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("E{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("F{$contador}")->getFont()->setBold(true);
@@ -110,7 +92,16 @@ class BusquedaBasica extends CI_Controller {
 	        $this->excel->getActiveSheet()->getStyle("L{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("M{$contador}")->getFont()->setBold(true);
 	        $this->excel->getActiveSheet()->getStyle("N{$contador}")->getFont()->setBold(true);
-	        
+	        $this->excel->getActiveSheet()->getStyle("O{$contador}")->getFont()->setBold(true);
+	        $this->excel->getActiveSheet()->getStyle("P{$contador}")->getFont()->setBold(true);
+	        $this->excel->getActiveSheet()->getStyle("Q{$contador}")->getFont()->setBold(true);
+	        $this->excel->getActiveSheet()->getStyle("R{$contador}")->getFont()->setBold(true);
+	       	$this->excel->getActiveSheet()->getStyle("S{$contador}")->getFont()->setBold(true);
+	       	$this->excel->getActiveSheet()->getStyle("T{$contador}")->getFont()->setBold(true);
+	       	$this->excel->getActiveSheet()->getStyle("U{$contador}")->getFont()->setBold(true);
+	       	$this->excel->getActiveSheet()->getStyle("V{$contador}")->getFont()->setBold(true);
+	       	$this->excel->getActiveSheet()->getStyle("W{$contador}")->getFont()->setBold(true);
+	       	$this->excel->getActiveSheet()->getStyle("X{$contador}")->getFont()->setBold(true);
 	        //
 	        $this->excel->getActiveSheet()->getRowDimension(1)->setRowHeight(35);
 	        $objDrawing = new PHPExcel_Worksheet_Drawing();
@@ -125,77 +116,88 @@ class BusquedaBasica extends CI_Controller {
 			$objDrawing->setWorksheet($this->excel->getActiveSheet());
 
 	        //Definimos los títulos de la cabecera.
-	        $this->excel->getActiveSheet()->setCellValue("C1", 'Empresa de Transporte');	
+	        $this->excel->getActiveSheet()->setCellValue("C1", 'Reporte de Computadoras FONCA');	
 	        $this->excel->getActiveSheet()->setCellValue("D1",date("d-m-Y"));	
 	        $this->excel->getActiveSheet()->setCellValue("A{$contador}", 'Nro.');	        
 	        $this->excel->getActiveSheet()->setCellValue("B{$contador}", 'Codigo');
-	        
-	        $this->excel->getActiveSheet()->setCellValue("C{$contador}", 'Proveedor');
-	        $this->excel->getActiveSheet()->setCellValue("D{$contador}", 'Contacto');
-	        $this->excel->getActiveSheet()->setCellValue("E{$contador}", 'Fabricante');
-	        $this->excel->getActiveSheet()->setCellValue("F{$contador}", 'Serial Fab.');
+	        $this->excel->getActiveSheet()->setCellValue("C{$contador}", 'Presentacion');
+	        $this->excel->getActiveSheet()->setCellValue("D{$contador}", 'Proveedor');
+	        $this->excel->getActiveSheet()->setCellValue("E{$contador}", 'Contacto');
+	        $this->excel->getActiveSheet()->setCellValue("F{$contador}", 'Fabricante');
 	        $this->excel->getActiveSheet()->setCellValue("G{$contador}", 'Finca');
 	        $this->excel->getActiveSheet()->setCellValue("H{$contador}", 'Area');
-	        $this->excel->getActiveSheet()->setCellValue("I{$contador}", 'Referencia');
-	        
-	        
-	        $this->excel->getActiveSheet()->setCellValue("J{$contador}", 'Bitacora');
-	        
-	        $this->excel->getActiveSheet()->setCellValue("K{$contador}", 'Ultimo Mant.');
-	        $this->excel->getActiveSheet()->setCellValue("L{$contador}", 'Usuario');
-	        $this->excel->getActiveSheet()->setCellValue("M{$contador}", 'Fec. Registro');
-	        $this->excel->getActiveSheet()->setCellValue("N{$contador}", 'Estado');
+	        $this->excel->getActiveSheet()->setCellValue("I{$contador}", 'Procesador');
+	        $this->excel->getActiveSheet()->setCellValue("J{$contador}", 'Disco Duro');
+	        $this->excel->getActiveSheet()->setCellValue("K{$contador}", 'Monitor');
+	        $this->excel->getActiveSheet()->setCellValue("L{$contador}", 'Memoria RAM');
+	        $this->excel->getActiveSheet()->setCellValue("M{$contador}", 'Sistema Operativo');
+	        $this->excel->getActiveSheet()->setCellValue("N{$contador}", 'Serial S.O');
+	        $this->excel->getActiveSheet()->setCellValue("O{$contador}", 'Office');
+	        $this->excel->getActiveSheet()->setCellValue("P{$contador}", 'Serial Office');
+	        $this->excel->getActiveSheet()->setCellValue("Q{$contador}", 'Antivirus');
+	        $this->excel->getActiveSheet()->setCellValue("R{$contador}", 'Bitacora');
+	        $this->excel->getActiveSheet()->setCellValue("S{$contador}", 'IP');
+	        $this->excel->getActiveSheet()->setCellValue("T{$contador}", 'MAC');
+	        $this->excel->getActiveSheet()->setCellValue("U{$contador}", 'Ultimo Mant.');
+	        $this->excel->getActiveSheet()->setCellValue("V{$contador}", 'Usuario');
+	        $this->excel->getActiveSheet()->setCellValue("W{$contador}", 'Fec. Registro');
+	        $this->excel->getActiveSheet()->setCellValue("X{$contador}", 'Estado');
 
 	        if ($fechainicio != "" && $fechafin != "") {
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,$fechainicio,$fechafin);
+	        	$computadoras = $this->Computadoras_model->getComputadoras(false,$search,$fechainicio,$fechafin);
 	        }else{
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,false,false);
+	        	$computadoras = $this->Computadoras_model->getComputadoras(false,$search,false,false);
 	        }
 
 
 	         //Definimos la data del cuerpo.
 	        $i = 1;
-	        foreach($impresoras as $imp){
+	        foreach($computadoras as $c){
 	        	//Incrementamos una fila más, para ir a la siguiente.
 	        	$contador++;
 	        	//Informacion de las filas de la consulta.
 				$this->excel->getActiveSheet()->setCellValue("A{$contador}", $i);
-		        $this->excel->getActiveSheet()->setCellValue("B{$contador}", $imp->codigo);
-		        
-		        $this->excel->getActiveSheet()->setCellValue("C{$contador}", $imp->proveedor);
-		        $this->excel->getActiveSheet()->setCellValue("D{$contador}", $imp->contacto);
-		        $this->excel->getActiveSheet()->setCellValue("E{$contador}", $imp->fabricante);
-		        $this->excel->getActiveSheet()->setCellValue("F{$contador}", $imp->serial_fabricante);
-		        $this->excel->getActiveSheet()->setCellValue("G{$contador}", $imp->finca);
-		        $this->excel->getActiveSheet()->setCellValue("H{$contador}", $imp->area);
-		        $this->excel->getActiveSheet()->setCellValue("I{$contador}", $imp->referencia);
-		        
-		      
-		        $this->excel->getActiveSheet()->setCellValue("J{$contador}", $imp->bitacora);
-		       
-		        $this->excel->getActiveSheet()->setCellValue("K{$contador}", $imp->ultimo_mante);
-		        $this->excel->getActiveSheet()->setCellValue("L{$contador}", $imp->nombres);
-		        $this->excel->getActiveSheet()->setCellValue("M{$contador}", $imp->fecregistro);
-		        $status = $imp->estado == 1 ? "Activo":"Inactivo"; 
-		        $this->excel->getActiveSheet()->setCellValue("N{$contador}", $status);
+		        $this->excel->getActiveSheet()->setCellValue("B{$contador}", $c->codigo);
+		        $this->excel->getActiveSheet()->setCellValue("C{$contador}", $c->presentacion);
+		        $this->excel->getActiveSheet()->setCellValue("D{$contador}", $c->proveedor);
+		        $this->excel->getActiveSheet()->setCellValue("E{$contador}", $c->contacto);
+		        $this->excel->getActiveSheet()->setCellValue("F{$contador}", $c->fabricante);
+		        $this->excel->getActiveSheet()->setCellValue("G{$contador}", $c->finca);
+		        $this->excel->getActiveSheet()->setCellValue("H{$contador}", $c->area);
+		        $this->excel->getActiveSheet()->setCellValue("I{$contador}", $c->velocidad);
+		        $this->excel->getActiveSheet()->setCellValue("J{$contador}", $c->disco);
+		        $this->excel->getActiveSheet()->setCellValue("K{$contador}", $c->monitor);
+		        $this->excel->getActiveSheet()->setCellValue("L{$contador}", $c->memoria);
+		        $this->excel->getActiveSheet()->setCellValue("M{$contador}", $c->sistema);
+		        $this->excel->getActiveSheet()->setCellValue("N{$contador}", $c->serial_so);
+		        $this->excel->getActiveSheet()->setCellValue("O{$contador}", $c->office);
+		        $this->excel->getActiveSheet()->setCellValue("P{$contador}", $c->serial_office);
+		        $this->excel->getActiveSheet()->setCellValue("Q{$contador}", $c->antivirus);
+		        $this->excel->getActiveSheet()->setCellValue("R{$contador}", $c->bitacora);
+		        $this->excel->getActiveSheet()->setCellValue("S{$contador}", $c->ip);
+		        $this->excel->getActiveSheet()->setCellValue("T{$contador}", $c->mac);
+		        $this->excel->getActiveSheet()->setCellValue("U{$contador}", $c->ultimo_mante);
+		        $this->excel->getActiveSheet()->setCellValue("V{$contador}", $c->nombres);
+		        $this->excel->getActiveSheet()->setCellValue("W{$contador}", $c->fecregistro);
+		        $status = $c->estado == 1 ? "Activo":"Inactivo"; 
+		        $this->excel->getActiveSheet()->setCellValue("X{$contador}", $status);
 
 		        $i++;
 	        }
 	        //Le ponemos un nombre al archivo que se va a generar.
-	        $archivo = "Listado_de_impresoras".date("dmYHis").".xls";
+	        $archivo = "Listado_de_computadoras".date("dmYHis").".xls";
 	        header('Content-Type: application/vnd.ms-excel');
 	        header('Content-Disposition: attachment;filename="'.$archivo.'"');
 	        header('Cache-Control: max-age=0');
-	        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5'); 
+	        $objWriter = new PHPExcel_Writer_Excel2007($this->excel); 
 	        //Hacemos una salida al navegador con el archivo Excel.
 	        $objWriter->save('php://output');
 		}
 		else{
-			 $this->load->library('Pdf');
+			$this->load->library('Pdf');
 	        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
 	        
-	  
-	        $pdf->SetTitle('Reporte de Impresoras '.date("d-m-Y"));
+	        $pdf->SetTitle('Reporte de CPU '.date("d-m-Y"));
 
 			$pdf->SetPrintHeader(false);
 
@@ -228,9 +230,9 @@ class BusquedaBasica extends CI_Controller {
 	        $html .= '<tr>';
 
 	        $html .= '<td width="15%" rowspan="2">
-					<img src="'.base_url("assets/images/logo.png").'" width="30" height="30">
+					<img src="'.base_url("assets/images/logo.png").'" width="100" height="30">
 	        </td>';
-	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:30px !important;"><h1>Empresa de Transporte</h1></td>';
+	        $html .= '<td width="70%" rowspan="2" style="font-weight:bold;text-align:center;margin-top:50px !important;"><h1>FONCA</h1></td>';
 	        $html .= '<td width="15%" style="font-weight:bold;text-align:center;">Fecha</td>';
 	        $html .= '</tr>';
 	        $html .= '<tr>';
@@ -239,48 +241,56 @@ class BusquedaBasica extends CI_Controller {
 	        $html .= '</tr>';
 	        $html .= '</thead></table>';
 
-	        $html .= '<h2 style="text-align:center;">Reportes de Impresoras</h2>';
+	        $html .= '<h2 style="text-align:center;">Reportes de CPU</h2>';
 	
-	        $html .= '<table width="100%" cellpadding="3" border="1"><thead>';
+	        $html .= '<table width="100%" cellpadding="4" border="1"><thead>';
 	        $html .= '<tr>';
 	        $html .= "<th>#</th>";
-            $html .= '<th style="text-align:center;">No. de Serie</th>';
-            $html .= '<th colspan="2" style="text-align:center;">Modelo</th>';
-            $html .= '<th style="text-align:center;">Elemento</th>';
+	        $html .= '<th style="text-align:center;"colspan="2">Propietario</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Elemento</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Modelo</th>';
+            $html .= '<th style="text-align:center;"colspan="2">No_serie</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Marca</th>';
             $html .= '<th style="text-align:center;">IP</th>';
-            $html .= '<th style="text-align:center;">Encargado</th>';
-            $html .= '<th style="text-align:center;">Fec. Registro.</th>';
-            $html .= '<th style="text-align:center;">Bitacora</th>';
-            $html .= '<th style="text-align:center;">Usuario</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Procesador</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Unidad de Almacenamiento</th>';
+            $html .= '<th style="text-align:center;">RAM</th>';
+            $html .= '<th style="text-align:center;"colspan="2">MAC</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Fecha de registro</th>';
             
-            $html .= '<th style="text-align:center;">Estado</th></tr></thead><tbody>';
-    
+            $html .= '<th style="text-align:center;"colspan="2">Bitácora</th>';
+            $html .= '<th style="text-align:center;"colspan="2">Staus</th></tr></thead><tbody>';
+
 
             if ($fechainicio != "" && $fechafin != "") 
             {
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,$fechainicio,$fechafin);
+	        	$computadoras = $this->Computadoras_model->getComputadoras(false,$search,$fechainicio,$fechafin);
 	        }
 	        else
 	        {
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,false,false);
+	        	$computadoras = $this->Computadoras_model->getComputadoras(false,$search,false,false);
 	        }
         
 	        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo
-	         foreach ($impresoras as $imp)
+	         foreach ($computadoras as $computadora)
 	         {
 	         	$html.='<tr nobr="true">';
-                $html.='<td style="text-align:center;">'.$imp->id_bien.'</td>';
-                $html.='<td style="text-align:center;">'.$imp->no_serie.'</td>';
-                $html.='<td colspan="2" style="text-align:center;">'.$imp->modelo.'</td>';
-                $html.='<td style="text-align:center;">'.$imp->elemento.'</td>';
-                $html.='<td style="text-align:center;">'.$imp->id_ip.'</td>';
-                $html.='<td style="text-align:center;">'.$imp->nombres.' '.$imp->ap_paterno.' '.$imp->ap_materno.'</td>';
-                $html.='<td style="text-align:center;">'.$imp->fecregistro_bien.'</td>';
+                $html.='<td>'.$computadora->id_bien.'</td>';
+                $html.='<td colspan="2">'.$computadora->nombres.' '.$computadora->ap_paterno.' '.$computadora->ap_materno.'</td>';
+                $html.='<td colspan="2">'.$computadora->elemento.'</td>';
+                $html.='<td colspan="2">'.$computadora->modelo.'</td>';
+                $html.='<td colspan="2">'.$computadora->no_serie.'</td>';
+                $html.='<td colspan="2">'.$computadora->marca.'</td>';
+                $html.='<td>'.$computadora->id_ip.'</td>';
+                $html.='<td colspan="2">'.$computadora->procesador.'</td>';
+                $html.='<td colspan="2">'.$computadora->unidad_almacenamiento.'</td>';
+                $html.='<td>'.$computadora->ram.'</td>';
+                $html.='<td colspan="2">'.$computadora->direccion_mac.'</td>';
+                $html.='<td colspan="2">'.$computadora->fecregistro_bien.'</td>';
                 
-                $html.='<td style="text-align:center;">'.$imp->estado_bien.'</td>';
-                
-                $html.='<td style="text-align:center;">'.$imp->usuario.'</td>';
-                $html.='<td style="text-align:center;">'.$imp->nombre_status.'</td></tr>';
+                $html.='<td colspan="2">'.$computadora->estado_bien.'</td>';
+                $html.='<td colspan="2">'.$computadora->nombre_status.'</td></tr>';
+               
 	         }
 
 	         $html.='</tbody></table>';
@@ -291,7 +301,7 @@ class BusquedaBasica extends CI_Controller {
 			// ---------------------------------------------------------
 			// Cerrar el documento PDF y preparamos la salida
 			// Este método tiene varias opciones, consulte la documentación para más información.
-        	$nombre_archivo = utf8_decode("Reportes_de_impresoras_".date("dmYHis").".pdf");
+        	$nombre_archivo = utf8_decode("Reportes_de_CPU_".date("dmYHis").".pdf");
         	$pdf->Output($nombre_archivo, 'D');
 		}
 	

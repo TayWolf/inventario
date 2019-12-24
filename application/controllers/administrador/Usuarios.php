@@ -1,31 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuarios extends CI_Controller {
+class Usuarios extends CI_Controller 
+{
 	private $modulo = "Usuarios";
-	public function __construct(){
-		parent::__construct();
-		if (!$this->session->userdata("login")) {
-			redirect(base_url());
-		}
-		$this->load->model("Usuarios_model");
-		$this->load->model("Personas_model");
-		$this->load->library('excel');
+	public function __construct()
+	{-+ 																												
 
-	}
-
-	public function index()
+	public function actEstado()
 	{
-		$contenido_interno = array(
-			"usuarios" => $this->Usuarios_model->getUsuarios()
-		);
-		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/usuarios/list",$contenido_interno,TRUE)
-		);
-		$this->load->view('admin/template', $contenido_externo);
-	}
-
-	public function actEstado(){
 		$id = $this->input->post("id");
 		$estado = $this->input->post("estado");
 
@@ -33,15 +16,15 @@ class Usuarios extends CI_Controller {
 			"estado" => $estado
 		);
 		$usuario = $this->Usuarios_model->getUsuario($id);
-		if ($this->Usuarios_model->update($id, $data)) {
-
+		if ($this->Usuarios_model->update($id, $data)) 
+		{
 			/*$this->backend_lib->savelog($this->modulo,"Eliminación del Usuario ".$usuario->email);*/
 			echo "administrador/usuarios";
 		}
-
-
 	}
-	public function perfil(){
+
+	public function perfil()
+	{
 		$contenido_interno = array(
 			"usuario" => $this->Usuarios_model->getUsuario($this->session->userdata("id_usuario"))
 		);
@@ -51,7 +34,8 @@ class Usuarios extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function infousuario(){
+	public function infousuario()
+	{
 		$id = $this->input->post("idUsuario");
 		$cedula = $this->input->post("cedula");
 		$nombres = $this->input->post("nombres");
@@ -65,27 +49,31 @@ class Usuarios extends CI_Controller {
 			"cedula" => $cedula
 		);
 
-		if ($this->Usuarios_model->update($id, $data)) {
+		if ($this->Usuarios_model->update($id, $data)) 
+		{
 			$this->session->set_flashdata("success", "El cambio de informacion del usuario fue éxitoso");
 			$this->session->set_userdata("nombres",$nombres);
 			redirect(base_url()."usuario/perfil");
 		}
 	}
 
-	public function changePassword(){
+	public function changePassword()
+	{
 		$id = $this->input->post("idUsuario");
 		$password = $this->input->post("newpass");
 		$data = array(
 			"password" => sha1($password)
 		);
 
-		if ($this->Usuarios_model->update($id, $data)) {
+		if ($this->Usuarios_model->update($id, $data)) 
+		{
 			$this->session->set_flashdata("success", "El cambio de contraseña fue éxitoso");
 			redirect(base_url()."usuario/perfil");
 		}
 	}
 
-	public function changeImagen(){
+	public function changeImagen()
+	{
 		$id = $this->input->post("idUsuario");
 
 		$config['upload_path']   = './assets/images/usuarios/';
@@ -111,19 +99,18 @@ class Usuarios extends CI_Controller {
             	"imagen_perfil" => $data["upload_data"]["file_name"],
             );
 
-            if ($this->Personas_model->update($id, $datos)) {
-
+            if ($this->Personas_model->update($id, $datos)) 
+            {
             	$success = array(
             		"status" =>1
               	);
 				echo json_encode($success);
 			}
-
-
         }
 	}
 
-	public function changeFirma(){
+	public function changeFirma()
+	{
 		$id = $this->input->post("idUsuario");
 
 		$config['upload_path']   = './assets/images/firmas/';
@@ -149,19 +136,18 @@ class Usuarios extends CI_Controller {
             	"firma" => $data["upload_data"]["file_name"],
             );
 
-            if ($this->Usuarios_model->update($id, $datos)) {
-
+            if ($this->Usuarios_model->update($id, $datos)) 
+            {
             	$success = array(
             		"status" =>1
               	);
 				echo json_encode($success);
 			}
-
-
         }
 	}
 
-	public function changeHoja(){
+	public function changeHoja()
+	{
 		$id = $this->input->post("idUsuario");
 
 		$config['upload_path']   = './assets/pdf/usuarios/';
@@ -187,22 +173,21 @@ class Usuarios extends CI_Controller {
             	"hoja" => $data["upload_data"]["file_name"],
             );
 
-            if ($this->Usuarios_model->update($id, $datos)) {
-
+            if ($this->Usuarios_model->update($id, $datos)) 
+            {
             	$success = array(
             		"status" =>1
               	);
 				echo json_encode($success);
 			}
-
-
         }
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$contenido_interno = array(
 			"usuario" => $this->Usuarios_model->getUsuario($id),
-			"rol" => $this->Usuarios_model->getRoles()
+			"roles" => $this->Usuarios_model->getRoles()
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/usuarios/edit",$contenido_interno,TRUE)
@@ -210,7 +195,8 @@ class Usuarios extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function update(){
+	public function update()
+	{
 		$id = $this->input->post("idUsuario");
 		$nombres = $this->input->post("nombres");
 		$email = $this->input->post("email");
@@ -218,15 +204,17 @@ class Usuarios extends CI_Controller {
 		$cedula = $this->input->post("cedula");
 		$estado = 1;
 
-		if ($this->input->post("estado") ) {
-			if ($this->input->post("estado") == 1) {
+		if ($this->input->post("estado") ) 
+		{
+			if ($this->input->post("estado") == 1) 
+			{
 				$estado = 1;
-			}else{
-				$estado = 0;
 			}
-			
+			else
+			{
+				$estado = 0;
+			}	
 		}
-
 	
 		$data = array(
 			"nombres" => $nombres,
@@ -236,20 +224,21 @@ class Usuarios extends CI_Controller {
 			"cedula"  => $cedula
 		);
 
-		if ($this->Usuarios_model->update($id, $data)) {
-
+		if ($this->Usuarios_model->update($id, $data)) 
+		{
 			$this->backend_lib->savelog($this->modulo,"Actualización del Usuario ".$email);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."administrador/usuarios");
-		} else {
+		} 
+		else 
+		{
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
 			redirect(base_url()."administrador/usuarios/edit/".$id);
-
 		}
-		
 	}
 
-	public function logs(){
+	public function logs()
+	{
 		$contenido_interno = array(
 			"logs" => $this->Backend_model->getLogs()
 		);
@@ -259,7 +248,8 @@ class Usuarios extends CI_Controller {
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
-	public function download_backup(){
+	public function download_backup()
+	{
 		$this->load->helper("download");
 		$this->load->helper("file");
 		$this->load->library("zip");
@@ -271,11 +261,10 @@ class Usuarios extends CI_Controller {
 		$save = "assets/db_backup/".$dbname;
 		write_file($save, $backup);
 		force_download($dbname, $backup);
-		
-
 	}
 
-	public function upload_data(){
+	public function upload_data()
+	{
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/usuarios/upload","",TRUE)
 		);
@@ -289,7 +278,8 @@ class Usuarios extends CI_Controller {
 			$path = $_FILES["file"]["tmp_name"];
 			$object = PHPExcel_IOFactory::load($path);
 
-			if ($tabla == 1) {
+			if ($tabla == 1) 
+			{
 				foreach($object->getWorksheetIterator() as $worksheet)
 				{
 					$highestRow = $worksheet->getHighestRow();
@@ -349,9 +339,11 @@ class Usuarios extends CI_Controller {
 						);
 					}
 				}
-				$this->Backend_model->insert("computadoras",$data);
+				$this->Backend_model->insert("bienes",$data);
 				echo "1";
-			} else if($tabla==2){
+			} 
+			else if($tabla==2)
+			{
 				foreach($object->getWorksheetIterator() as $worksheet)
 				{
 					$highestRow = $worksheet->getHighestRow();
@@ -391,9 +383,11 @@ class Usuarios extends CI_Controller {
 						);
 					}
 				}
-				$this->Backend_model->insert("impresoras",$data);
+				$this->Backend_model->insert("bienes",$data);
 				echo "1";
-			}else if($tabla==4){
+			}
+			else if($tabla==4)
+			{
 				foreach($object->getWorksheetIterator() as $worksheet)
 				{
 					$highestRow = $worksheet->getHighestRow();
@@ -413,10 +407,11 @@ class Usuarios extends CI_Controller {
 						);
 					}
 				}
-				$this->Backend_model->insert("propietarios",$data);
+				$this->Backend_model->insert("personas",$data);
 				echo "1";
 			}
-			else{
+			else
+			{
 				foreach($object->getWorksheetIterator() as $worksheet)
 				{
 					$highestRow = $worksheet->getHighestRow();
@@ -458,15 +453,13 @@ class Usuarios extends CI_Controller {
 						);
 					}
 				}
-				$this->Backend_model->insert("monitores",$data);
+				$this->Backend_model->insert("bienes",$data);
 				echo "1";
 			}
-
-			
-		} else{
+		} 
+		else
+		{
 			echo "0";
 		}
-		
 	}
-
 }

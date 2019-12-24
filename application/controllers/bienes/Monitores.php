@@ -2,17 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Monitores extends CI_Controller {
-	private $modulo = "Monitores";
+	private $modulo = "Impresoras";
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
 		$this->load->model("Monitores_model");
-		$this->load->model("Areas_model");
-		$this->load->model("Elementos_model");
-		$this->load->model("Tipo_propiedad_model");
 		$this->load->model("Personas_model");
+		$this->load->model("Tipo_propiedad_model");
 		$this->load->model("Marcas_model");
 		$this->load->model("Status_model");
 	}
@@ -34,7 +32,6 @@ class Monitores extends CI_Controller {
 			"personas" => $this->Personas_model->getPersonas(),
 			"tipo_propiedades" => $this->Tipo_propiedad_model->getTipo_propiedades(),
 			"marcas" => $this->Marcas_model->getMarcas(),
-			"areas" => $this->Areas_model->getAreas()
 		);
 		$contenido_externo = array(
 			"contenido" => $this->load->view("admin/monitores/add",$contenido_interno,TRUE)
@@ -44,28 +41,35 @@ class Monitores extends CI_Controller {
 
 	public function store(){
 		if ($this->input->post("guardar")) {
-			$no_serie = $this->input->post("no_serie");
-			$modelo = $this->input->post("modelo");
-			$marca = $this->input->post("marca");
-			$persona = $this->input->post("persona");
+			$id_persona = $this->input->post("id_persona");
 			$id_tipo_propiedad = $this->input->post("id_tipo_propiedad");
+			$modelo = $this->input->post("modelo");
+			$no_serie = $this->input->post("no_serie");
+			$id_marca = $this->input->post("id_marca");
+			$id_ip = $this->input->post("id_ip");
 			$estado_bien = $this->input->post("estado_bien");
 
 			$data = array(
-				"id_persona" => $persona,
-				"id_elemento" => 2,
+				"id_persona" => $id_persona,
+				"id_elemento" => 6,
 				"id_tipo_propiedad" => $id_tipo_propiedad,
 				"modelo" => $modelo,
 				"no_serie" => $no_serie,
-				"id_marca" => $marca,
+				"id_marca" => $id_marca,
+				"id_ip" => $id_ip,
 				"fecregistro_bien" => date("Y-m-d H:i:s"),
 				"estado_bien" => $estado_bien,
-				"id_usuario" => $this->session->userdata("id_usuario"),
-				"id_status" => 5
+				"id_status" => 1,
+				"id_usuario" => $this->session->userdata("id_usuario")
 			);
 
+			// $dataImpresora = array(
+			// 	"id_status" => 4
+			// );
+
 			if ($this->Monitores_model->save($data)) {
-				$this->backend_lib->savelog($this->modulo,"Inserción de nuevo Monitor con No. de Serie ".$no_serie);
+				$this->backend_lib->savelog($this->modulo,"Inserción de nueva Impresora con No. de Serie ".$no_serie);
+				// $this->Ip_model->update($id_ip, $dataImpresora);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 				redirect(base_url()."bienes/monitores");
 			} else {
@@ -84,32 +88,32 @@ class Monitores extends CI_Controller {
 		$id = $this->input->post("id");
 
 		$data = array(
-			"monitor" => $this->Monitores_model->infoMonitor($id),
+			"impresora" => $this->Monitores_model->infoImpresora($id),
+			"ips" => $this->Ip_model->getIpLibreCPU(),
+			"personas" => $this->Personas_model->getPersonas(),
 			"tipo_propiedades" => $this->Tipo_propiedad_model->getTipo_propiedades(),
 			"marcas" => $this->Marcas_model->getMarcas(),
-			"areas" => $this->Areas_model->getAreas(),
-			"mantenimientos" => $this->Monitores_model->getMantenimientos($id)
+			// "mantenimientos" => $this->Impresoras_model->getMantenimientos($id)
 		);
 
 		$this->load->view("admin/monitores/view", $data);
 	}
-
 	public function delete($id){
-		$monitor = $this->Monitores_model->getMonitor($id);
-
+		$impresora = $this->Monitores_model->getImpresora($id);
+		
 		$this->Monitores_model->delete($id);
-		$this->backend_lib->savelog($this->modulo,"Eliminación del Monitor con No. de Serie ".$monitor->no_serie);
+		$this->backend_lib->savelog($this->modulo,"Eliminación de la Impresoras con No. de Serie ".$impresora->no_serie);
 		echo "bienes/monitores";
 	}
 
 	public function edit($id){
 		$contenido_interno = array(
-			"monitor" => $this->Monitores_model->getMonitor($id),
+			"impresora" => $this->Monitores_model->getImpresora($id),
+			"ips" => $this->Ip_model->getIpLibreCPU(),
 			"personas" => $this->Personas_model->getPersonas(),
 			"tipo_propiedades" => $this->Tipo_propiedad_model->getTipo_propiedades(),
-			"marcas" => $this->Marcas_model->getMarcas(),
 			"status" => $this->Status_model->getStatus(),
-			"areas" => $this->Areas_model->getAreas()
+			"marcas" => $this->Marcas_model->getMarcas()
 		);
 
 		$contenido_externo = array(
@@ -119,30 +123,29 @@ class Monitores extends CI_Controller {
 	}
 
 	public function update(){
-		$id = $this->input->post("idMonitor");
-		$no_serie = $this->input->post("no_serie");
-		$modelo = $this->input->post("modelo");
-		$marca = $this->input->post("marca");
-		$persona = $this->input->post("persona");
+		$id = $this->input->post("idImpresora");
+		$id_persona = $this->input->post("id_persona");
 		$id_tipo_propiedad = $this->input->post("id_tipo_propiedad");
+		$modelo = $this->input->post("modelo");
+		$no_serie = $this->input->post("no_serie");
+		$id_marca = $this->input->post("id_marca");
+		$id_ip = $this->input->post("id_ip");
 		$estado_bien = $this->input->post("estado_bien");
-
-		/*if ($this->input->post("estado") ) {
-			if ($this->input->post("estado") == 2) {
-				$estado = 0;
-			}
-		}*/
+		$id_status = $this->input->post("id_status");
 
 		$data = array(
-			"id_persona" => $persona,
+			"id_persona" => $id_persona,
 			"id_tipo_propiedad" => $id_tipo_propiedad,
 			"modelo" => $modelo,
 			"no_serie" => $no_serie,
-			"id_marca" => $marca,
-			"estado_bien" => $estado_bien
+			"id_marca" => $id_marca,
+			"id_ip" => $id_ip,
+			"estado_bien" => $estado_bien,
+			"id_status" => $id_status
 		);
+
 		if ($this->Monitores_model->update($id, $data)) {
-			$this->backend_lib->savelog($this->modulo,"Actualización del Monitor con No. de Serie ".$no_serie);
+			$this->backend_lib->savelog($this->modulo,"Actualización de la Impresora con No. de Serie ".$no_serie);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
 			redirect(base_url()."bienes/monitores");
 		} else {
@@ -154,33 +157,33 @@ class Monitores extends CI_Controller {
 	}
 
 	public function addmantenimiento(){
-		$id = $this->input->post("idmonitor");
+		$id = $this->input->post("idequipo");
 		$fecha = $this->input->post("fecha");
+		$tecnico = $this->input->post("tecnico");
 		$descripcion = $this->input->post("descripcion");
 
 		$data = array(
-			"id_bien" => $id,
-			"fecha_mantenimiento" => $fecha,
-			"id_usuario" => $this->session->userdata("id_usuario"),
-			"motivo_mantenimiento" => $descripcion,
-			"id_status" => 9,
+			"impresora_id" => $id,
+			"fecha" => $fecha,
+			"tecnico" => $tecnico,
+			"descripcion" => $descripcion
 		);
 
-		$dataMonitor = array(
-			"ultimo_mantenimiento" => $fecha
+		$dataImpresora = array(
+			"ultimo_mante" => $fecha
 		);
 
 
 
 		if ($this->Monitores_model->saveMante($data)) {
-			$monitor = $this->Monitores_model->getMonitor($id);
-			$this->backend_lib->savelog($this->modulo,"Registro de Mantenimiento al Monitor con No. de Serie ".$monitor->no_serie);
-			$this->Monitores_model->update($id,$dataMonitor);
+			$impresora = $this->Monitores_model->getImpresora($id);
+			$this->backend_lib->savelog($this->modulo,"Registro de Mantenimiento a la Impresora con Codigo ".$impresora->codigo);
+			$this->Monitores_model->update($id,$dataImpresora);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-			redirect(base_url()."equipos/monitores");
+			redirect(base_url()."bienes/monitores");
 		}else{
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
-			redirect(base_url()."equipos/monitores");
+			redirect(base_url()."bienes/monitores");
 		}
 
  	}

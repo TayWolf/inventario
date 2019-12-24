@@ -31,7 +31,7 @@ class RecursoRed extends CI_Controller
 	public function add()
 	{
 		$contenido_interno = array(
-			"tipo_claves" => $this->Tipo_claves_model->getTipo_claves(),
+			"tipo_claves" => $this->Tipo_claves_model->getTipoClaves(),
 			"personas" => $this->Personas_model->getPersonas(),
 			"status" => $this->Status_model->getStatus()
 		);
@@ -99,7 +99,7 @@ class RecursoRed extends CI_Controller
 	{
 		$contenido_interno = array(
 			"recursored" => $this->RecursoRed_model->getRecursoRed($id),
-			"tipo_claves" => $this->Tipo_claves_model->getTipo_claves(),
+			"tipo_claves" => $this->Tipo_claves_model->getTipoClaves(),
 			"personas" => $this->Personas_model->getPersonas(),
 			"status" => $this->Status_model->getStatus()
 		);

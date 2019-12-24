@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Inventario FONCA | Login</title>
-
+    <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.png" type="image/png">
+    <link rel="icon" href="<?php echo base_url();?>assets/images/favicon.png" type="image/png">
     <!-- Bootstrap -->
     <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

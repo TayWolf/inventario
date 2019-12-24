@@ -50,6 +50,8 @@ class Cpu extends CI_Controller {
 	public function store(){
 		if ($this->input->post("guardar")) {
 			$no_serie = $this->input->post("no_serie");
+			$monitor = $this->input->post("monitor");
+			$no_break = $this->input->post("no_break");
 			$marca = $this->input->post("marca");
 			$modelo = $this->input->post("modelo");
 			$procesador = $this->input->post("procesador");
@@ -76,6 +78,8 @@ class Cpu extends CI_Controller {
 				"id_tipo_propiedad" => $tipo_propiedad,
 				"modelo" => $modelo,
 				"no_serie" => $no_serie,
+				"monitor" => $monitor,
+				"no_break" => $no_break,
 				"id_marca" => $marca,
 				"id_ip" => $ip,
 				"procesador" => $procesador,
@@ -153,6 +157,8 @@ class Cpu extends CI_Controller {
 	public function update(){
 		$id = $this->input->post("idBien");
 		$no_serie = $this->input->post("no_serie");
+		$monitor = $this->input->post("monitor");
+		$no_break = $this->input->post("no_break");
 		$marca = $this->input->post("marca");
 		$modelo = $this->input->post("modelo");
 		$procesador = $this->input->post("procesador");
@@ -179,6 +185,8 @@ class Cpu extends CI_Controller {
 			"id_tipo_propiedad" => $tipo_propiedad,
 			"modelo" => $modelo,
 			"no_serie" => $no_serie,
+			"monitor" => $monitor,
+			"no_break" => $no_break,
 			"id_marca" => $marca,
 			"id_ip" => $ip,
 			"procesador" => $procesador,

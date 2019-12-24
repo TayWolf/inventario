@@ -31,31 +31,33 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Encargado</th>
                                     <th>No. Serie</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
                                     <th>Elemento</th>
                                     <th>IP</th>
-                                    <th>Fec. Registro</th>
-                                    <th>Ultimo Mant.</th>
-                                    <th>Estado</th>
+                                    <th>Tipo Propiedad</th>
                                     <th>Bitacora</th>
+                                    <th>Fec. Registro</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($impresoras as $impresora): ?>
+                                <?php 
+                                $cont = 1; 
+                                foreach ($impresoras as $impresora): ?>
                                     <tr>
-                                        <td><?php echo $impresora->id_bien?></td>
+                                        <td><?php echo $cont?></td>
+                                        <td><?php echo $impresora->nombres.' '.$impresora->ap_paterno.' '.$impresora->ap_materno?></td>
                                         <td><?php echo $impresora->no_serie?></td>
                                         <td><?php echo $impresora->marca?></td>
                                         <td><?php echo $impresora->modelo?></td>
                                         <td><?php echo $impresora->elemento?></td>
                                         <td><?php echo $impresora->direccion_ip?></td>
-                                        <td><?php echo $impresora->fecregistro_bien?></td>
-                                        <td><?php echo $impresora->ultimo_mantenimiento?></td>
-                                        <td><?php echo $impresora->nombre_status?></td>
+                                        <td><?php echo $impresora->tipo_propiedad?></td>
                                         <td><?php echo $impresora->estado_bien?></td>
+                                        <td><?php echo $impresora->fecregistro_bien?></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $impresora->id_bien;?>" title="Ver">
@@ -75,6 +77,7 @@
                                         </td>
 
                                     </tr>
+                                    <?php $cont = $cont + 1; ?>
                                 <?php endforeach ?>
                             </tbody>
                         </table>

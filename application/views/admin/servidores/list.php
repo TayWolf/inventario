@@ -43,9 +43,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($servidores as $servidor): ?>
+                                <?php 
+                                $cont = 1;
+                                foreach ($servidores as $servidor): ?>
                                     <tr>
-                                        <td><?php echo $servidor->id_bien?></td>
+                                        <td><?php echo $cont?></td>
                                         <td><?php echo $servidor->no_serie?></td>
                                         <td><?php echo $servidor->marca?></td>
                                         <td><?php echo $servidor->modelo?></td>
@@ -74,6 +76,7 @@
                                         </td>
 
                                     </tr>
+                                    <?php $cont = $cont + 1; ?>
                                 <?php endforeach ?>
                             </tbody>
                         </table>

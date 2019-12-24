@@ -284,6 +284,16 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group" style="padding-top: 5px;">
+                            <label for="">Elemento</label>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-12">
+                        <div class="form-group" style="padding-top: 5px;">
+                            <input type="checkbox" name="estados[]" value="Rapido">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group" style="padding-top: 5px;">
                             <label for="">Procesador</label>
                         </div>
                     </div>

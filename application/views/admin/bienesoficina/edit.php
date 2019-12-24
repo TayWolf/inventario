@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Discos Duros <small>Registro</small>
+        No-BREAK <small>Editar</small>
     </h1>
 
 </section>
@@ -13,7 +13,8 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6 col-sm-8 col-xs-12">
-                    <form action="<?php echo base_url();?>configuraciones/discos/store" method="POST">
+                    <form action="<?php echo base_url();?>bienes/oficina/update" method="POST">
+                        <input type="hidden" name="idBienOficina" value="<?php echo $bienoficina->id_bien;?>">
                         <?php if ($this->session->flashdata("success")): ?>
                             <script>
                                 swal("Registro Exitoso!", "Haz click en el botón para continuar registrando.", "success");
@@ -24,19 +25,9 @@
                                 swal("Error al Registrar!", "Haz click en el botón para volver intentarlo.", "error");
                             </script>
                         <?php endif ?>
-                        
                         <div class="form-group">
-                            <label for="capacidad">Capacidad:</label>
-                            <input type="text" name="capacidad" id="capacidad" class="form-control" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label for="fabricante">Fabricante:</label>
-                            <select name="fabricante" id="fabricante" class="form-control" required="required">
-                                <option value="">Elija Fabricante</option>
-                                <?php foreach ($fabricantes as $fabricante): ?>
-                                    <option value="<?php echo $fabricante->id;?>"><?php echo $fabricante->nombre;?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <label for="descripcion">Nombre:</label>
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" required="required" value="<?php echo $bienoficina->estado_bien; ?>">
                         </div>
                         
                         <div class="form-group">

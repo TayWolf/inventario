@@ -8,7 +8,7 @@ class BusquedaAvanzada extends CI_Controller {
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
-		$this->load->model("Impresoras_model");
+		$this->load->model("BusquedaAvanzada_model");
 	}
 
 	public function index(){
@@ -16,10 +16,10 @@ class BusquedaAvanzada extends CI_Controller {
 		$fecfin = $this->input->post("fecfin");
 
 		if ($this->input->post("buscar")) {
-			$impresoras = $this->Impresoras_model->getImpresoras(false,"",$fecinicio,$fecfin);
+			$impresoras = $this->BusquedaAvanzada_model->getBienes(false,"",$fecinicio,$fecfin);
 		}
 		else{
-			$impresoras = $this->Impresoras_model->getImpresoras(false,"");
+			$impresoras = $this->BusquedaAvanzada_model->getBienes(false,"");
 		}
 
 		$contenido_interno = array(
@@ -45,11 +45,11 @@ class BusquedaAvanzada extends CI_Controller {
 		$inicio = ($numeropagina -1)*$cantidad;
 
 		if ($checkfecha == 1) {
-			$impresoras = $this->Impresoras_model->getImpresoras(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
-			$total = $this->Impresoras_model->getImpresoras(1,$buscar,false,false,$fecinicio,$fecfin);
+			$impresoras = $this->BusquedaAvanzada_model->getBienes(1,$buscar,$inicio,$cantidad,$fecinicio,$fecfin);
+			$total = $this->BusquedaAvanzada_model->getBienes(1,$buscar,false,false,$fecinicio,$fecfin);
 		}else{
-			$impresoras = $this->Impresoras_model->getImpresoras(1,$buscar,$inicio,$cantidad);
-			$total = $this->Impresoras_model->getImpresoras(1,$buscar);
+			$impresoras = $this->BusquedaAvanzada_model->getBienes(1,$buscar,$inicio,$cantidad);
+			$total = $this->BusquedaAvanzada_model->getBienes(1,$buscar);
 		}
 		
 		
@@ -147,9 +147,9 @@ class BusquedaAvanzada extends CI_Controller {
 	        $this->excel->getActiveSheet()->setCellValue("N{$contador}", 'Estado');
 
 	        if ($fechainicio != "" && $fechafin != "") {
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,$fechainicio,$fechafin);
+	        	$impresoras = $this->BusquedaAvanzada_model->getBienes(1,$search,$fechainicio,$fechafin);
 	        }else{
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,false,false);
+	        	$impresoras = $this->BusquedaAvanzada_model->getBienes(1,$search,false,false);
 	        }
 
 
@@ -258,11 +258,11 @@ class BusquedaAvanzada extends CI_Controller {
 
             if ($fechainicio != "" && $fechafin != "") 
             {
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,$fechainicio,$fechafin);
+	        	$impresoras = $this->BusquedaAvanzada_model->getBienes(1,$search,$fechainicio,$fechafin);
 	        }
 	        else
 	        {
-	        	$impresoras = $this->Impresoras_model->getImpresoras(1,$search,false,false);
+	        	$impresoras = $this->BusquedaAvanzada_model->getBienes(1,$search,false,false);
 	        }
         
 	        //provincias es la respuesta de la función getProvinciasSeleccionadas($provincia) del modelo

@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        Discos Duros <small> Listado</small>
+        Lap Tops <small> Listado</small>
     </h1>
 
 </section>
@@ -20,37 +20,49 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="discos">
+            <input type="hidden" id="modulo" value="laptops">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>configuraciones/discos/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Memoria</a>
+                    <a href="<?php echo base_url();?>bienes/laptops/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Lap Top</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Capacidad</th>
-                                    <th>Fabricante</th>
-                                    <th>Estado</th>
+                                    <th>Elemento</th>
+                                    <th>Tipo de Propiedad</th>
+                                    <th>Modelo</th>
+                                    <th>No. de Serie</th>
+                                    <th>Marca</th>
+                                    <th>IP</th>
+                                    <th>Fec. Registro</th>
+                                    <th>Bitácora</th>
+                                    <th>Status</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($discos as $disco): ?>
+                                <?php foreach ($laptops as $laptop): ?>
                                     <tr>
-                                        <td><?php echo $disco->id?></td>
-                                        <td><?php echo $disco->capacidad?></td>
-                                        <td><?php echo $disco->fabricante?></td>
-                                        <td><?php echo $disco->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $laptop->id_bien?></td>
+                                        <td><?php echo $laptop->elemento?></td>
+                                        <td><?php echo $laptop->tipo_propiedad?></td>
+                                        <td><?php echo $laptop->modelo?></td>
+                                        <td><?php echo $laptop->no_serie?></td>
+                                        <td><?php echo $laptop->marca?></td>
+                                        <td><?php echo $laptop->id_ip?></td>
+                                        <td><?php echo $laptop->fecregistro_bien?></td>
+                                        <td><?php echo $laptop->estado_bien?></td>
+                                        <td><?php echo $laptop->nombre_status?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view-conf" data-toggle="modal" data-target="#modal-default" value="<?php echo $disco->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $laptop->id_bien;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>configuraciones/discos/edit/<?php echo $disco->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1):  ?>
-                                                    <a href="<?php echo base_url();?>configuraciones/discos/delete/<?php echo $disco->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>bienes/laptops/edit/<?php echo $laptop->id_bien?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1):  ?>
+                                                    <a href="<?php echo base_url();?>bienes/laptops/delete/<?php echo $laptop->id_bien?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>
@@ -80,7 +92,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion del Sistema</h4>
+        <h4 class="modal-title">Informacion de Lap-Top</h4>
       </div>
       <div class="modal-body">
         

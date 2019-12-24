@@ -1,10 +1,17 @@
+<style>
+    .dataTables_wrapper .dataTables_filter 
+    {
+        float: right;
+        text-align: right;
+        visibility: hidden;
+    }
+</style>
 <section class="content-header">
     <h1>
-        Búsqueda <small> BÁSICA</small>
+        Reportes <small> Búsqueda</small>
     </h1>
 
 </section>
-
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -12,65 +19,53 @@
     
         <div class="box-body">
             <input type="hidden" id="modulo" value="cpu">
-            
-                <form action="<?php echo current_url();?>" method="POST">
-                <div class="row">
-                    <div class="col-md-2">
+            <div class="row">
+                    <div class="col-md-1 col-md-offset-2">
                         <div class="form-group" style="padding-top: 5px;">
-                            <label for="">Parámetro de Búsqueda:</label>
+                            <label for="busquedaBasica">BÚSQUEDA:</label>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="busquedabasica" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <input type="submit" name="buscar" class="btn btn-success btn-flat" value="Buscar">
-                            <a href="<?php echo base_url();?>reportes/busquedabasica" class="btn btn-danger btn-flat">Reestablecer</a>
+                            <input type="text"  id="busquedaBasica" name="busquedaBasica" class="form-control">
                         </div>
                     </div>
                 </div>
-                <hr>
-            </form>
-     
             
             <div class="row">
                 <div class="col-md-12">
                    
                     <div class="table-responsive">
-                        <table id="tbcomputadoras" class="table table-bordered table-hover">
+                        <table id="tbcomputadorasSF" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Elemento</th>
+                                    <th>Folio Remisión</th>
+                                    <th>Propietario</th>
                                     <th>Area</th>
-                                    <th>Procesador</th>
-                                    <th>Disco Duro</th>
+                                    <th>CPU</th>
+                                    <th>Monitor</th>
+                                    <th>No-BREAK</th>
                                     <th>IP</th>
-                                    <th>Memoria RAM</th>
-                                    <th>S.O</th>
-                                    <th>Usuario</th>
+                                    <th>Perfil</th>
                                     <th>Fec. Registro</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($impresoras as $c): ?>
+                                <?php foreach ($computadoras as $c): ?>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?php echo $c->id_bien;?></td>
+                                        <td><?php echo $c->folio_remision;?></td>
+                                        <td><?php echo $c->nombres.' '.$c->ap_paterno.' '.$c->ap_materno;?></td>
+                                        <td><?php echo $c->nombre_area;?></td>
+                                        <td><?php echo $c->no_serie;?></td>
+                                        <td><?php echo $c->monitor;?></td>
+                                        <td><?php echo $c->no_break;?></td>
+                                        <td><?php echo $c->direccion_ip;?></td>
+                                        <td><?php echo $c->nombre_perfil;?></td>
+                                        <?php $fecha = new DateTime($c->fecregistro_bien); ?>
+                                        <td><?php echo $fecha->format("d-m-Y");?></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $c->id_bien;?>" title="Ver">
@@ -85,28 +80,6 @@
                             
                         </table>
                         
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <form action="<?php echo base_url();?>reportes/computadoras/exportcomputadoras" method="POST">
-                        <input type="hidden" id="busquedabasica" name="busquedabasica" value="<?php echo isset($fecinicio) ? $fecinicio:"";?>">
-                        <input type="hidden" id="fechafin" name="fechafin" value="<?php echo isset($fecfin) ? $fecfin:"";?>">
-                        <input type="hidden" id="searchfecha" name="searchfecha" value="0">
-                        <input type="hidden" id="search" name="search">
-                        <input type="hidden" name="tipoarchivo" id="tipoarchivo">
-                        <!-- <button id="file-excel" type="submit" class="btn btn-success btn-flat">
-                            <span class="fa fa-file-excel-o"></span> Exportar a Excel
-                        </button> -->
-                        <button id="file-pdf" type="submit" class="btn btn-danger btn-flat" style="margin-left: 700px;">
-                            <span class="fa fa-file-pdf-o"></span> Exportar a PDF
-                        </button>
-                    </form>
-                </div>
-                <div class="col-md-8">
-                    <div class="paginacionComp text-right">
-                           
                     </div>
                 </div>
             </div>

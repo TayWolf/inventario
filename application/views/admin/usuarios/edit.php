@@ -24,29 +24,29 @@
                                 swal("Error al Actualizar!", "Haz click en el botón para volver intentarlo.", "error");
                             </script>
                         <?php endif ?>
-                        <input type="hidden" name="idUsuario" value="<?php echo $usuario->id;?>">
+                        <input type="hidden" name="idUsuario" value="<?php echo $usuario->id_usuario;?>">
                         <div class="form-group">
                             <label for="cedula">Cedula:</label>
-                            <input type="text" name="cedula" class="form-control" required="required" value="<?php echo $usuario->cedula?>">
+                            <input type="text" name="cedula" class="form-control" required="required" value="<?php echo $usuario->curp?>">
                         </div>
                         <div class="form-group">
                             <label for="nombres">Nombres y Apellidos</label>
-                            <input type="text" name="nombres" class="form-control" required="required" value="<?php echo $usuario->nombres ?>">
+                            <input type="text" name="nombres" class="form-control" required="required" value="<?php echo $usuario->nombres.' '.$usuario->ap_paterno.' '.$usuario->ap_materno ?>">
                         </div>
                         <div class="form-group">
                             <label for="email">Nombre de Usuario:</label>
-                            <input type="text" name="email" class="form-control" required="required" value="<?php echo $usuario->email?>">
+                            <input type="text" name="email" class="form-control" required="required" value="<?php echo $usuario->usuario?>">
                         </div>
                         <div class="form-group">
                             <label for="rol">Rol:</label>
                             <select name="rol" id="rol" required class="form-control">
                                 <option value="">Seleccione Rol</option>
                                 <?php foreach ($roles as $rol): ?>
-                                    <option value="<?php echo $rol->id?>" <?php echo $rol->id == $usuario->rol_id ? "selected":"";?>><?php echo $rol->nombre;?></option>
+                                    <option value="<?php echo $rol->id_rol?>" <?php echo $rol->id_rol == $usuario->id_rol ? "selected":"";?>><?php echo $rol->nombre_rol;?></option>
                                 <?php endforeach ?>
                             </select>
                         </div >
-                        <?php if ($usuario->estado == 0): ?>
+                        <?php if ($usuario->id_status == 2): ?>
                             <div class="form-group">
                                 <label for="estado">Estado:</label>
                                 <select name="estado" id="estado" required class="form-control">

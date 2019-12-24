@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        No-BREAKS <small> Listado</small>
+        Mobiliario de Oficina <small> Listado</small>
     </h1>
 
 </section>
@@ -20,43 +20,47 @@
     <div class="box box-solid">
     
         <div class="box-body">
-            <input type="hidden" id="modulo" value="nobreaks">
+            <input type="hidden" id="modulo" value="oficina">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="<?php echo base_url();?>equipos/nobreak/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar No-BREAK</a>
+                    <a href="<?php echo base_url();?>bienes/oficina/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Mobiliario de Oficina</a>
                     <hr>
                     <div class="table-responsive">
                         <table id="tb-without-buttons" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>#</th>
+                                    <th>Folio de Remisión</th>
                                     <th>No. Serie</th>
                                     <th>Modelo</th>
-                                    <th>Área</th>
+                                    <th>Elemento</th>
+                                    <th>Tipo de Bien</th>
                                     <th>Descripcion</th>
                                     <th>Fecha de Registro</th>
-                                    <th>Usuario</th>
                                     <th>Estado</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($nobreaks as $nobreak): ?>
+                                <?php foreach ($bienesoficina as $bo): ?>
                                     <tr>
-                                        <td><?php echo $nobreak->no_serie?></td>
-                                        <td><?php echo $nobreak->modelo?></td>
-                                        <td><?php echo $nobreak->id_area?></td>
-                                        <td><?php echo $nobreak->descripcion?></td>
-                                        <td><?php echo $nobreak->fecregistro?></td>
-                                        <td><?php echo $nobreak->nombres?></td>
-                                        <td><?php echo $nobreak->estado == 0 ?"Inactivo":"Activo";?></td>
+                                        <td><?php echo $bo->id_bien?></td>
+                                        <td><?php echo $bo->folio_remision?></td>
+                                        <td><?php echo $bo->no_serie?></td>
+                                        <td><?php echo $bo->modelo?></td>
+                                        <td><?php echo $bo->elemento?></td>
+                                        <td><?php echo $bo->nombre_bien?></td>
+                                        <td><?php echo $bo->estado_bien?></td>
+                                        <td><?php echo $bo->fecregistro_bien?></td>
+                                        <td><?php echo $bo->nombre_status?></td>
                                         <td>
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $nobreak->id;?>" title="Ver">
+                                                <button type="button" class="btn btn-primary btn-flat btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $bo->id_bien;?>" title="Ver">
                                                     <span class="fa fa-eye"></span>
                                                 </button>
-                                                <a href="<?php echo base_url();?>equipos/nobreak/edit/<?php echo $nobreak->id?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
-                                                <?php if ($this->session->userdata("rol") == 1):  ?>
-                                                    <a href="<?php echo base_url();?>equipos/nobreak/delete/<?php echo $nobreak->id?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
+                                                <a href="<?php echo base_url();?>bienes/oficina/edit/<?php echo $bo->id_bien?>" class="btn btn-warning btn-flat" title="Editar"><span class="fa fa-pencil"></span></a>
+                                                <?php if ($this->session->userdata("id_rol") == 1):  ?>
+                                                    <a href="<?php echo base_url();?>bienes/oficina/delete/<?php echo $bo->id_bien?>" class="btn btn-danger btn-flat btn-delete" title="Eliminar">
                                                     <span class="fa fa-times"></span>
                                                 </a>
                                                 <?php endif ?>

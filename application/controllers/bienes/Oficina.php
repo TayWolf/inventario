@@ -1,25 +1,30 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Nobreak extends CI_Controller {
-	private $modulo = "No-BREAK";
+class Oficina extends CI_Controller {
+	private $modulo = "Bienes de Oficina";
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
-		$this->load->model("Nobreak_model");
+		$this->load->model("Bienes_Oficina_model");
 		$this->load->model("Areas_model");
+		$this->load->model("Personas_model");
+		$this->load->model("Elementos_model");
+		$this->load->model("Status_model");
+		$this->load->model("Tipo_bien_model");
+		$this->load->model("Tipo_propiedad_model");
 	}
 
 	public function index()
 	{
 
 		$contenido_interno = array(
-			"nobreaks" => $this->Nobreak_model->getNobreaks(false,""),
+			"bienesoficina" => $this->Bienes_Oficina_model->getNobreaks(false,""),
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/nobreak/list",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/bienesoficina/list",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
@@ -29,40 +34,40 @@ class Nobreak extends CI_Controller {
 			"areas" => $this->Areas_model->getAreas(),
 		);
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/nobreak/add",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/bienesoficina/add",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
 	public function store(){
 		if ($this->input->post("guardar")) {
-			$codigo = $this->input->post("no_serie");
-			$modelo = $this->input->post("modelo");
-			$area = $this->input->post("area");
 			$descripcion = $this->input->post("descripcion");
 
 			$data = array(
-				"no_serie" => $codigo,
-				"modelo" => $modelo,
-				"id_area" => $area,
-				"descripcion" => $descripcion,
-				"estado" => 1,
-				"fecregistro" => date("Y-m-d"),
-				"usuario_id" => $this->session->userdata("id"),
+				"folio_remision" => "SCULTURA3-R/P3B/2783",
+				"id_elemento" => 8,
+				"id_tipo_propiedad" => 3,
+				"modelo" => "Equipo de oficina",
+				"no_serie" => "EO-12",
+				"id_marca" => 1,
+				"estado_bien" => $descripcion,
+				"fecregistro_bien" => date("Y-m-d H:i:s"),
+				"id_usuario" => $this->session->userdata("id_usuario"),
+				"id_status" => 1
 			);
 
-			if ($this->Nobreak_model->save($data)) {
-				$this->backend_lib->savelog($this->modulo,"Inserción de nuevo No-BREAK con No. de Serie ".$codigo);
+			if ($this->Bienes_Oficina_model->save($data)) {
+				$this->backend_lib->savelog($this->modulo,"Inserción de nuevo Bien de Oficina con No. de Serie ".$descripcion);
 				$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-				redirect(base_url()."equipos/nobreak");
+				redirect(base_url()."bienes/oficina");
 			} else {
 				$this->session->set_flashdata("error", "Los datos no fueron guardados");
-				redirect(base_url()."equipos/nobreak/add");
+				redirect(base_url()."bienes/oficina/add");
 
 			}
 			
 		} else {
-			redirect(base_url()."equipos/nobreak/add");
+			redirect(base_url()."bienes/oficina/add");
 		}
 		
 	}
@@ -71,60 +76,43 @@ class Nobreak extends CI_Controller {
 		$id = $this->input->post("id");
 
 		$data = array(
-			"nobreak" => $this->Nobreak_model->infoNobreak($id),
-			"areas" => $this->Areas_model->getAreas($id)
+			"bienoficina" => $this->Bienes_Oficina_model->infoNobreak($id)
 		);
 
-		$this->load->view("admin/nobreak/view", $data);
+		$this->load->view("admin/bienesoficina/view", $data);
 	}
 	public function delete($id){
-		$nobreak = $this->Nobreak_model->getNobreak($id);
-		$this->Nobreak_model->delete($id);
-		$this->backend_lib->savelog($this->modulo,"Eliminación del No-BREAK ".$nobreak->no_serie);
-		echo "equipos/nobreak";
+		$bienoficina = $this->Bienes_Oficina_model->getNobreak($id);
+		$this->Bienes_Oficina_model->delete($id);
+		$this->backend_lib->savelog($this->modulo,"Eliminación del Bien de Oficina ".$bienoficina->estado_bien);
+		echo "bienes/oficina";
 	}
 
 	public function edit($id){
 		$contenido_interno = array(
-			"nobreak" => $this->Nobreak_model->getNobreak($id),
-			"areas" => $this->Areas_model->getAreas(),
+			"bienoficina" => $this->Bienes_Oficina_model->getNobreak($id)
 		);
 
 		$contenido_externo = array(
-			"contenido" => $this->load->view("admin/nobreak/edit",$contenido_interno,TRUE)
+			"contenido" => $this->load->view("admin/bienesoficina/edit",$contenido_interno,TRUE)
 		);
 		$this->load->view('admin/template', $contenido_externo);
 	}
 
 	public function update(){
-		$id = $this->input->post("idNobreak");
-		$no_serie = $this->input->post("no_serie");
-		$modelo = $this->input->post("modelo");
-		$area = $this->input->post("area");
+		$id = $this->input->post("idBienOficina");
 		$descripcion = $this->input->post("descripcion");
 
-		$estado = 1;
-
-		if ($this->input->post("estado") ) {
-			if ($this->input->post("estado") == 2) {
-				$estado = 0;
-			}
-		}
-
 		$data = array(
-			"no_serie" => $no_serie,
-			"modelo" => $modelo,
-			"id_area" => $area,
-			"descripcion" => $descripcion,
-			"estado" => $estado,
+			"estado_bien" => $descripcion
 		);
-		if ($this->Nobreak_model->update($id, $data)) {
-			$this->backend_lib->savelog($this->modulo,"Actualización del No-Break ".$no_serie);
+		if ($this->Bienes_Oficina_model->update($id, $data)) {
+			$this->backend_lib->savelog($this->modulo,"Actualización del Bien de Oficina ".$descripcion);
 			$this->session->set_flashdata("success", "Los datos fueron guardados exitosamente");
-			redirect(base_url()."equipos/nobreak");
+			redirect(base_url()."bienes/oficina");
 		} else {
 			$this->session->set_flashdata("error", "Los datos no fueron guardados");
-			redirect(base_url()."equipos/nobreak/edit/".$id);
+			redirect(base_url()."bienes/oficina/edit/".$id);
 
 		}
 		

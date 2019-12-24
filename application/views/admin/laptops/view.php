@@ -1,75 +1,55 @@
 <div class="row">
 	<div class="col-xs-12">
-		<h2><strong>Codigo del <?php echo $bienes->elemento; ?> : </strong> <?php echo $bienes->no_serie; ?></h2>
+		<h2><strong>Codigo de Lap-Top </strong> <?php echo $laptop->no_serie; ?></h2>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<th style="background-color: #f4f4f4;">Persona</th>
-					<td colspan="3"><?php echo $bienes->nombres.' '.$bienes->ap_paterno.' '.$bienes->ap_materno; ?></td>
-
-				</tr>
-				<tr>
-					<th style="background-color: #f4f4f4;">Monitor</th>
-					<td><?php echo $bienes->monitor; ?></td>					
-					
-					<th style="background-color: #f4f4f4;">No-BREAK</th>
-					<td><?php echo $bienes->no_break; ?></td>
-
-				</tr>
-				<tr>
 					<th style="background-color: #f4f4f4;">Tipo de Propiedad</th>
-					<td><?php echo $bienes->tipo_propiedad; ?></td>
+					<td><?php echo $laptop->tipo_propiedad; ?></td>
 					
 					<th style="background-color: #f4f4f4;">Elemento</th>
-					<td><?php echo $bienes->elemento; ?></td>
+					<td><?php echo $laptop->elemento; ?></td>
 
 				</tr>
 				<tr>
-					<th style="background-color: #f4f4f4;">Area</th>
-					<td><?php echo $bienes->nombre_area; ?></td>
-					
 					<th style="background-color: #f4f4f4;">Modelo</th>
-					<td><?php echo $bienes->modelo; ?></td>
-				</tr>
-				<tr>
+					<td><?php echo $laptop->modelo; ?></td>
+					
 					<th style="background-color: #f4f4f4;">Marca</th>
-					<td><?php echo $bienes->marca; ?></td>
-
-					<th style="background-color: #f4f4f4;">Procesador</th>
-					<td><?php echo $bienes->procesador; ?></td>
-
+					<td><?php echo $laptop->marca; ?></td>
 				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">Unidad de Almacenamiento</th>
-					<td><?php echo $bienes->unidad_almacenamiento; ?></td>
+					<td colspan="3"><?php echo $laptop->unidad_almacenamiento; ?></td>
+				</tr>
+				<tr>
+					<th style="background-color: #f4f4f4;">Procesador</th>
+					<td><?php echo $laptop->procesador; ?></td>
 					
 					<th style="background-color: #f4f4f4;">RAM</th>
-					<td><?php echo $bienes->ram; ?></td>
+					<td><?php echo $laptop->ram; ?></td>
 
 				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">Sistema Operativo</th>
-					<td><?php echo $bienes->sistema_operativo; ?></td>
+					<td><?php echo $laptop->sistema_operativo; ?></td>
 					
 					<th style="background-color: #f4f4f4;">Dirección MAC</th>
-					<td><?php echo $bienes->direccion_mac; ?></td>
+					<td><?php echo $laptop->direccion_mac; ?></td>
 					
 				</tr>
 				<tr>
 					<th style="background-color: #f4f4f4;">IP</th>
-					<td><?php echo $bienes->direccion_ip; ?></td>
+					<td><?php echo $laptop->direccion_ip; ?></td>
 					
 					<th style="background-color: #f4f4f4;">Estado</th>
-					<td colspan="3"><?php echo $bienes->nombre_status; ?></td>
+					<td colspan="3"><?php echo $laptop->nombre_status; ?></td>
 				</tr>
 				<tr>
 					<th colspan="4" style="background-color: #f4f4f4; text-align: center;">Bitacora</th>
 				</tr>
 				<tr>
-					<td colspan="4"><?php echo $bienes->estado_bien; ?></td>
-				</tr>
-				<tr>
-					<td colspan="4"></td>
+					<td colspan="4"><?php echo $laptop->estado_bien; ?></td>
 				</tr>
 				<tr>
 					<th style="background-color: #6f80ac; color: #FFF;" class="text-center" colspan="4">Ultimos Mantenimientos</th>
@@ -96,7 +76,7 @@
 					</tr>
 				<?php endif ?>
 				<tr>
-					<th style="background-color: #6f80ac; color: #FFF;" class="text-center" colspan="4">Antecedentes de usuario(s) del CPU</th>
+					<th style="background-color: #6f80ac; color: #FFF;" class="text-center" colspan="4">Antecedentes de préstamos de la LapTop</th>
 				</tr>
 				<?php if (!empty($mantenimientos)): ?>
 					<tr>

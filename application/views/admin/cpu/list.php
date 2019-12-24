@@ -31,37 +31,36 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Folio de Remisión</th>
                                     <th>Propietario</th>
                                     <th>Elemento</th>
-                                    <th>Modelo</th>
                                     <th>No. Serie</th>
-                                    <th>Marca</th>
+                                    <th>Monitor</th>
+                                    <th>No-Break</th>
                                     <th>IP</th>
-                                    <th>Procesador</th>
-                                    <th>Disco Duro</th>
-                                    
-                                    <th>RAM</th>
-                                    <th>Estado</th>
+                                    <th>No. Ext</th>
+                                    <th>Fec. Registro</th>
+                                    <th>Perfil</th>
+
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($computadoras as $computadora): ?>
+                                <?php 
+                                $cont = 1;
+                                foreach ($computadoras as $computadora): ?>
                                     <tr>
-                                        <td><?php echo $computadora->id_bien?></td>
+                                        <td><?php echo $cont?></td>
+                                        <td><?php echo $computadora->folio_remision?></td>
                                         <td><?php echo $computadora->nombres.' '.$computadora->ap_paterno.' '.$computadora->ap_materno?></td>
                                         <td><?php echo $computadora->elemento?></td>
-                                        <td><?php echo $computadora->modelo?></td>
                                         <td><?php echo $computadora->no_serie?></td>
-                                        <td><?php echo $computadora->marca?></td>
+                                        <td><?php echo $computadora->monitor?></td>                                      
+                                        <td><?php echo $computadora->no_break?></td>
                                         <td><?php echo $computadora->direccion_ip?></td>
-                                        <td><?php echo $computadora->procesador?></td>
-                                        
-                                        <td><?php echo $computadora->unidad_almacenamiento?></td>
-                                        
-                                        <td><?php echo $computadora->ram?></td>
-                                        
-                                        <td><?php echo $computadora->nombre_status?></td>
+                                        <td><?php echo $computadora->no_ext_tel?></td>
+                                        <td><?php echo $computadora->fecregistro_bien?></td>
+                                        <td><?php echo $computadora->nombre_perfil?></td>   
                                         
                                         <td>
                                             <div class="btn-group">
@@ -78,13 +77,13 @@
                                                 <button type="button" class="btn btn-info btn-flat btn-mante" data-toggle="modal" data-target="#modal-mantenimiento" title="Mantenimientos" value="<?php echo $computadora->id_bien;?>">
                                                     <span class="fa fa-wrench"></span>
 
-                                                <button type="button" class="btn btn-default btn-flat btn-mante" data-toggle="modal" data-target="#modal-usuario" title="Usuario del equipo" value="<?php echo $computadora->id_bien;?>">
+                                                <!-- <button type="button" class="btn btn-default btn-flat btn-mante" data-toggle="modal" data-target="#modal-usuario" title="Usuario del equipo" value="<?php echo $computadora->id_bien;?>">
                                                     <span class="fa fa-user"></span>
-                                                </button>
+                                                </button> -->
                                             </div>
                                         </td>
-
                                     </tr>
+                                    <?php $cont = $cont + 1; ?>
                                 <?php endforeach ?>
                             </tbody>
                         </table>

@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Inventario | FONCA</title>
+    <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.png" type="image/png">
+    <link class="favicon" rel="icon" href="<?php echo base_url();?>assets/images/favicon.png" type="image/png">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -167,12 +169,12 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url();?>bienes/cpu"><i class="fa fa-circle-o"></i> CPU</a></li>
-                            <li><a href="<?php echo base_url();?>bienes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/cpu"><i class="fa fa-circle-o"></i> CPU´s</a></li>
                             <li><a href="<?php echo base_url();?>bienes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
                             <li><a href="<?php echo base_url();?>bienes/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
                             <li><a href="<?php echo base_url();?>bienes/servidores"><i class="fa fa-circle-o"></i> Servidores</a></li>
-                            <!-- <li><a href="<?php echo base_url();?>bienes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li> -->
+                            <li><a href="<?php echo base_url();?>bienes/laptops"><i class="fa fa-circle-o"></i> Lap Tops</a></li>
+                            <li><a href="<?php echo base_url();?>bienes/oficina"><i class="fa fa-circle-o"></i> Mobiliario de Oficina</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -212,14 +214,14 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="<?php echo base_url();?>reportes/busquedabasica"><i class="fa fa-circle-o"></i> Búsqueda Básica</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/busquedaavanzada"><i class="fa fa-circle-o"></i> Búsqueda Avanzada</a></li>
-                            <!-- <li><a href="<?php echo base_url();?>reportes/computadoras"><i class="fa fa-circle-o"></i> CPU</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/ip"><i class="fa fa-circle-o"></i> Ips</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li>
-                            <li><a href="<?php echo base_url();?>reportes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li> -->
+                            <li><a href="<?php echo base_url();?>reportes/busquedabasica"><i class="fa fa-circle-o"></i> Búsqueda</a></li>
+                            <!-- <li><a href="<?php echo base_url();?>reportes/busquedaavanzada"><i class="fa fa-circle-o"></i> Búsqueda Avanzada</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>reportes/computadoras"><i class="fa fa-circle-o"></i> CPU</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>reportes/ip"><i class="fa fa-circle-o"></i> Ips</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>reportes/telefonos"><i class="fa fa-circle-o"></i> Teléfonos</a></li> -->
+                            <!-- <li><a href="<?php echo base_url();?>reportes/nobreak"><i class="fa fa-circle-o"></i> No-BREAK</a></li> -->
                         </ul>
                     </li>
                     <?php endif ?>

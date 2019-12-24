@@ -9,6 +9,8 @@ class Personas_model extends CI_Model {
 		$this->db->join("areas a","per.id_area = a.id_area","Left");
 		$this->db->join("cat_status stat","per.id_status = stat.id_status","Left");
 		$this->db->join("cargos car","per.id_cargo = car.id_cargo","Left");
+		$this->db->order_by("per.nombres ASC");
+
 		$resultados = $this->db->get();
 		return $resultados->result();
 	}
