@@ -52,11 +52,8 @@ $(document).ready(function(){
 				});
 		    } 
 		 });
-
-		
 	});
 	
-
 	$(document).on("click", ".btn-view",function(){
 		id = $(this).val();
 		modulo = $("#modulo").val();
@@ -625,7 +622,7 @@ $(document).ready(function(){
 	$(".btn-habilitar").on("click", function(){
 		id = $(this).val();
 		swal({
-		    title: "¿Estas de habilitar al usuario seleccionado?",
+		    title: "¿Estas seguro de habilitar al usuario seleccionado?",
 		    text: "Si esta seguro de hacerlo haga click en el boton Aceptar, caso contrario haga click en cancelar",
 		    type: "warning",
 	        showCancelButton: true,
@@ -648,7 +645,7 @@ $(document).ready(function(){
 		id = $(this).val();
 
 		swal({
-		    title: "¿Estas de deshabilitar al usuario seleccionado?",
+		    title: "¿Estas seguro de deshabilitar al usuario seleccionado?",
 		    text: "Si esta seguro de hacerlo haga click en el boton Aceptar, caso contrario haga click en cancelar",
 		    type: "warning",
 	        showCancelButton: true,
@@ -818,18 +815,26 @@ $(document).ready(function(){
             buttons: [
                 {
 	                extend: 'excelHtml5',
-	                title: "Listado de Computadoras",
+	                title: "Reporte de Computadoras",
 	                exportOptions: {
-	                    columns: [ 0, 1,2, 3, 4,5,6,7,8,9]
+	                    columns: [ 0,1,2,3,4,5,6,7,8,9]
 	                }
 	            },
 	            {
 	                extend: 'print',
-	                title: "Listado de Computadoras",
+	                title: "Reporte de Computadoras",
 	                exportOptions: {
-	                    columns: [ 0, 1,2, 3, 4,5,6,7,8,9]
-	                }
-	                
+	                    columns: [ 0,1,2,3,4,5,6,7,8,9]
+	                }   
+	            },
+	            {
+	                extend: 'pdfHtml5',
+	                pageSize: 'A4',
+	                orientation: 'landscape',
+	                title: "Reporte de Computadoras",
+	                exportOptions: {
+	                    columns: [ 0,1,2,3,4,5,6,7,8,9]
+	                }    
 	            }
             ],
             pageSize: 'A4',
@@ -879,8 +884,7 @@ $(document).ready(function(){
 	                title: "Listado de Computadoras",
 	                exportOptions: {
 	                    columns: [ 0, 1,2, 3, 4,5,6,7,8,9]
-	                }
-	                
+	                }    
 	            }
             ],
             pageSize: 'A4',

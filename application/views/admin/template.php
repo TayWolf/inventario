@@ -68,6 +68,18 @@
         .line{
             border-bottom: 1px solid #fff; 
         }
+        .butonPDF
+        {
+            padding-top: 1.8em;
+        }
+        @media only screen and (max-width: 992px) 
+        {
+            .butonPDF
+            {
+                text-align: center;
+                padding-top: 0;
+            }
+        }
     </style>
     <!-- SweetAlert  -->
     <script src="<?php echo base_url();?>assets/sweetalert/sweetalert.min.js"></script>
@@ -215,7 +227,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="<?php echo base_url();?>reportes/busquedabasica"><i class="fa fa-circle-o"></i> Búsqueda</a></li>
-                            <!-- <li><a href="<?php echo base_url();?>reportes/busquedaavanzada"><i class="fa fa-circle-o"></i> Búsqueda Avanzada</a></li> -->
+                            <li><a href="<?php echo base_url();?>reportes/busquedaavanzada"><i class="fa fa-circle-o"></i> FONCA</a></li>
                             <!-- <li><a href="<?php echo base_url();?>reportes/computadoras"><i class="fa fa-circle-o"></i> CPU</a></li> -->
                             <!-- <li><a href="<?php echo base_url();?>reportes/impresoras"><i class="fa fa-circle-o"></i> Impresoras</a></li> -->
                             <!-- <li><a href="<?php echo base_url();?>reportes/monitores"><i class="fa fa-circle-o"></i> Monitores</a></li> -->

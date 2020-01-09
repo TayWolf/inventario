@@ -4,8 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuarios extends CI_Controller 
 {
 	private $modulo = "Usuarios";
+	
 	public function __construct()
-	{-+ 																												
+	{
+		parent::__construct();
+		$this->load->model("Usuarios_model");
+	} 																												
 
 	public function actEstado()
 	{
